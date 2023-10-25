@@ -1,0 +1,23 @@
+.partners {
+    margin-bottom: rem(60);
+
+    &-slide {
+        margin-right: rem(0) !important;
+        width: auto !important;
+    }
+
+    .swiper-wrapper {
+        align-items: center;
+        gap: rem(15);
+    }
+
+    &-img {
+        padding: rem(20);
+        background: $white;
+        min-height: rem(150);
+        display: flex;
+        align-items: center;
+        width: rem(240);
+        justify-content: center;
+    }
+}

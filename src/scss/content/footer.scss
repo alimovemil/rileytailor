@@ -1,0 +1,50 @@
+.footer {
+    &-block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-inner {
+        .btn {
+            border: none;
+            background: none;
+            padding: rem(0);
+            font-size: rem(12);
+            color: $white;
+        }
+
+        .btn + .btn {
+            margin-left: rem(5);
+        }
+
+        p {
+            font-size: rem(10);
+            line-height: rem(10);
+            color: $white;
+            text-align: center;
+            opacity: 0.5;
+            padding-top: rem(5);
+        }
+
+        .btn:hover,
+        .btn:focus,
+        .btn:active {
+            border: none;
+            background: none;
+
+            .header__text {
+                color: $white;
+                border-bottom: 0.0625rem solid #fff;
+            }
+        }
+    }
+
+    &-social {
+        width: rem(100);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+}

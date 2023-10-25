@@ -1,0 +1,112 @@
+.client {
+    &-slide {
+        margin-right: rem(0) !important;
+        width: rem(280) !important;
+        background: #ffffff;
+    }
+
+    .swiper-wrapper {
+        justify-content: space-between;
+        gap: rem(4);
+    }
+
+    &-description {
+        p {
+            font-size: rem(14);
+            font-weight: 600;
+            line-height: rem(24);
+        }
+
+        span {
+            font-size: rem(12);
+            line-height: rem(22);
+            color: #1E2546;
+        }
+    }
+
+    &-cauldrons {
+        padding: rem(20);
+        display: flex;
+        flex-direction: column;
+        min-height: rem(480);
+    }
+
+    &-cauldrons:hover,
+    &-cauldrons:active,
+    &-cauldrons:focus {
+        background-color: rgb(30, 37, 70);
+        transition: all 0.3s ease;
+
+        p {
+            color: $white;
+        }
+
+        span {
+            color: $white;
+        }
+
+        .header__text {
+            color: $white !important;
+        }
+
+        svg {
+            background-color: rgb(172, 25, 49) !important;
+        }
+    }
+
+    &-img {
+        width: rem(240);
+        height: rem(133);
+        margin-top: rem(80);
+        margin-bottom: rem(60);
+    }
+
+    &-price {
+        width: 100%;
+        margin-top: auto;
+
+        .btn {
+            display: flex;
+            align-items: center;
+            padding: rem(0);
+            justify-content: space-between;
+            width: 100%;
+            border: none;
+
+            .header__text {
+                font-size: rem(24);
+                line-height: rem(34);
+                font-weight: 600;
+                color: #AC1931;
+            }
+
+            .header__right {
+                svg {
+                    background-color: #E5E5E5;
+                    padding: rem(5);
+                }
+            }
+        }
+
+        .btn:hover,
+        .btn:focus,
+        .btn:active {
+            background: none;
+        }
+
+        p {
+            font-size: rem(14);
+            line-height: rem(24);
+            color: rgba(30, 37, 70, 0.50);
+            font-weight: 600;
+            text-decoration: line-through;
+        }
+    }
+
+    &-available {
+        font-size: rem(12);
+        line-height: rem(22);
+        font-weight: 600;
+        color: #008033;
+    }
+}

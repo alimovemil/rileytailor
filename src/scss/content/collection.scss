@@ -1,0 +1,64 @@
+.collection {
+    &-block {
+        background-color: rgb(30, 37, 70);
+        min-height: rem(500);
+        background-repeat: no-repeat;
+        display: flex;
+        overflow: hidden;
+        background-size: rem(340);
+        background-position: 70% 20%;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &-inner {
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+
+            &-text {
+                padding: rem(25);
+                width: 100%;
+                transition: all 0.3s ease;
+
+                p {
+                    font-size: rem(14);
+                    line-height: rem(24);
+                    color: $white;
+                }
+
+                h3 {
+                    font-size: rem(48);
+                    color: $white;
+                    line-height: rem(56);
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+    &-block:hover {
+        background-size: rem(370);
+    }
+
+    &-block:hover .collection-block-inner-text {
+        background-color: rgb(172, 25, 49);
+        padding-bottom: rem(17);
+    }
+
+    &-block:hover .collection-block-inner-text {
+        h3 {
+            color: rgb(255, 221, 148);
+        }
+    }
+
+    &-header {
+        padding-bottom: rem(30);
+
+        h1 {
+            font-size: rem(32);
+            line-height: rem(42);
+            color: #000000;
+            font-weight: 600;
+        }
+    }
+}

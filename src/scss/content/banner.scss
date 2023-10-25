@@ -1,0 +1,51 @@
+.banner-item {
+    margin: rem(60) rem(0);
+
+    &-block {
+        background-image: url('https://rileytailor.uz/wp-content/uploads/2023/04/banner2-e1682440200501.jpg');
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: rem(20) rem(80);
+        background-size: cover;
+
+        h2 {
+            font-size: rem(48);
+            line-height: rem(58);
+            font-weight: 700;
+            color: $white;
+        }
+
+        p {
+            font-size: rem(24);
+            line-height: rem(34);
+            font-weight: 600;
+            color: $white;
+            margin-top: rem(15);
+            margin-bottom: rem(30);
+        }
+
+        &-image {
+            img {
+                max-width: rem(450);
+                width: 100%;
+                min-height: rem(320);
+            }
+        }
+
+        .btn {
+            background-color: rgb(172, 25, 49);
+            border-radius: 0;
+            font-size: 0.875rem;
+            line-height: 1.5rem;
+            font-weight: 600;
+            color: $white;
+            padding: rem(12) rem(45);
+            height: rem(45);
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+

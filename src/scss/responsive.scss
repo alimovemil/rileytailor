@@ -1,0 +1,182 @@
+@import "./vars/variables";
+@import "./vars/functions";
+
+@for $i from 1 through 60 {
+    @media (min-width: 1600px + ($i * 100)) {
+        html {
+            font-size: #{$browser-context}px+$i;
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        display: block !important;
+
+        &-menu {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+    }
+
+    .footer {
+        margin-bottom: rem(50);
+    }
+
+    .header {
+        &-field {
+            display: none;
+        }
+
+        &-number {
+            display: none;
+        }
+
+        &-person {
+            display: none !important;
+        }
+
+        &-amount {
+            display: none;
+        }
+
+        &-top {
+            justify-content: center;
+        }
+
+        .burger-menu {
+            //display: none;
+        }
+
+        &-border {
+            display: none;
+        }
+    }
+
+    .product {
+        display: none;
+    }
+
+    .carousel-page {
+        .carousel-caption {
+            left: 0;
+            bottom: 30%;
+
+            h2 {
+                font-size: rem(40);
+                line-height: normal;
+            }
+
+            p {
+                font-size: rem(20);
+                margin-top: rem(11);
+                margin-bottom: rem(17);
+            }
+        }
+    }
+
+    .collection {
+        margin-bottom: rem(50);
+
+        .collection-block {
+            background-position: 50% 20%;
+            margin-bottom: rem(10);
+            padding: rem(10);
+        }
+    }
+    .banner-item {
+        .banner-item-block {
+            justify-content: space-between;
+
+            h2 {
+                font-size: rem(36);
+                line-height: initial;
+            }
+
+            p {
+                margin-top: rem(11);
+                margin-bottom: rem(17);
+                font-size: rem(20);
+            }
+
+            .banner-item-block-image {
+                img {
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .collection {
+        .collection-block {
+            background-position: 100% 90%;
+            margin-bottom: rem(0);
+
+            .collection-block-inner-text:hover {
+                background-color: transparent;
+                padding-bottom: rem(0);
+            }
+        }
+    }
+
+    .banner-item {
+        .banner-item-block {
+            .banner-item-block-image {
+                img {
+                    min-height: auto;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 769px) {
+        .banner-item {
+            .banner-item-block {
+                background-image: url('https://rileytailor.uz/wp-content/themes/rt-theme/assets/img/group-17.svg');
+                flex-direction: column-reverse;
+                padding: rem(10);
+                background-repeat: no-repeat;
+                background-position: inherit;
+
+                h2 {
+                    font-size: rem(48);
+                    line-height: 1.2;
+                }
+
+                p {
+                    font-size: rem(32);
+                }
+
+                .banner-item-block-image {
+                    img {
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-item {
+        .banner-item-block {
+            padding: rem(15);
+
+            h2 {
+                font-size: rem(42);
+            }
+        }
+    }
+
+    .collection {
+        .collection-block-inner-text {
+            h3 {
+                font-size: rem(32);
+            }
+        }
+    }
+}
+
