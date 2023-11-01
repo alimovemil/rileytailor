@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react';
 import TextField from "../../components/form/TextField";
-import Search from "../icons/Search";
+import Search from "../../container/icons/Search";
 import Button from "../../components/form/Button";
 import { useNavigate } from "react-router-dom";
-import Person from "../icons/Person";
+import Person from "../../container/icons/Person";
 import HeaderOpen from "../../components/header/headerOpen";
-import Basket from "../icons/Basket";
+import Basket from "../../container/icons/Basket";
 import MenuHeader from "../../components/header/menuHeader";
 
 const Header: FC = () => {
@@ -31,7 +31,7 @@ const Header: FC = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="header-top">
-                            <div className="col-2 col-lg-1">
+                            <div className="col-2 col-lg-1 d-flex justify-content-center">
                                 <div className="header-logo">
                                     <a href="#"><img src="/img/png/logo.svg" alt=""/></a>
                                 </div>

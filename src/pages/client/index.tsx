@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Button from "../../components/form/Button";
 import { useNavigate } from "react-router-dom";
-import Basket from "../icons/Basket";
+import Basket from "../../container/icons/Basket";
 
 const Client: FC = () => {
     const navigate = useNavigate()
@@ -11,7 +11,7 @@ const Client: FC = () => {
     const [ slide, SetSlide ] = useState<any[]>([
         {
             key: '',
-            img: 'https://rileytailor.uz/wp-content/uploads/2023/04/101306-6-300x166.jpg',
+            img: '/img/png/cauldrons_1.png',
             text: '[test] Сковорода Riley&Tailor Modern 20 см-1',
             txt: 'Артикул: 103304',
             price: '1000 UZS',
@@ -19,7 +19,7 @@ const Client: FC = () => {
         },
         {
             key: '',
-            img: 'https://rileytailor.uz/wp-content/uploads/2023/04/103306-3-300x167.jpg',
+            img: '/img/png/cauldrons_2.png',
             text: 'Набор из 6 предм.Modern 103306',
             paragraph: '686 000 UZS',
             txt: 'Артикул: 103304',
@@ -28,7 +28,7 @@ const Client: FC = () => {
         },
         {
             key: '',
-            img: 'https://rileytailor.uz/wp-content/uploads/2023/04/102308-300x167.jpg',
+            img: '/img/png/cauldrons_1.png',
             text: 'Набор из 8 предм.Modern 102308',
             txt: 'Артикул: 102308',
             price: '987 000 UZS',
@@ -36,7 +36,7 @@ const Client: FC = () => {
         },
         {
             key: '',
-            img: 'https://rileytailor.uz/wp-content/uploads/2023/04/102306-300x167.jpg',
+            img: '/img/png/cauldrons_1.png',
             text: 'Набор из 6 предм.Modern 102306',
             txt: 'Артикул: 102306',
             price: '728 000 UZS',
@@ -60,8 +60,19 @@ const Client: FC = () => {
                 </div>
                 <div className="client-swiper">
                     <Swiper
-                        spaceBetween={ 50 }
-                        slidesPerView={ 3 }
+                        spaceBetween={ 40 }
+                        slidesPerView={ 2 }
+                        breakpoints={{
+                            575: {
+                                width: 575,
+                                slidesPerView: 2,
+                            },
+
+                            320: {
+                                width: 320,
+                                slidesPerView: 1,
+                            },
+                        }}
                         onSlideChange={ () => console.log('slide change') }
                     >
                         { slide.map((item, idx) => (

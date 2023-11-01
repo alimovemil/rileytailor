@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
-import Calculator from "../icons/Сalculator";
-import Button from "../../components/form/Button";
+import Calculator from "../../container/icons/Сalculator";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/form/Button";
 
 const Product: FC = () => {
     const navigate = useNavigate()
@@ -50,10 +50,10 @@ const Product: FC = () => {
                             <div className="product-right">
                                 { list.map((item, idx) => (
                                     <Button
-                                        key={idx}
-                                        text={item.name}
-                                        onClick={onClickOpen}
-                                        className={'btn'}
+                                        key={ idx }
+                                        text={ item.name }
+                                        onClick={ onClickOpen }
+                                        className={ 'btn' }
                                     />
                                 )) }
                             </div>

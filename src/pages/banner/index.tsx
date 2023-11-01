@@ -6,16 +6,16 @@ const Banner: FC = () => {
     const navigate = useNavigate()
 
     function onClickInfo() {
-        navigate('')
+        navigate('/modern')
     }
 
     return (
         <div className="banner-item">
-            <div className="container">
+            <div className="container banner-item-container">
                 <div className="row">
-                    <div className="col-12">
-                        <div className="banner-item-block">
-                            <div className="col-12 col-lg-6 col-md-6 col-sm-12">
+                    <div className="col-12 col-style">
+                        <div className="banner-item-block col-type">
+                            <div className="col-12 col-lg-6 col-md-7 col-sm-12">
                                 <h2>Всё включено и даже больше</h2>
                                 <p>Наборы Riley & Tailor!!!</p>
                                 <Button

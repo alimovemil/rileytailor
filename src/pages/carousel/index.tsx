@@ -47,7 +47,7 @@ const Carousel: FC = () => {
                 <div className="carousel-inner">
                     { carousel.map((item, idx) => {
                         return (
-                            <div className="carousel-item active" data-interval="5"
+                            <div className="carousel-item active" data-interval="1"
                                  key={ idx }
                             >
                                 { item.carousel && (
@@ -55,8 +55,8 @@ const Carousel: FC = () => {
                                         <img src="/img/png/foot.jpg" alt="" className="d-block w-100"/>
                                         <div className="carousel-caption">
                                             <div className="container">
-                                                <div className="row">
-                                                    <div className="col-12 col-lg-6">
+                                                <div className="row flex-row-reverse">
+                                                    <div className="col-12 col-lg-8 col-xl-6">
                                                         <h2>{ item.text }</h2>
                                                         <p>{ item.paragraph }</p>
                                                         <Button

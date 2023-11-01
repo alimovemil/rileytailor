@@ -9,7 +9,19 @@
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1030px) {
+    .carousel-page {
+        .carousel-caption {
+            left: 0;
+
+            h2 {
+                font-size: rem(40);
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
     .navbar {
         display: block !important;
 
@@ -52,6 +64,11 @@
         &-border {
             display: none;
         }
+
+        &-logo {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     .product {
@@ -61,10 +78,9 @@
     .carousel-page {
         .carousel-caption {
             left: 0;
-            bottom: 30%;
 
             h2 {
-                font-size: rem(40);
+                font-size: rem(36);
                 line-height: normal;
             }
 
@@ -79,15 +95,42 @@
     .collection {
         margin-bottom: rem(50);
 
+        .col-type {
+            margin-bottom: rem(10);
+        }
+
+        .col-type:last-child {
+            margin-bottom: rem(0);
+        }
+
         .collection-block {
-            background-position: 50% 20%;
+            background-position: 80% 70%;
             margin-bottom: rem(10);
             padding: rem(10);
+            background-size: rem(472);
+            min-height: rem(464);
+
+            &-inner {
+                &-text {
+                    padding: rem(50);
+
+                    h3 {
+                        font-size: rem(80);
+                        line-height: rem(70);
+                    }
+
+                    p {
+                        font-size: rem(32);
+                        padding-bottom: rem(20);
+                    }
+                }
+            }
         }
     }
     .banner-item {
         .banner-item-block {
             justify-content: space-between;
+            height: rem(256);
 
             h2 {
                 font-size: rem(36);
@@ -107,18 +150,63 @@
             }
         }
     }
+
+    .carousel-page {
+        .carousel-item {
+            img {
+                height: rem(400);
+            }
+        }
+    }
 }
 
 @media (max-width: 768px) {
+    .admin-header {
+        .modern {
+            &-item {
+                &-style {
+                    flex-direction: column;
+
+                    &-left {
+                        padding: rem(30);
+                        width: 100%;
+                    }
+
+                    &-block {
+                        width: 100%;
+
+                        &-btn {
+                            padding-top: rem(20);
+                        }
+                    }
+                }
+
+                &-bottom {
+                    flex-direction: column;
+
+                    &-left {
+                        width: 100%;
+                        flex-direction: row;
+                    }
+
+                    &-info {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
     .collection {
         .collection-block {
-            background-position: 100% 90%;
+            background-position: 90% 40%;
             margin-bottom: rem(0);
+            min-height: rem(400);
+        }
 
-            .collection-block-inner-text:hover {
-                background-color: transparent;
-                padding-bottom: rem(0);
-            }
+        &-block:hover .collection-block-inner-text {
+            background: none !important;
+            padding: rem(0) rem(15);
         }
     }
 
@@ -132,14 +220,29 @@
         }
     }
 
+    .advantage {
+        &-item {
+            margin-top: rem(18);
+        }
+    }
+
+    .carousel-page {
+        .carousel-item {
+            img {
+                height: rem(375);
+            }
+        }
+    }
+
     @media (max-width: 769px) {
         .banner-item {
             .banner-item-block {
                 background-image: url('https://rileytailor.uz/wp-content/themes/rt-theme/assets/img/group-17.svg');
                 flex-direction: column-reverse;
-                padding: rem(10);
+                padding: rem(20);
                 background-repeat: no-repeat;
                 background-position: inherit;
+                height: auto;
 
                 h2 {
                     font-size: rem(48);
@@ -155,26 +258,217 @@
                         max-width: 100%;
                     }
                 }
+
+                .btn {
+                    font-size: rem(21.3);
+                }
             }
         }
     }
 }
 
-@media (max-width: 576px) {
-    .banner-item {
-        .banner-item-block {
-            padding: rem(15);
+@media (max-width: 575px) {
+    .admin-header {
+        .modern {
+            &-item {
+                &-style {
+                    &-left {
+                        padding: rem(30);
+                    }
+                    &-block {
+                        &-name {
+                            &-cost {
+                                p {
+                                    font-size: rem(19.2);
+                                }
 
-            h2 {
-                font-size: rem(42);
+                                h4 {
+                                    text-align: end;
+                                    font-size: rem(32);
+                                }
+                            }
+                        }
+
+                        &-name {
+                            h3 {
+                                font-size: rem(24);
+                                line-height: 1.4;
+                            }
+                        }
+                    }
+                }
             }
         }
-    }
 
-    .collection {
-        .collection-block-inner-text {
-            h3 {
-                font-size: rem(32);
+        .banner-item {
+            .banner-item-block {
+                padding: rem(20) rem(15);
+
+                .col-type {
+                    padding: rem(0);
+                }
+
+                h2 {
+                    font-size: rem(31.1);
+                }
+
+                p {
+                    font-size: rem(21.3);
+                    margin-top: rem(5);
+                    margin-bottom: rem(15);
+                }
+            }
+        }
+
+        .banner-item {
+            .col-style {
+                padding: 0;
+            }
+
+            .banner-item-block {
+                .btn {
+                    padding: rem(25) rem(52);
+                }
+
+                &-image {
+                    display: flex;
+                    justify-content: center;
+
+                    img {
+                        max-width: rem(349);
+                        width: 100%;
+                        min-height: rem(249);
+                    }
+                }
+            }
+        }
+
+        .collection {
+            margin-top: rem(40);
+            margin-bottom: rem(30);
+
+            .collection-block-inner-text {
+                padding: rem(10);
+
+                h3 {
+                    font-size: rem(32);
+                    line-height: 1.2;
+                }
+
+                p {
+                    font-size: rem(14);
+                    padding: rem(0);
+                }
+            }
+
+            .col-type {
+                margin-bottom: rem(10);
+            }
+
+            .col-type:last-child {
+                margin-bottom: rem(0);
+            }
+
+            &-block {
+                min-height: rem(435);
+                background-position: 60% 70%;
+            }
+        }
+
+        .collection-header {
+            padding-bottom: rem(20);
+
+            h1 {
+                font-size: rem(20) !important;
+                line-height: 1.2;
+            }
+        }
+
+        .carousel-page {
+            .carousel-caption {
+                h2 {
+                    font-size: rem(18);
+                    width: rem(213);
+                }
+
+                p {
+                    margin-top: rem(5);
+                    margin-bottom: rem(15);
+                    font-size: rem(12.8);
+                }
+
+                .btn {
+                    max-width: rem(250);
+                    width: 100%;
+                    font-size: rem(12.8);
+                    padding: rem(8) rem(15);
+                }
+            }
+
+            .carousel-item {
+                img {
+                    height: rem(281);
+                }
+            }
+        }
+
+        .header {
+            &-logo {
+                max-width: rem(36);
+                width: 100%;
+            }
+        }
+
+        .footer {
+            padding: rem(32) rem(0);
+
+            &-block {
+                flex-direction: column;
+            }
+
+            &-inner {
+                flex-direction: column-reverse;
+                gap: rem(30);
+                padding-top: rem(35);
+            }
+
+            &-social {
+                width: rem(95);
+            }
+        }
+
+        .client {
+            &-cauldrons {
+                min-height: rem(400) !important;
+            }
+
+            &-img {
+                margin: rem(43) rem(0) !important;
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: rem(214);
+                    height: rem(119);
+                }
+            }
+        }
+
+        .advantage {
+            padding: rem(15);
+        }
+    }
+}
+
+@media (max-width: 320px) {
+    .modern {
+        &-item {
+            &-style {
+                &-block {
+                    &-btn {
+                        white-space: nowrap;
+                    }
+                }
             }
         }
     }

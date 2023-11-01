@@ -1,0 +1,171 @@
+.modern {
+    &-item {
+        margin-top: rem(30);
+        margin-bottom: rem(60);
+
+        &-style {
+            display: flex;
+            align-items: center;
+            gap: rem(15);
+            height: 100%;
+            justify-content: center;
+
+            &-block {
+                display: flex;
+                flex-direction: column;
+                gap: rem(30);
+                height: 100%;
+
+                &-inner {
+                    background: #ffffff;
+                    padding: rem(30);
+
+                }
+
+                &-name {
+                    &-page {
+                        border-bottom: rem(1) solid rgba(0, 0, 0, 0.1);
+                        padding-bottom: rem(20);
+                    }
+
+                    p {
+                        font-size: rem(12);
+                        line-height: rem(22);
+                        color: #1E2546;
+                        padding-top: rem(5);
+                    }
+
+                    &-cost {
+                        margin-top: rem(20);
+                        padding-bottom: rem(20);
+                        border-bottom: rem(1) solid rgba(0, 0, 0, 0.1);
+
+                        p {
+                            font-weight: 600;
+                            font-size: rem(14);
+                            line-height: rem(24);
+                            padding-bottom: rem(7);
+                        }
+
+                        h4 {
+                            font-weight: 700;
+                            font-size: rem(16);
+                            color: #000000;
+                            padding: rem(15) rem(0);
+                        }
+
+                        span {
+                            font-size: rem(12);
+                            line-height: rem(22);
+                            color: #008033;
+                            padding: rem(5) rem(10);
+                            background-color: rgba(0, 128, 51, 0.1);
+                        }
+                    }
+                }
+
+                &-btn {
+                    padding-top: rem(20);
+
+                    .btn {
+                        display: flex;
+                        align-items: center;
+                        background: #1E2546;
+                        font-size: rem(14);
+                        line-height: rem(24);
+                        font-weight: 600;
+                        color: $white;
+                        border: none;
+                        border-radius: 0;
+                        padding: rem(11) rem(30);
+                    }
+
+                    .btn:hover {
+                        background: #1E2546;
+                        color: $white;
+                    }
+                }
+
+                h3 {
+                    font-size: rem(32);
+                    line-height: rem(40);
+                    font-weight: 600;
+                    color: #1E2546;
+                }
+            }
+
+            &-left {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                height: 100%;
+                gap: rem(30);
+
+                &-image {
+                    background: #ffffff;
+                    min-height: rem(405.78);
+                    display: flex;
+                    align-items: center;
+                }
+
+                img {
+                    padding: rem(30);
+                }
+            }
+        }
+
+        &-bottom {
+            display: flex;
+            background: #ffffff;
+            padding: rem(30);
+            margin-top: auto;
+
+
+            &-left {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: rem(10);
+
+                &-cauldrons {
+                    max-width: rem(120);
+                    width: 100%;
+                    min-height: rem(120);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px;
+                    background: rgba(0, 0, 0, 0.03);
+                }
+            }
+
+            &-info {
+                width: 100%;
+
+                &-text {
+                    display: flex;
+                    flex-direction: column;
+                    gap: rem(15);
+                    padding-top: rem(20);
+
+                    &-material {
+                        display: flex;
+
+                        p {
+                            width: 100%;
+                            font-size: rem(14);
+                            line-height: rem(22);
+                        }
+
+                        span {
+                            width: 100%;
+                            padding-left: rem(20);
+                            font-size: rem(14);
+                            line-height: rem(22);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
