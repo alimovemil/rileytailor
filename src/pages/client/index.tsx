@@ -4,6 +4,7 @@ import 'swiper/css';
 import Button from "../../components/form/Button";
 import { useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
+import Percent from "../../container/icons/percent";
 
 const Client: FC = () => {
     const navigate = useNavigate()
@@ -24,7 +25,10 @@ const Client: FC = () => {
             paragraph: '686 000 UZS',
             txt: 'Артикул: 103304',
             price: '1000 UZS',
-            span: 'Есть в наличии'
+            span: 'Есть в наличии',
+            className: 'cauldrons',
+            rate: <Percent/>,
+            class: 'cauldrons-percentage'
         },
         {
             key: '',
@@ -44,8 +48,14 @@ const Client: FC = () => {
         },
     ])
 
-    function onClickOpen() {
-        navigate('')
+    function onClickOpen(item: any) {
+        navigate('product', {
+            state: {
+                data: {
+                    item
+                },
+            },
+        })
     }
 
     return (
@@ -62,7 +72,7 @@ const Client: FC = () => {
                     <Swiper
                         spaceBetween={ 40 }
                         slidesPerView={ 2 }
-                        breakpoints={{
+                        breakpoints={ {
                             575: {
                                 width: 575,
                                 slidesPerView: 2,
@@ -72,7 +82,7 @@ const Client: FC = () => {
                                 width: 320,
                                 slidesPerView: 1,
                             },
-                        }}
+                        } }
                         onSlideChange={ () => console.log('slide change') }
                     >
                         { slide.map((item, idx) => (
@@ -80,8 +90,13 @@ const Client: FC = () => {
                                 <SwiperSlide className="client-slide"
                                              key={ idx }
                                 >
-                                    <div className="client-cauldrons">
-                                        <div className="client-img">
+                                    <div className={`client-cauldrons ${item.className}`}>
+                                        <div>
+                                            <span className={item.class}>{item.rate}</span>
+                                        </div>
+                                        <div className="client-img" onClick={() => {
+                                            onClickOpen(item)
+                                        }}>
                                             <img src={ item.img } alt=""/>
                                         </div>
                                         <div className="client-description">
@@ -89,15 +104,15 @@ const Client: FC = () => {
                                             <span>{ item.txt }</span>
                                         </div>
                                         <div className="client-price">
-                                            <p>{item.paragraph}</p>
+                                            <p>{ item.paragraph }</p>
                                             <Button
                                                 text={ item.price }
                                                 onClick={ onClickOpen }
-                                                className={'btn'}
-                                                rightIcon={<Basket color={'#1E2546'} size={40}/>}
+                                                className={ 'btn' }
+                                                rightIcon={ <Basket color={ '#1E2546' } size={ 40 }/> }
                                             />
                                             <div className="client-available">
-                                                <span>{item.span}</span>
+                                                <span>{ item.span }</span>
                                             </div>
                                         </div>
                                     </div>

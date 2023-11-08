@@ -1,19 +1,18 @@
 .collection {
     &-block {
         background-color: rgb(30, 37, 70);
-        min-height: rem(380);
+        min-height: rem(500);
         background-repeat: no-repeat;
         display: flex;
         overflow: hidden;
-        background-size: cover;
-        background-position: 70% 80%;
+        background-size: rem(340);
+        background-position: 70% 20%;
         transition: all 0.3s ease;
         cursor: pointer;
-        margin-bottom: rem(30);
 
         &-inner {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             width: 100%;
 
             &-text {
@@ -22,32 +21,31 @@
                 transition: all 0.3s ease;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                gap: rem(30);
+                align-items: flex-start;
 
-                .btn {
+                p {
                     font-size: rem(14);
                     color: $white;
-                    border-radius: 0;
-                    padding: rem(14) rem(63);
-                    border: rem(2) solid #ffffff;
-                }
-
-                .btn:hover,
-                .btn:focus,
-                .btn:active {
-                    background: none;
-                    color: $white;
+                    line-height: rem(24);
                 }
 
                 h3 {
-                    font-size: rem(40);
+                    font-size: rem(48);
                     color: $white;
                     line-height: rem(56);
                     font-weight: 700;
                 }
             }
         }
+    }
+
+    &-block:hover {
+        background-size: rem(370);
+    }
+
+    &-block:hover .collection-block-inner-text {
+        background-color: rgb(172, 25, 49);
+        padding-bottom: rem(17);
     }
 
     &-block:hover .collection-block-inner-text {
@@ -58,7 +56,6 @@
 
     &-header {
         padding-bottom: rem(30);
-        text-align: center;
 
         h1 {
             font-size: rem(32);

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import TextField from "../../components/form/TextField";
 import Search from "../../container/icons/Search";
 import Button from "../../components/form/Button";
@@ -7,11 +7,15 @@ import Person from "../../container/icons/Person";
 import HeaderOpen from "../../components/header/headerOpen";
 import Basket from "../../container/icons/Basket";
 import MenuHeader from "../../components/header/menuHeader";
+import HeaderBasket from "../../components/header/HeaderBasket";
+import { CSSTransition } from "react-transition-group";
+
 
 const Header: FC = () => {
     const navigate = useNavigate()
     const [ isModal, setIsModal ] = useState(false);
     const [ isShowOpen, setShowOpen ] = useState<any | boolean>(true)
+    const [ isDialog, SetIsDialog ] = useState(false)
 
     function onClickOpen() {
         navigate('')
@@ -21,11 +25,15 @@ const Header: FC = () => {
         setIsModal(true);
     }
 
+    function onClickDialog() {
+        SetIsDialog(true)
+    }
+
     return (
         <div className="header">
             <MenuHeader
                 onClose={ () => setShowOpen(!isShowOpen) }
-                isOpen={isShowOpen}
+                isOpen={ isShowOpen }
             />
             <div className="container">
                 <div className="row">
@@ -76,7 +84,7 @@ const Header: FC = () => {
                                 <div className="header-basket">
                                     <Button
                                         text={ '0' }
-                                        onClick={ onClickOpen }
+                                        onClick={ onClickDialog }
                                         leftIcon={ <Basket/> }
                                         className={ 'header-btns' }
                                     />
@@ -84,14 +92,29 @@ const Header: FC = () => {
                                         <p>Корзина</p>
                                         <span>0 UZS</span>
                                     </div>
-
                                 </div>
                             </div>
+                            <CSSTransition
+                            in={isDialog}
+                            timeout={200}
+                            classNames="z"
+                            unmountOnExit
+                            >
+                                <HeaderBasket
+                                    isOpen={ isDialog }
+                                    setIsOpen={ () => {
+                                        SetIsDialog(false)
+                                    } }
+                                />
+                            </CSSTransition>
+
                         </div>
                     </div>
                 </div>
             </div>
             <div className="header-border"></div>
+
+
         </div>
     );
 };

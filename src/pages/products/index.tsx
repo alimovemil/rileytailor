@@ -1,41 +1,42 @@
 import React, { FC, useState } from 'react';
 import Calculator from "../../container/icons/Сalculator";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/form/Button";
+import { NavLink } from "react-router-dom";
+import ProductItem from "../../components/product/product";
 
 const Product: FC = () => {
-    const navigate = useNavigate()
 
-    const [ list, setList ] = useState<any[]>([
-        {
-            key: '',
-            name: 'Cart'
-        },
-        {
-            key: '',
-            name: 'Оплата'
-        },
-        {
-            key: '',
-            name: 'Гарантия'
-        },
-        {
-            key: '',
-            name: 'Магазины'
-        },
-        {
-            key: '',
-            name: 'О нас'
-        },
-        {
-            key: '',
-            name: 'Контакты'
-        }
-    ])
+    const [ list, SetList ] = useState(false)
 
-    function onClickOpen() {
-        navigate('')
-    }
+    const navigation = [
+        {
+            route: 'ss',
+            name: 'Cart',
+        },
+        {
+            route: 's',
+            name: 'Оплата',
+        },
+        {
+            route: 's',
+            name: 'Гарантия',
+        },
+        {
+            route: '',
+            name: 'Магазины',
+        },
+        {
+            route: 'sq',
+            name: 'О нас',
+        },
+        {
+            route: 'sqs',
+            name: 'Контакты',
+        },
+    ]
+
+    const toggleBlock = () => {
+        SetList(!list);
+    };
 
     return (
         <div className="product">
@@ -43,20 +44,32 @@ const Product: FC = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="product-block">
-                            <div className="product-left">
+                            <div className="product-left" onClick={toggleBlock}>
+                                { list && (
+                                    <ProductItem/>
+                                ) }
+
                                 <Calculator/>
                                 <p>Продукция</p>
                             </div>
-                            <div className="product-right">
-                                { list.map((item, idx) => (
-                                    <Button
-                                        key={ idx }
-                                        text={ item.name }
-                                        onClick={ onClickOpen }
-                                        className={ 'btn' }
-                                    />
-                                )) }
-                            </div>
+
+                            <nav>
+                                <div className="product-right">
+                                    { navigation?.map(({route, name}) => {
+                                        return (
+                                            <NavLink
+                                                key={ route }
+                                                to={ route }
+                                                className="product-right-link"
+                                            >
+
+                                                <span>{ name }</span>
+
+                                            </NavLink>
+                                        )
+                                    }) }
+                                </div>
+                            </nav>
                         </div>
                     </div>
                 </div>

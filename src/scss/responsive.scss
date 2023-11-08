@@ -168,8 +168,13 @@
                     flex-direction: column;
 
                     &-left {
-                        padding: rem(30);
                         width: 100%;
+                        flex-direction: column;
+
+                        &-image {
+                            width: 100%;
+                            justify-content: center;
+                        }
                     }
 
                     &-block {
@@ -272,9 +277,6 @@
         .modern {
             &-item {
                 &-style {
-                    &-left {
-                        padding: rem(30);
-                    }
                     &-block {
                         &-name {
                             &-cost {
@@ -293,6 +295,23 @@
                             h3 {
                                 font-size: rem(24);
                                 line-height: 1.4;
+                            }
+                        }
+                    }
+                }
+                &-bottom {
+                    &-info {
+                        &-header {
+                            h3 {
+                                font-size: rem(24);
+                            }
+                        }
+                    }
+
+                    &-left {
+                        &-cauldrons {
+                            img {
+                                padding: rem(10);
                             }
                         }
                     }

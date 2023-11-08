@@ -34,7 +34,7 @@ const Carousel: FC = () => {
     }
 
     return (
-        <div className="carousel-page pt-2">
+        <div className="carousel-page">
             <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -55,7 +55,7 @@ const Carousel: FC = () => {
                                         <img src="/img/png/foot.jpg" alt="" className="d-block w-100"/>
                                         <div className="carousel-caption">
                                             <div className="container">
-                                                <div className="row flex-row-reverse">
+                                                <div className="row">
                                                     <div className="col-12 col-lg-8 col-xl-6">
                                                         <h2>{ item.text }</h2>
                                                         <p>{ item.paragraph }</p>

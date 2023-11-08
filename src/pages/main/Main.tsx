@@ -14,24 +14,25 @@ const Main: FC = () => {
     return (
         <div>
             <Header/>
+            <div className="content">
+                <Product/>
 
-            <Product/>
+                <Carousel/>
 
-            <Carousel/>
+                <Collection/>
 
-            <Collection/>
+                <Client/>
 
-            <Client/>
+                <Banner/>
 
-            <Banner/>
+                <Partners/>
 
-            <Partners/>
+                <Advantage/>
 
-            <Advantage/>
+                <Footer/>
 
-            <Footer/>
-
-            <NavBarBottom/>
+                <NavBarBottom/>
+            </div>
         </div>
     );
 };

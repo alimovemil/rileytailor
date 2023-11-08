@@ -96,20 +96,23 @@
 
             &-left {
                 display: flex;
-                align-items: center;
-                flex-direction: column;
+                align-items: flex-start;
                 height: 100%;
-                gap: rem(30);
+                gap: rem(15);
+                flex-direction: column;
 
                 &-image {
                     background: #ffffff;
                     min-height: rem(405.78);
                     display: flex;
                     align-items: center;
-                }
-
-                img {
-                    padding: rem(30);
+                    justify-content: center;
+                    width: rem(469);
+                    img {
+                        padding: rem(30);
+                        min-height: rem(248);
+                        object-fit: contain;
+                    }
                 }
             }
         }
@@ -130,12 +133,17 @@
                 &-cauldrons {
                     max-width: rem(120);
                     width: 100%;
-                    min-height: rem(120);
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border: 1px;
                     background: rgba(0, 0, 0, 0.03);
+                    cursor: pointer;
+
+                    img {
+                        min-height: rem(120);
+                        object-fit: contain;
+                    }
                 }
             }
 

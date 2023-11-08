@@ -6,7 +6,7 @@ const Banner: FC = () => {
     const navigate = useNavigate()
 
     function onClickInfo() {
-        navigate('/modern')
+        navigate('/product',)
     }
 
     return (
@@ -26,7 +26,8 @@ const Banner: FC = () => {
                             </div>
                             <div className="col-12 col-lg-6 col-md-5 col-sm-12">
                                 <div className="banner-item-block-image">
-                                    <img src="https://rileytailor.uz/wp-content/uploads/2023/04/loft2-1024x729.png" alt=""/>
+                                    <img src="https://rileytailor.uz/wp-content/uploads/2023/04/loft2-1024x729.png"
+                                         alt=""/>
                                 </div>
                             </div>
                         </div>

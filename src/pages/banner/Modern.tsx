@@ -1,10 +1,29 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Button from "../../components/form/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
 
+type ImageBlockProps = {
+    src: string;
+    alt: string;
+    onClick: (src: string) => void;
+};
+
+const ImageBlock: React.FC<ImageBlockProps> = ({src, alt, onClick}) => (
+    <img src={ src } alt={ alt } onClick={ () => onClick(src) }/>
+);
+
 const Modern: FC = () => {
+    const location = useLocation();
+    const state: any = location.state;
+    const editedData = state?.data || {};
+
+
+    console.log(editedData)
+
     const navigate = useNavigate()
+
+    const [ selectedImage, setSelectedImage ] = useState('/img/png/frying_2.png');
 
     const [ list, setList ] = useState<any[]>([
         {
@@ -36,20 +55,21 @@ const Modern: FC = () => {
         {
             img: '/img/png/frying_1.png',
         },
-        {
-            img: '/img/png/frying_1.png',
-        }
     ])
 
-    const [ isModern, setIsModern ] = useState<any[]>([
-        {
-            title: 'Набор из 8 предм.Modern 102308',
-            paragraph: 'Артикул: 102308',
-            i: 'Стоимость',
-            meta: '987 000 UZS',
-            span: 'Есть в наличии'
-        },
-    ])
+    const [ isModern, setIsModern ] = useState<any>({
+        text: 'Набор из 8 предм.Modern 102308',
+        paragraph: 'Артикул: 102308',
+        i: 'Стоимость',
+        meta: '987 000 UZS',
+        span: 'Есть в наличии'
+    })
+
+    useEffect(() => init(), [])
+
+    function init() {
+        setIsModern(editedData.item)
+    }
 
     function onClickCheckOut() {
         navigate('')
@@ -64,45 +84,61 @@ const Modern: FC = () => {
                             <div className="modern-item-style">
                                 <div className="modern-item-style-left">
                                     <div className="modern-item-style-left-image">
-                                        <img src="/img/png/modernsImg.png" alt=""/>
+                                        { selectedImage && <img src={ selectedImage } alt="Selected"/> }
                                     </div>
                                 </div>
-                                <div className="modern-item-bottom-left">
 
+                                <div className="modern-item-bottom-left">
                                     { isCauldrons.map((image, idx) => (
                                         <div className="modern-item-bottom-left-cauldrons"
                                              key={ idx }
                                         >
-                                            <img src={ image.img } alt=""/>
+                                            <ImageBlock src={ image.img } alt="Small image 1"
+                                                        onClick={ setSelectedImage }/>
                                         </div>
                                     )) }
-
                                 </div>
+
+                                {/*<div className="modern-item-style-left">*/ }
+                                {/*    <div className="modern-item-style-left-image">*/ }
+                                {/*        <img src="/img/png/modernsImg.png" alt=""/>*/ }
+                                {/*    </div>*/ }
+                                {/*</div>*/ }
+                                {/*<div className="modern-item-bottom-left">*/ }
+
+                                {/*    { isCauldrons.map((image, idx) => (*/ }
+                                {/*        <div className="modern-item-bottom-left-cauldrons"*/ }
+                                {/*             key={ idx }*/ }
+                                {/*        >*/ }
+                                {/*            <img src={ image.img } alt=""/>*/ }
+                                {/*        </div>*/ }
+                                {/*    )) }*/ }
+
+                                {/*</div>*/ }
+
                                 <div className="modern-item-style-block">
                                     <div className="modern-item-style-block-inner">
-                                        { isModern.map((block, idx) => (
-                                            <div className="modern-item-style-block-name">
-                                                <div className="modern-item-style-block-name-page">
-                                                    <h3>{block.title}</h3>
-                                                    <p>{block.paragraph}</p>
-                                                </div>
-
-                                                <div className="modern-item-style-block-name-cost">
-                                                    <p>{block.i}</p>
-                                                    <h4>{block.meta}</h4>
-                                                    <span>{block.span}</span>
-                                                </div>
-
-                                                <div className="modern-item-style-block-btn">
-                                                    <Button
-                                                        text={ 'Добавить в корзину' }
-                                                        onClick={ onClickCheckOut }
-                                                        leftIcon={ <Basket/> }
-                                                        className={ 'btn' }
-                                                    />
-                                                </div>
+                                        <div className="modern-item-style-block-name">
+                                            <div className="modern-item-style-block-name-page">
+                                                <h3>{ isModern.text }</h3>
+                                                <p>{ isModern.paragraph }</p>
                                             </div>
-                                        )) }
+
+                                            <div className="modern-item-style-block-name-cost">
+                                                <p>{ isModern.i }</p>
+                                                <h4>{ isModern.meta }</h4>
+                                                <span>{ isModern.span }</span>
+                                            </div>
+
+                                            <div className="modern-item-style-block-btn">
+                                                <Button
+                                                    text={ 'Добавить в корзину' }
+                                                    onClick={ onClickCheckOut }
+                                                    leftIcon={ <Basket/> }
+                                                    className={ 'btn' }
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div className="modern-item-bottom">
@@ -114,7 +150,9 @@ const Modern: FC = () => {
 
                                             <div className="modern-item-bottom-info-text">
                                                 { list.map((item, idx) => (
-                                                    <div className="modern-item-bottom-info-text-material">
+                                                    <div className="modern-item-bottom-info-text-material"
+                                                         key={ idx }
+                                                    >
                                                         <p>{ item.text }</p>
                                                         <div className="">........</div>
                                                         <span>{ item.txt }</span>
