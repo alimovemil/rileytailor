@@ -16,7 +16,8 @@ const Client: FC = () => {
             text: '[test] Сковорода Riley&Tailor Modern 20 см-1',
             txt: 'Артикул: 103304',
             price: '1000 UZS',
-            span: 'Есть в наличии'
+            span: 'Есть в наличии',
+            cost: 'Стоимость'
         },
         {
             key: '',
@@ -27,8 +28,8 @@ const Client: FC = () => {
             price: '1000 UZS',
             span: 'Есть в наличии',
             className: 'cauldrons',
-            rate: <Percent/>,
-            class: 'cauldrons-percentage'
+            // rate: <Percent/>,
+            cost: 'Стоимость'
         },
         {
             key: '',
@@ -36,7 +37,8 @@ const Client: FC = () => {
             text: 'Набор из 8 предм.Modern 102308',
             txt: 'Артикул: 102308',
             price: '987 000 UZS',
-            span: 'Есть в наличии'
+            span: 'Есть в наличии',
+            cost: 'Стоимость'
         },
         {
             key: '',
@@ -44,7 +46,9 @@ const Client: FC = () => {
             text: 'Набор из 6 предм.Modern 102306',
             txt: 'Артикул: 102306',
             price: '728 000 UZS',
-            span: 'Есть в наличии'
+            span: 'Есть в наличии',
+            cost: 'Стоимость',
+            className: 'cauldrons',
         },
     ])
 
@@ -90,17 +94,18 @@ const Client: FC = () => {
                                 <SwiperSlide className="client-slide"
                                              key={ idx }
                                 >
-                                    <div className={`client-cauldrons ${item.className}`}>
+                                    <div className={ `client-cauldrons ${ item.className }` }>
                                         <div>
-                                            <span className={item.class}>{item.rate}</span>
+                                            {item.rate}
                                         </div>
-                                        <div className="client-img" onClick={() => {
+                                        <div id={ item.id } className="client-img" onClick={ () => {
                                             onClickOpen(item)
-                                        }}>
+                                        } }>
                                             <img src={ item.img } alt=""/>
                                         </div>
                                         <div className="client-description">
                                             <p>{ item.text }</p>
+                                            <div style={ {display: "none"} }>{ item.cost }</div>
                                             <span>{ item.txt }</span>
                                         </div>
                                         <div className="client-price">

@@ -40,6 +40,13 @@
                         padding-bottom: rem(20);
                         border-bottom: rem(1) solid rgba(0, 0, 0, 0.1);
 
+                        &-div {
+                            font-size: rem(14);
+                            font-weight: 600;
+                            text-decoration-line: line-through;
+                            color: rgba(30, 37, 70, 0.50);
+                        }
+
                         p {
                             font-weight: 600;
                             font-size: rem(14);

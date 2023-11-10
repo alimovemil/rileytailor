@@ -11,6 +11,7 @@
 @import "./content/partners";
 @import "./content/footer";
 @import "./content/Modern";
+@import "./content/checkout";
 
 //Helpers
 .text-left {
@@ -464,7 +465,6 @@ p {
         background-color: #E5E5E5;
         margin: rem(10) 0;
     }
-
 
 
     .nav-tools {
@@ -2270,124 +2270,125 @@ p {
 
 .admin-header {
     overflow: hidden;
-    .header-top-cart {
-        display: flex;
-        flex-direction: column;
+}
 
-        &-block {
-            &-item {
-                display: flex;
-                gap: rem(30);
-                padding: rem(30);
-                border-bottom: rem(1) solid rgba(0, 0, 0, 0.10);
+.header-top-cart {
+    display: flex;
+    flex-direction: column;
 
-                &-img {
-                    width: rem(100);
-                    height: rem(120);
+    &-block {
+        &-item {
+            display: flex;
+            gap: rem(30);
+            padding: rem(30);
+            border-bottom: rem(1) solid rgba(0, 0, 0, 0.10);
 
-                    img {
-                        height: 100%;
-                        object-fit: contain;
-                    }
+            &-img {
+                width: rem(100);
+                height: rem(120);
+
+                img {
+                    height: 100%;
+                    object-fit: contain;
                 }
+            }
 
-                &-info {
+            &-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                &-number {
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
+                    gap: rem(10);
 
-                    &-number {
+                    &-quantity {
                         display: flex;
-                        flex-direction: column;
                         gap: rem(10);
+                        flex-direction: column;
 
-                        &-quantity {
-                            display: flex;
-                            gap: rem(10);
-                            flex-direction: column;
-
-                            span {
-                                font-size: rem(14);
-                                font-weight: 600;
-                                color: rgba(30, 37, 70, 0.5);
-                            }
-
-                            &-p {
-                                font-size: rem(14);
-                                line-height: rem(24);
-                                color: #000000;
-                            }
-
-                            &-span {
-                                display: flex;
-                                align-items: baseline;
-                                gap: rem(10);
-
-                                p {
-                                    color: #AC1931;
-                                    line-height: rem(26);
-                                }
-                            }
+                        span {
+                            font-size: rem(14);
+                            font-weight: 600;
+                            color: rgba(30, 37, 70, 0.5);
                         }
 
-                        &-value {
+                        &-p {
+                            font-size: rem(14);
+                            line-height: rem(24);
+                            color: #000000;
+                        }
+
+                        &-span {
                             display: flex;
-                            align-items: center;
+                            align-items: baseline;
                             gap: rem(10);
 
-                            &-btn {
-                                display: flex;
-                                align-items: center;
-                                gap: rem(4);
+                            p {
+                                color: #AC1931;
+                                line-height: rem(26);
+                            }
+                        }
+                    }
 
-                                .btn {
-                                    color: #1E2546;
-                                    background: none;
-                                    border: none;
-                                }
+                    &-value {
+                        display: flex;
+                        align-items: center;
+                        gap: rem(10);
 
-                                span {
-                                    color: #000000;
-                                    line-height: rem(24);
-                                    font-weight: 600;
-                                    font-size: rem(14);
-                                    padding: rem(6) rem(12);
-                                    background: rgba(30, 37, 70, 0.05);
-                                }
+                        &-btn {
+                            display: flex;
+                            align-items: center;
+                            gap: rem(4);
+
+                            .btn {
+                                color: #1E2546;
+                                background: none;
+                                border: none;
+                            }
+
+                            span {
+                                color: #000000;
+                                line-height: rem(24);
+                                font-weight: 600;
+                                font-size: rem(14);
+                                padding: rem(6) rem(12);
+                                background: rgba(30, 37, 70, 0.05);
                             }
                         }
                     }
                 }
             }
         }
+    }
 
-        &-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-top: rem(1) solid rgba(0, 0, 0, 0.10);
-            padding: rem(15) rem(30);
+    &-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: rem(1) solid rgba(0, 0, 0, 0.10);
+        padding: rem(15) rem(30);
 
-            &-total {
-                span {
-                    font-size: rem(20);
-                    line-height: rem(28);
-                    color: #000000;
-                    font-weight: 600;
-                }
+        &-total {
+            span {
+                font-size: rem(20);
+                line-height: rem(28);
+                color: #000000;
+                font-weight: 600;
             }
+        }
 
-            .btn {
-                background: #008033;
-                color: $white;
-                font-size: rem(14);
-                padding: rem(13) rem(20);
-                border-radius: 0;
-            }
+        .btn {
+            background: #008033;
+            color: $white;
+            font-size: rem(14);
+            padding: rem(13) rem(20);
+            border-radius: 0;
+        }
 
-            .btn:hover {
-                background: rgba(0, 128, 64, .77)
-            }
+        .btn:hover {
+            background: rgba(0, 128, 64, .77)
         }
     }
 }
@@ -2406,14 +2407,14 @@ p {
         padding: rem(8);
         border-radius: rem(4);
         transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-        transition-property: color,background-color,opacity,visibility,transform;
+        transition-property: color, background-color, opacity, visibility, transform;
         transition-duration: .2s;
         transition-timing-function: linear;
 
     }
 
     .modal__block-close:hover {
-        background: rgba( 0, 123, 255 , .05);
+        background: rgba(0, 123, 255, .05);
     }
 
     p {
@@ -2436,14 +2437,14 @@ p {
         padding: rem(8);
         border-radius: rem(4);
         transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-        transition-property: color,background-color,opacity,visibility,transform;
+        transition-property: color, background-color, opacity, visibility, transform;
         transition-duration: .2s;
         transition-timing-function: linear;
 
     }
 
     .modal__block-close:hover {
-        background: rgba( 0, 123, 255 , .05);
+        background: rgba(0, 123, 255, .05);
     }
 
     p {
@@ -2522,7 +2523,7 @@ p {
     z-index: 3;
     bottom: 0;
     position: absolute;
-    right: 0 ;
+    right: 0;
     height: 100vh;
     top: 100%;
     left: 0 !important;

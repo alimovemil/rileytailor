@@ -2,6 +2,8 @@ import React, { FC, useEffect, useState } from 'react';
 import Button from "../../components/form/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
+import Percent from "../../container/icons/percent";
+import Eye from "../../container/icons/Eye";
 
 type ImageBlockProps = {
     src: string;
@@ -17,7 +19,6 @@ const Modern: FC = () => {
     const location = useLocation();
     const state: any = location.state;
     const editedData = state?.data || {};
-
 
     console.log(editedData)
 
@@ -48,7 +49,7 @@ const Modern: FC = () => {
         },
     ])
 
-    const [ isCauldrons, setIsCauldrons ] = useState<any[]>([
+    const [ isCauldrons, setIsCauldrons ] = useState<any>([
         {
             img: '/img/png/frying_2.png',
         },
@@ -59,20 +60,21 @@ const Modern: FC = () => {
 
     const [ isModern, setIsModern ] = useState<any>({
         text: 'Набор из 8 предм.Modern 102308',
-        paragraph: 'Артикул: 102308',
-        i: 'Стоимость',
-        meta: '987 000 UZS',
-        span: 'Есть в наличии'
+        txt: 'Артикул: 102308',
+        cost: 'Стоимость',
+        price: '987 000 UZS',
+        span: 'Есть в наличии',
     })
 
     useEffect(() => init(), [])
 
     function init() {
         setIsModern(editedData.item)
+        setIsCauldrons(editedData.item)
     }
 
     function onClickCheckOut() {
-        navigate('')
+        navigate('product')
     }
 
     return (
@@ -89,14 +91,10 @@ const Modern: FC = () => {
                                 </div>
 
                                 <div className="modern-item-bottom-left">
-                                    { isCauldrons.map((image, idx) => (
-                                        <div className="modern-item-bottom-left-cauldrons"
-                                             key={ idx }
-                                        >
-                                            <ImageBlock src={ image.img } alt="Small image 1"
-                                                        onClick={ setSelectedImage }/>
-                                        </div>
-                                    )) }
+                                    <div className="modern-item-bottom-left-cauldrons">
+                                        <ImageBlock src={ isCauldrons.img } alt=""
+                                                    onClick={ setSelectedImage }/>
+                                    </div>
                                 </div>
 
                                 {/*<div className="modern-item-style-left">*/ }
@@ -118,15 +116,16 @@ const Modern: FC = () => {
 
                                 <div className="modern-item-style-block">
                                     <div className="modern-item-style-block-inner">
-                                        <div className="modern-item-style-block-name">
+                                        <div className={ `modern-item-style-block-name ${ isModern.className }` }>
+                                            <div>{ isModern.rate }</div>
                                             <div className="modern-item-style-block-name-page">
                                                 <h3>{ isModern.text }</h3>
-                                                <p>{ isModern.paragraph }</p>
+                                                <p>{ isModern.txt }</p>
                                             </div>
 
                                             <div className="modern-item-style-block-name-cost">
-                                                <p>{ isModern.i }</p>
-                                                <h4>{ isModern.meta }</h4>
+                                                <div className="modern-item-style-block-name-cost-div">{ isModern.paragraph }</div>
+                                                <h4>{ isModern.price }</h4>
                                                 <span>{ isModern.span }</span>
                                             </div>
 

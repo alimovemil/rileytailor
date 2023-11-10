@@ -3,7 +3,6 @@ import DialogRightByContent from "../dialog/DialogRightByContent";
 import Close from "../../container/icons/Close";
 import Button from "../form/Button";
 import { useNavigate } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
 
 interface HeaderOpenModal {
     isOpen: boolean
@@ -44,7 +43,7 @@ const HeaderBasket: FC<HeaderOpenModal> = (
     ]
 
     function onClickMinus() {
-        navigate('')
+        navigate('/checkout')
     }
 
     return (

@@ -1,0 +1,65 @@
+.checkout {
+    &-block {
+        &-goods {
+            background: #FFF;
+
+            &-top {
+                padding: rem(30) rem(20);
+
+                &-header {
+                    h1 {
+                        font-size: rem(20);
+                        font-weight: 600;
+                        line-height: rem(28);
+                        color: #1E2546;
+                    }
+                }
+
+                &-line {
+                    height: rem(1);
+                    background: rgba(0, 0, 0, 0.10);
+                    width: 100%;
+                    margin: rem(20) rem(0);
+                }
+
+                &-cauldrons {
+                    display: flex;
+                    align-items: center;
+                    padding: rem(10) rem(30);
+
+                    &-img {
+                        height: rem(91);
+                        display: flex;
+
+                        img {
+                            object-fit: contain;
+
+                        }
+                    }
+
+                    &-inner {
+                        display: flex;
+                        flex-direction: column;
+                        padding-left: rem(30);
+
+                        p {
+                            font-size: rem(14);
+                            line-height: rem(24);
+                            color: #000000;
+                        }
+
+                        h5 {
+                            font-size: rem(14);
+                            font-weight: 500;
+                        }
+
+                        span {
+                            line-height: rem(26);
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
