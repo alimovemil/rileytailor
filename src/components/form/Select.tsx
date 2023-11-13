@@ -32,6 +32,7 @@ const customStyles = {
     }),
     valueContainer: (provided: object) => ({
         ...provided,
+        height: '50px'
     }),
     indicatorsContainer: (provided: object) => ({
         ...provided,

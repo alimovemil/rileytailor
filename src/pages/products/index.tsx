@@ -13,7 +13,7 @@ const Product: FC = () => {
             name: 'Cart',
         },
         {
-            route: 's',
+            route: 'payment',
             name: 'Оплата',
         },
         {

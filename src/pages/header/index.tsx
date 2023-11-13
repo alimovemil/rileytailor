@@ -41,7 +41,7 @@ const Header: FC = () => {
                         <div className="header-top">
                             <div className="col-2 col-lg-1 d-flex justify-content-center">
                                 <div className="header-logo">
-                                    <a href="#"><img src="/img/png/logo.svg" alt=""/></a>
+                                    <a href="/"><img src="/img/png/logo.svg" alt=""/></a>
                                 </div>
                             </div>
 

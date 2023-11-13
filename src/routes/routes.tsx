@@ -5,6 +5,7 @@ import ProductLayout from "../layouts/ProductLayout";
 import Modern from "../pages/banner/Modern";
 import DefaultLayout from "../layouts/DefaultLayout";
 import CheckOut from "../pages/checkout";
+import Payment from "../pages/payment";
 
 const RoutesComponent = () => {
     return (
@@ -25,7 +26,10 @@ const RoutesComponent = () => {
                 </Route>
 
                 <Route path="checkout" element={ <CheckOut/> }/>
+                <Route path="payment" element={ <Payment/> }/>
+
             </Routes>
+
         </BrowserRouter>
     )
 }

@@ -12,6 +12,7 @@
 @import "./content/footer";
 @import "./content/Modern";
 @import "./content/checkout";
+@import "./content/payment";
 
 //Helpers
 .text-left {
@@ -2454,7 +2455,7 @@ p {
 }
 
 .form-group-auth {
-    padding-bottom: rem(15);
+    padding: rem(15) rem(0);
 
     label {
         font-size: rem(12);
@@ -2480,7 +2481,7 @@ p {
 
         &-btn {
             position: absolute;
-            top: 50%;
+            top: 85%;
             transform: translateY(-50%);
             right: rem(12);
             border: none;

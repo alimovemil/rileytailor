@@ -1,12 +1,46 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import Header from "../header";
 import Product from "../products";
 import FilterSelect from "../../components/form/Select";
 import Location from "../../container/icons/location";
+import TextField from "../../components/form/TextField";
 
 const CheckOut: FC = () => {
 
-    const [ delivery, setDelivery ] = useState<any[]>([]);
+    const [selectedItem, setSelectedItem] = useState('');
+
+    const handleSelectChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setSelectedItem(event.target.value);
+    };
+
+    const [showAdditionalElements, setShowAdditionalElements] = useState(false);
+    const [showAdditionalElement, setShowAdditionalElement] = useState(false);
+
+    useEffect(() => {
+        if (selectedItem === 'Ташкент') {
+            setShowAdditionalElements(true);
+        } else {
+            setShowAdditionalElements(false);
+        }
+
+    }, [selectedItem]);
+
+    useEffect(() => {
+        if (selectedItem === 'Чирчик' || selectedItem === 'Янгиюль' || selectedItem === 'Фергана') {
+            setShowAdditionalElement(true);
+        } else {
+            setShowAdditionalElement(false);
+        }
+    }, [selectedItem]);
+
+    const [ delivery, setDelivery ] = useState<any[]>([
+        {
+            text: 'Имя',
+        },
+        {
+            text: 'Фамилия'
+        }
+    ]);
 
     return (
         <div>
@@ -40,20 +74,62 @@ const CheckOut: FC = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="checkout-block-delivery">
+                                    <form className="checkout-block-delivery">
                                         <div className="checkout-block-goods-top-header">
-                                            <h1>Товары</h1>
+                                            <h1>Доставка</h1>
                                         </div>
                                         <div className="checkout-block-goods-top-line"></div>
 
-                                        <FilterSelect
-                                            className={ 'ds' }
-                                            options={ delivery }
-                                            placeholder={ 'ds' }
-                                            onChange={ (val) => setDelivery(val) }
-                                            imgLeft={<Location/>}
-                                        />
-                                    </div>
+
+                                        <div className="checkout-block-delivery-info">
+                                            <div className="checkout-block-delivery-info-tell">
+                                                {delivery.map((item, idx) => (
+                                                    <div className="checkout-block-delivery-info-input">
+                                                        <div className="checkout-block-delivery-info-input-name">
+                                                            <label>{item.text}</label>
+                                                            <TextField
+                                                                value={''}
+                                                                className={'checkout-block-delivery-info-input-name-style'}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <label>Мобильный телефон</label>
+                                            <TextField
+                                                value={''}
+                                                className="checkout-block-delivery-info-field"
+                                            />
+                                        </div>
+                                        <div className="checkout-block-delivery-select">
+                                            <div className="checkout-block-delivery-select-dropdown">
+                                                <p>Ваш город</p>
+                                                <div className="checkout-block-delivery-select-dropdown-bottom">
+                                                    <select
+                                                        className="checkout-block-delivery-select-dropdown-bottom-toggle"
+                                                        onChange={handleSelectChange}
+                                                        value={selectedItem}
+                                                    >
+                                                        <option value="Ташкент">Ташкент</option>
+                                                        <option value="Чирчик">Чирчик</option>
+                                                        <option value="Янгиюль">Янгиюль</option>
+                                                        <option value="Фергана">Фергана</option>
+                                                    </select>
+                                                    <Location color={'#1E2546'}/>
+                                                </div>
+                                            </div>
+
+                                            {showAdditionalElements && (
+                                                <div className="checkout-block-delivery-info">
+                                                    ы
+                                                </div>
+                                            )}
+
+                                            {showAdditionalElement && (
+                                                <div>dsds</div>
+                                            )}
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

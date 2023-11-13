@@ -1,0 +1,42 @@
+.payment {
+    padding-top: rem(28);
+    padding-bottom: rem(83);
+
+    &-item {
+        background: #FFF;
+        padding: rem(20);
+
+        &-header {
+            padding-bottom: rem(20);
+
+            h1 {
+                font-size: rem(20);
+                color: #1E2546;
+                line-height: rem(28);
+                font-weight: 600;
+            }
+        }
+
+        &-info {
+            &-list {
+                h3 {
+                    font-size: rem(14);
+                    font-weight: 600;
+                    line-height: rem(24);
+                    color: #1E2546;
+                }
+
+                ul {
+                    padding-left: rem(25);
+
+                    li {
+                        font-size: rem(14);
+                        line-height: rem(24);
+                        font-weight: 400;
+                        color: #1E2546;
+                    }
+                }
+            }
+        }
+    }
+}

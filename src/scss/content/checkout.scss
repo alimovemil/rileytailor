@@ -61,5 +61,80 @@
                 }
             }
         }
+
+        &-delivery {
+            &-info {
+                display: flex;
+                flex-direction: column;
+
+                &-tell {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    gap: rem(20);
+                }
+
+                &-input {
+                    width: 100%;
+                    &-name {
+                        width: 100%;
+                        &-style {
+                            display: flex;
+                            width: 100%;
+
+                            .form-block {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                &-field {
+                    width: 48.5%;
+                }
+            }
+
+            &-select {
+                p {
+                    font-size: rem(12);
+                    line-height: rem(22);
+                    color: #1E2546;
+                }
+
+                &-dropdown {
+                    &-bottom {
+                        display: flex;
+                        position: relative;
+                        padding-left: rem(50);
+                        border: 0.0625rem solid rgba(30, 37, 70, 20%);
+                        background: #FFFFFF;
+
+                        svg {
+                            position: absolute;
+                            z-index: 1;
+                            top: 13px;
+                            left: 20px;
+                        }
+
+                        &-toggle {
+                            width: 100%;
+                            height: rem(50);
+                            border: none;
+                        }
+
+                        &-toggle:focus-visible {
+                            outline: none;
+                        }
+                    }
+                }
+            }
+        }
     }
+}
+.css-1jqq78o-placeholder {
+    padding-left: rem(50);
+}
+
+.css-19eo3mx-control {
+    height: rem(50);
 }

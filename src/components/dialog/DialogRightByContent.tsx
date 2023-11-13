@@ -40,6 +40,10 @@ const DialogRightByContent: FC<Dialog> = (
         closeModal();
     }
 
+    function handleDialogClick(event: React.MouseEvent<HTMLDivElement>) {
+        event.stopPropagation();
+    }
+
     return (
         <>
             {isOpen && (
@@ -53,6 +57,7 @@ const DialogRightByContent: FC<Dialog> = (
                              position: 'fixed',
                              width: `${widthProps / 16}rem`
                          }}
+                         onClick={handleDialogClick}
                     >
                         {(label || isShowCloseBtn) && (
                             <div className="modal__block-header">

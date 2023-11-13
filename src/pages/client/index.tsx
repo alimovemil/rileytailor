@@ -98,9 +98,8 @@ const Client: FC = () => {
                                         <div>
                                             {item.rate}
                                         </div>
-                                        <div id={ item.id } className="client-img" onClick={ () => {
-                                            onClickOpen(item)
-                                        } }>
+                                        <div id={ item.id } className="client-img"
+                                             onClick={ () => {onClickOpen(item)} }>
                                             <img src={ item.img } alt=""/>
                                         </div>
                                         <div className="client-description">
