@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
 import Percent from "../../container/icons/percent";
 import Eye from "../../container/icons/Eye";
+import { useAppDispatch } from "../../redux/store";
+import { CauldronsSave, } from "../../redux/reducers/loading/reducer";
 
 type ImageBlockProps = {
     src: string;
@@ -20,7 +22,21 @@ const Modern: FC = () => {
     const state: any = location.state;
     const editedData = state?.data || {};
 
+    const dispatch = useAppDispatch()
+
+    const name = {
+        text: 'Набор из 8 предм.Modern 102308',
+        txt: 'Артикул: 102308',
+        cost: 'Стоимость',
+        price: '987 000 UZS',
+        span: 'Есть в наличии',
+    }
+
     console.log(editedData)
+
+    function onClickAdd() {
+        dispatch(CauldronsSave(name))
+    }
 
     const navigate = useNavigate()
 
@@ -58,13 +74,7 @@ const Modern: FC = () => {
         },
     ])
 
-    const [ isModern, setIsModern ] = useState<any>({
-        text: 'Набор из 8 предм.Modern 102308',
-        txt: 'Артикул: 102308',
-        cost: 'Стоимость',
-        price: '987 000 UZS',
-        span: 'Есть в наличии',
-    })
+    const [ isModern, setIsModern ] = useState<any>({})
 
     useEffect(() => init(), [])
 
@@ -132,7 +142,7 @@ const Modern: FC = () => {
                                             <div className="modern-item-style-block-btn">
                                                 <Button
                                                     text={ 'Добавить в корзину' }
-                                                    onClick={ onClickCheckOut }
+                                                    onClick={ onClickAdd }
                                                     leftIcon={ <Basket/> }
                                                     className={ 'btn' }
                                                 />

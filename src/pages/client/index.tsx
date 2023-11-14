@@ -48,7 +48,6 @@ const Client: FC = () => {
             price: '728 000 UZS',
             span: 'Есть в наличии',
             cost: 'Стоимость',
-            className: 'cauldrons',
         },
     ])
 

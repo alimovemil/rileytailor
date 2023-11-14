@@ -3,7 +3,8 @@ import DialogRightByContent from "../dialog/DialogRightByContent";
 import Close from "../../container/icons/Close";
 import Button from "../form/Button";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { GetCauldrons, } from "../../redux/reducers/loading/reducer";
 
 interface HeaderOpenModal {
     isOpen: boolean
@@ -18,7 +19,9 @@ const HeaderBasket: FC<HeaderOpenModal> = (
 ) => {
     const navigate = useNavigate()
 
-    const dispatch = useAppDispatch()
+    const name = useSelector(GetCauldrons)
+
+    console.log(name)
 
     const location = useLocation();
     const state: any = location.state;
