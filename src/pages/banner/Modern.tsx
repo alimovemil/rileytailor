@@ -5,7 +5,8 @@ import Basket from "../../container/icons/Basket";
 import Percent from "../../container/icons/percent";
 import Eye from "../../container/icons/Eye";
 import { useAppDispatch } from "../../redux/store";
-import { CauldronsSave, } from "../../redux/reducers/loading/reducer";
+import { CauldronsSave, } from "../../redux/reducers/basket/reducer";
+import BasketAdd from "../../container/icons/BasketAdd";
 
 type ImageBlockProps = {
     src: string;
@@ -24,23 +25,35 @@ const Modern: FC = () => {
 
     const dispatch = useAppDispatch()
 
-    const name = {
+    const [productItem, SetProductItem] = useState({
+        img: '/img/png/cauldrons_1.png',
         text: 'Набор из 8 предм.Modern 102308',
         txt: 'Артикул: 102308',
         cost: 'Стоимость',
         price: '987 000 UZS',
         span: 'Есть в наличии',
-    }
-
-    console.log(editedData)
+    })
 
     function onClickAdd() {
-        dispatch(CauldronsSave(name))
+        dispatch(CauldronsSave(productItem));
+        setAddedToCart(true);
     }
+
 
     const navigate = useNavigate()
 
+    const [addedToCart, setAddedToCart] = useState(false);
+
     const [ selectedImage, setSelectedImage ] = useState('/img/png/frying_2.png');
+
+    const [ isCauldrons, setIsCauldrons ] = useState<any>([
+        {
+            img: '/img/png/frying_2.png',
+        },
+        {
+            img: '/img/png/frying_1.png',
+        },
+    ])
 
     const [ list, setList ] = useState<any[]>([
         {
@@ -65,20 +78,23 @@ const Modern: FC = () => {
         },
     ])
 
-    const [ isCauldrons, setIsCauldrons ] = useState<any>([
-        {
-            img: '/img/png/frying_2.png',
-        },
-        {
-            img: '/img/png/frying_1.png',
-        },
-    ])
+    useEffect(() => init(), []);
+
 
     const [ isModern, setIsModern ] = useState<any>({})
 
     useEffect(() => init(), [])
 
     function init() {
+        // request.then(res => {
+        //     if (!res) return;
+
+            const res = {}
+
+
+            // SetProductItem(res)
+        // });
+
         setIsModern(editedData.item)
         setIsCauldrons(editedData.item)
     }
@@ -102,7 +118,7 @@ const Modern: FC = () => {
 
                                 <div className="modern-item-bottom-left">
                                     <div className="modern-item-bottom-left-cauldrons">
-                                        <ImageBlock src={ isCauldrons.img } alt=""
+                                        <ImageBlock src={ isModern.img } alt=""
                                                     onClick={ setSelectedImage }/>
                                     </div>
                                 </div>
@@ -141,10 +157,10 @@ const Modern: FC = () => {
 
                                             <div className="modern-item-style-block-btn">
                                                 <Button
-                                                    text={ 'Добавить в корзину' }
-                                                    onClick={ onClickAdd }
-                                                    leftIcon={ <Basket/> }
-                                                    className={ 'btn' }
+                                                    text={addedToCart ? 'Добавлено в корзину' : 'Добавить в корзину'}
+                                                    onClick={onClickAdd}
+                                                    leftIcon={addedToCart ? <BasketAdd color={'#1E2546'}/> : <Basket />}
+                                                    className={addedToCart ? 'btn-added' : 'btn'}
                                                 />
                                             </div>
                                         </div>

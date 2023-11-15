@@ -4,24 +4,17 @@ import Close from "../../container/icons/Close";
 import Button from "../form/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { GetCauldrons, } from "../../redux/reducers/loading/reducer";
+import { CauldronsSave, cauldronsSlices, GetCauldrons } from "../../redux/reducers/basket/reducer";
+import { useAppDispatch } from "../../redux/store";
 
 interface HeaderOpenModal {
     isOpen: boolean
     setIsOpen: () => void
 }
 
-const HeaderBasket: FC<HeaderOpenModal> = (
-    {
-        isOpen,
-        setIsOpen
-    }
-) => {
-    const navigate = useNavigate()
-
-    const name = useSelector(GetCauldrons)
-
-    console.log(name)
+const HeaderBasket: FC<HeaderOpenModal> = ({isOpen, setIsOpen}) => {
+    const navigate = useNavigate();
+    const products = useSelector(GetCauldrons);
 
     const location = useLocation();
     const state: any = location.state;
@@ -29,97 +22,86 @@ const HeaderBasket: FC<HeaderOpenModal> = (
 
     console.log(editedData)
 
-    const [ cartDialogs, SetCartDialog ] = useState<any>({
-        img: '/img/png/frying_1.png',
-        money: '1000',
-        span: '987 000 UZS',
-        cost: 'Набор из 6 предм.Modern 103306',
-        number: '1'
-        // {
-        //     img: '/img/png/frying_1.png',
-        //         money: '1000',
-        //     span: '50 UZS',
-        //     cost: 'количествоdsdsds',
-        //     number: '1'
-        // },
-        // {
-        //     img: '/img/png/frying_1.png',
-        //         money: '1000',
-        //     span: '50 UZS',
-        //     cost: 'количествовывыйвцй',
-        //     number: '1'
-        // },
-    })
+    const dispatch = useAppDispatch()
 
+    const [ cartDialogs, setCartDialog ] = useState<any[]>([]);
 
-    useEffect(() => init(), [])
+    useEffect(() => {
+        init();
+    }, []);
 
     function init() {
-        SetCartDialog(editedData.item)
+        if (products) { // @ts-ignore
+            setCartDialog(products);
+        }
     }
 
-    function onClickMinus() {
-        navigate('/checkout')
+    function onClickMinus(item: any) {
+        dispatch(cauldronsSlices(item))
+        // setCartDialog((prevState) => ({
+        //     ...prevState,
+        //     number: prevState.number > 0 ? prevState.number - 1 : 0,
+        // }));
     }
 
-    function onClickCheckOut() {
-        navigate('')
+    function onClickPlus(item: any) {
+        dispatch(CauldronsSave(item))
+        // setCartDialog((prevState) => ({
+        //     ...prevState,
+        //     number: prevState.number + 1,
+        // }));
     }
+
+    function onClickPayment() {
+        navigate('/checkout');
+    }
+
+    console.log(cartDialogs)
 
     return (
         <DialogRightByContent
             isOpen={ isOpen }
             closeModal={ () => {
-                setIsOpen()
+                setIsOpen();
             } }
             closeIcon={ <Close/> }
             label={ 'Корзина' }
         >
             <div className="header-top-cart">
                 <div className="header-top-cart-block">
-
-                    <div className="header-top-cart-block-item"
-                    >
-                        <div className="header-top-cart-block-item-img">
-                            <img src={ cartDialogs.img } alt=""/>
-                        </div>
-                        <div className="header-top-cart-block-item-info">
-                            <div className="header-top-cart-block-item-info-number">
-                                <div className="header-top-cart-block-item-info-number-quantity">
-                                    <p className="header-top-cart-block-item-info-number-quantity-p">{ cartDialogs.cost }</p>
-                                    <div className="header-top-cart-block-item-info-number-quantity-span">
-                                        <span>{ cartDialogs.span }</span>
-                                        <p>{ cartDialogs.money }</p>
+                    {cartDialogs.map((item, idx) => (
+                        <div className="header-top-cart-block-item"
+                        key={`basket-product-item-${idx}`}
+                        >
+                            <div className="header-top-cart-block-item-img">
+                                <img src={ item.img } alt=""/>
+                            </div>
+                            <div className="header-top-cart-block-item-info">
+                                <div className="header-top-cart-block-item-info-number">
+                                    <div className="header-top-cart-block-item-info-number-quantity">
+                                        <p className="header-top-cart-block-item-info-number-quantity-p">{ item.text }</p>
+                                        <div className="header-top-cart-block-item-info-number-quantity-span">
+                                            <span>{ item.paragraph }</span>
+                                            <p>{ item.price }</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="header-top-cart-block-item-info-number-value">
-                                    <div className="header-top-cart-block-item-info-number-value-btn">
-                                        <Button
-                                            text={ '-' }
-                                            onClick={ onClickCheckOut }
-                                            className="btn"
-                                        />
-                                        <span>{ cartDialogs.number }</span>
-                                        <Button
-                                            text={ '+' }
-                                            onClick={ onClickCheckOut }
-                                            className="btn"
-                                        />
+                                    <div className="header-top-cart-block-item-info-number-value">
+                                        <div className="header-top-cart-block-item-info-number-value-btn">
+                                            <Button text={ '-' } onClick={ () => onClickMinus(item) } className="btn"/>
+                                            <span>{ item.count }</span>
+                                            <Button text={ '+' } onClick={ () => onClickPlus(item) } className="btn"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
                 <div className="header-top-cart-bottom">
                     <div className="header-top-cart-bottom-total">
                         <span>43434343 UZS</span>
                     </div>
-                    <Button
-                        text={ 'Оформить заказ' }
-                        onClick={ onClickMinus }
-                        className={ 'btn' }
-                    />
+                    <Button text={ 'Оформить заказ' } onClick={ onClickPayment } className={ 'btn' }/>
                 </div>
             </div>
         </DialogRightByContent>

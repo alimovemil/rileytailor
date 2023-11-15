@@ -11,16 +11,17 @@ const Client: FC = () => {
 
     const [ slide, SetSlide ] = useState<any[]>([
         {
-            key: '',
+            key: '1',
             img: '/img/png/cauldrons_1.png',
             text: '[test] Сковорода Riley&Tailor Modern 20 см-1',
             txt: 'Артикул: 103304',
             price: '1000 UZS',
             span: 'Есть в наличии',
-            cost: 'Стоимость'
+            cost: 'Стоимость',
+            number: 0
         },
         {
-            key: '',
+            key: '2',
             img: '/img/png/cauldrons_2.png',
             text: 'Набор из 6 предм.Modern 103306',
             paragraph: '686 000 UZS',
@@ -29,30 +30,33 @@ const Client: FC = () => {
             span: 'Есть в наличии',
             className: 'cauldrons',
             // rate: <Percent/>,
-            cost: 'Стоимость'
+            cost: 'Стоимость',
+            number: 0
         },
         {
-            key: '',
+            key: '3',
             img: '/img/png/cauldrons_1.png',
             text: 'Набор из 8 предм.Modern 102308',
             txt: 'Артикул: 102308',
             price: '987 000 UZS',
             span: 'Есть в наличии',
-            cost: 'Стоимость'
+            cost: 'Стоимость',
+            number: 1
         },
         {
-            key: '',
+            key: '4',
             img: '/img/png/cauldrons_1.png',
             text: 'Набор из 6 предм.Modern 102306',
             txt: 'Артикул: 102306',
             price: '728 000 UZS',
             span: 'Есть в наличии',
             cost: 'Стоимость',
+            number: 0
         },
     ])
 
     function onClickOpen(item: any) {
-        navigate('product', {
+        navigate(`product/${item.key}`, {
             state: {
                 data: {
                     item
@@ -86,7 +90,6 @@ const Client: FC = () => {
                                 slidesPerView: 1,
                             },
                         } }
-                        onSlideChange={ () => console.log('slide change') }
                     >
                         { slide.map((item, idx) => (
                             <>
@@ -110,10 +113,11 @@ const Client: FC = () => {
                                             <p>{ item.paragraph }</p>
                                             <Button
                                                 text={ item.price }
-                                                onClick={ onClickOpen }
+                                                onClick={ () => {onClickOpen(item)} }
                                                 className={ 'btn' }
                                                 rightIcon={ <Basket color={ '#1E2546' } size={ 40 }/> }
                                             />
+                                            <div style={ {display: "none"} }>{ item.number }</div>
                                             <div className="client-available">
                                                 <span>{ item.span }</span>
                                             </div>

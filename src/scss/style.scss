@@ -2313,6 +2313,7 @@ p {
                             font-size: rem(14);
                             font-weight: 600;
                             color: rgba(30, 37, 70, 0.5);
+                            text-decoration: line-through
                         }
 
                         &-p {
@@ -2327,8 +2328,9 @@ p {
                             gap: rem(10);
 
                             p {
-                                color: #AC1931;
+                                color: #000000;
                                 line-height: rem(26);
+                                font-weight: 600;
                             }
                         }
                     }
@@ -2423,6 +2425,8 @@ p {
         font-weight: 600;
     }
 }
+
+
 
 .modal__block-headers {
     display: flex;

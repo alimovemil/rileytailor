@@ -21,7 +21,7 @@
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     .navbar {
         display: block !important;
 
@@ -155,6 +155,36 @@
         .carousel-item {
             img {
                 height: rem(400);
+            }
+        }
+    }
+
+    .modern {
+        &-item {
+            &-style {
+                flex-direction: column;
+
+                &-left {
+                    width: 100%;
+
+                    .modern-item-style-left-image {
+                        max-width: inherit;
+
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                &-block {
+                    width: 100%;
+                }
+            }
+
+            &-bottom {
+                &-left {
+                    width: 100%;
+                }
             }
         }
     }
@@ -299,6 +329,7 @@
                         }
                     }
                 }
+
                 &-bottom {
                     &-info {
                         &-header {

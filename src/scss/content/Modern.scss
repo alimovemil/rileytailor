@@ -91,6 +91,23 @@
                         background: #1E2546;
                         color: $white;
                     }
+
+                    .btn:focus {
+                        background: #1E2546;
+                        color: $white;
+                    }
+
+                    .btn-added {
+                        display: flex;
+                        align-items: center;
+                        background: rgba(30, 37, 70, 0.10);
+                        color: #1E2546;
+                        font-size: rem(14);
+                        line-height: rem(24);
+                        font-weight: 600;
+                        padding: rem(11) rem(26);
+                        border: none;
+                    }
                 }
 
                 h3 {
@@ -114,7 +131,9 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: rem(469);
+                    max-width: rem(469);
+                    width: 100%;
+
                     img {
                         padding: rem(30);
                         min-height: rem(248);
@@ -144,7 +163,7 @@
                     justify-content: center;
                     align-items: center;
                     border: 1px;
-                    background: rgba(0, 0, 0, 0.03);
+                    background: #FFFFFF;
                     cursor: pointer;
 
                     img {

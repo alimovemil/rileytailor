@@ -11,7 +11,7 @@ const Banner: FC = () => {
 
     return (
         <div className="banner-item">
-            <div className="container banner-item-container">
+            <div className="container">
                 <div className="row">
                     <div className="col-12 col-style">
                         <div className="banner-item-block col-type">

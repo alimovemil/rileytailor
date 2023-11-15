@@ -6,12 +6,13 @@ import Advantage from "../pages/advantage";
 import Footer from "../pages/footer";
 import Header from "../pages/header";
 import { Outlet } from "react-router-dom";
+import NavBarBottom from "../components/sidebar/NavBarBottom";
 
 const ProductLayout: FC = () => {
     return (
-        <div>
+        <>
             <Header/>
-            <div className="content">
+            <div className="content admin-header">
                 <Product/>
 
                 <Outlet/>
@@ -23,8 +24,10 @@ const ProductLayout: FC = () => {
                 <Advantage/>
 
                 <Footer/>
+
+                <NavBarBottom/>
             </div>
-        </div>
+        </>
     );
 };
 

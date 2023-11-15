@@ -63,27 +63,50 @@
         }
 
         &-delivery {
+            background: #FFF;
+            margin-top: rem(15);
+            padding: rem(30) rem(20);
+
             &-info {
                 display: flex;
                 flex-direction: column;
+                padding-bottom: rem(20);
 
                 &-tell {
                     display: flex;
                     align-items: center;
                     width: 100%;
                     gap: rem(20);
-                }
+                    flex-wrap: wrap;
 
-                &-input {
-                    width: 100%;
-                    &-name {
+                    &-input {
+                        max-width: rem(242.5);
                         width: 100%;
-                        &-style {
-                            display: flex;
-                            width: 100%;
 
+                        label {
+                            font-size: rem(12);
+                            color: #1E2546;
+                            line-height: rem(22);
+                        }
+
+                        &-style {
                             .form-block {
-                                width: 100%;
+                                input {
+                                    border-radius: 0;
+                                    padding: rem(12) rem(10);
+                                    border: 1px solid rgba(0, 0, 0, 0.20);
+
+                                }
+
+                                input:focus {
+                                    box-shadow: none;
+                                }
+
+                                .form-control {
+                                    color: #1E2546;
+                                    line-height: rem(26);
+                                    font-weight: 600;
+                                }
                             }
                         }
                     }
@@ -95,13 +118,18 @@
             }
 
             &-select {
-                p {
-                    font-size: rem(12);
-                    line-height: rem(22);
-                    color: #1E2546;
-                }
-
                 &-dropdown {
+                    display: flex;
+                    flex-direction: column;
+                    gap: rem(5);
+                    padding-bottom: rem(20);
+
+                    p {
+                        font-size: rem(12);
+                        line-height: rem(22);
+                        color: #1E2546;
+                    }
+
                     &-bottom {
                         display: flex;
                         position: relative;
@@ -127,10 +155,209 @@
                         }
                     }
                 }
+
+                &-content {
+                    &-bottom {
+                        padding: rem(15);
+                        border: rem(2) solid #008033;
+                        margin-bottom: rem(35);
+
+                        &-checkbox {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
+                            &-input {
+                                label {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: rem(10);
+                                    font-size: rem(14);
+                                    line-height: rem(24);
+                                    font-weight: 600;
+                                }
+                            }
+
+                            p {
+                                color: #008033;
+                                line-height: rem(24);
+                                font-size: rem(12);
+                                font-weight: 600;
+                            }
+
+                            .checkbox {
+                                padding-bottom: rem(8);
+
+                                label {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: rem(10);
+                                    font-size: rem(14);
+                                    line-height: rem(24);
+                                    color: #1E2546;
+                                    font-weight: 600;
+
+                                    input {
+                                        position: relative;
+                                        appearance: none;
+                                        border-radius: 50%;
+                                        border: 1px solid #008033;
+                                        width: rem(24);
+                                        height: rem(24);
+
+                                        &:checked {
+                                            border-color: #008033;
+
+                                            &:before {
+                                                content: '';
+                                                position: absolute;
+                                                top: 11px;
+                                                left: 11px;
+                                                height: 2px;
+                                                background-color: #008033;
+                                                transform: rotate(40deg);
+                                                margin-left: -6px;
+                                                margin-top: 1px;
+                                                width: 7px;
+                                            }
+
+                                            &:after {
+                                                content: '';
+                                                position: absolute;
+                                                top: 11px;
+                                                left: 12px;
+                                                height: 2px;
+                                                background-color: #008033;
+                                                transform: rotate(130deg);
+                                                margin-left: -4px;
+                                                margin-top: -1px;
+                                                width: 12px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &-point {
+                            &-option {
+                                padding: rem(13) rem(15);
+                                border: 1px solid rgba(0, 0, 0, 0.20);
+
+                                select {
+                                    font-size: rem(14);
+                                    font-weight: 600;
+                                    line-height: rem(24);
+                                    color: #1E2546;
+                                    width: 100%;
+                                    border: none;
+                                    background: transparent;
+
+                                    option {
+                                        font-size: rem(14);
+                                        font-weight: 600;
+                                        line-height: rem(24);
+                                        color: #1E2546;
+                                    }
+                                }
+                            }
+
+                            select:focus-within {
+                                outline: none;
+                            }
+
+                            label {
+                                padding-bottom: rem(8);
+                                font-size: rem(14);
+                            }
+
+                            &-paragraph {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding-top: rem(15);
+
+                                p {
+                                    font-size: rem(14);
+                                    color: #1E2546;
+                                    font-weight: 600;
+                                    line-height: rem(22);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &-meta {
+                    padding: rem(15);
+                    border: 2px solid #008033;
+
+                    &-comment {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+
+                        label {
+                            font-size: rem(12);
+                            line-height: rem(22);
+                            color: #1E2546;
+                        }
+
+                        &-inner {
+                            max-width: rem(270.5);
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            gap: rem(5);
+                            padding-bottom: rem(15);
+
+                            .form-group {
+                                .form-block {
+                                    input:focus {
+                                        box-shadow: none;
+                                        border: 1px solid rgba(0, 0, 0, 0.20);
+                                    }
+
+                                    input {
+                                        border-radius: 0;
+                                        padding: rem(12) rem(10);
+                                    }
+                                }
+                            }
+                        }
+
+                        .form-group {
+                            .form-block {
+                                width: 100%;
+                            }
+                        }
+
+                        &-area {
+                            width: 100%;
+                        }
+
+                    }
+
+                    &-checkbox {
+                        display: flex;
+                        align-items: center;
+                        gap: rem(10);
+
+
+
+                        label {
+                            font-size: rem(14);
+                            line-height: rem(24);
+                            font-weight: 600;
+                            color: #1E2546;
+                        }
+                    }
+                }
             }
         }
     }
 }
+
 .css-1jqq78o-placeholder {
     padding-left: rem(50);
 }
@@ -138,3 +365,4 @@
 .css-19eo3mx-control {
     height: rem(50);
 }
+

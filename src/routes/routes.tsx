@@ -20,7 +20,7 @@ const RoutesComponent = () => {
                 </Route>
 
                 <Route element={ <ProductLayout/> }>
-                    <Route path="product" element={ <Modern/> }/>
+                    <Route path="product/:id" element={ <Modern/> }/>
                     {/*<Route path="guarantee" element={ <Modern/> }/>*/}
                     {/*<Route path="pay" element={ <Modern/> }/>*/}
                 </Route>

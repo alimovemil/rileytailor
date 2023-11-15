@@ -1,37 +1,31 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import Header from "../header";
 import Product from "../products";
-import FilterSelect from "../../components/form/Select";
 import Location from "../../container/icons/location";
 import TextField from "../../components/form/TextField";
+import TextArea from "../../components/form/TextArea";
 
 const CheckOut: FC = () => {
 
-    const [selectedItem, setSelectedItem] = useState('');
+    const [ selectedItem, setSelectedItem ] = useState('');
 
-    const handleSelectChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+    const handleSelectChange = (event: { target: { value: React.SetStateAction<any>; }; }) => {
         setSelectedItem(event.target.value);
+
+        setShowAdditionalElements(event.target.value === 'Ташкент');
     };
 
-    const [showAdditionalElements, setShowAdditionalElements] = useState(false);
-    const [showAdditionalElement, setShowAdditionalElement] = useState(false);
-
-    useEffect(() => {
-        if (selectedItem === 'Ташкент') {
-            setShowAdditionalElements(true);
-        } else {
-            setShowAdditionalElements(false);
-        }
-
-    }, [selectedItem]);
+    const [ showAdditionalElements, setShowAdditionalElements ] = useState(true);
+    const [ selectedOption, setSelectedOption ] = useState('Самовывоз')
 
     useEffect(() => {
         if (selectedItem === 'Чирчик' || selectedItem === 'Янгиюль' || selectedItem === 'Фергана') {
-            setShowAdditionalElement(true);
+            setSelectedOption('Курьерская доставка')
         } else {
-            setShowAdditionalElement(false);
+            setSelectedOption('Самовывоз')
         }
-    }, [selectedItem]);
+    }, [ selectedItem ]);
+
 
     const [ delivery, setDelivery ] = useState<any[]>([
         {
@@ -39,8 +33,37 @@ const CheckOut: FC = () => {
         },
         {
             text: 'Фамилия'
+        },
+        {
+            text: 'Мобильный Телефон'
         }
     ]);
+
+    const Comment = [
+        {
+            name: 'Район',
+            key: '',
+
+        },
+        {
+            name: 'Улица',
+            key: '',
+            className: 'form-content'
+        },
+        {
+            name: 'Дом',
+            key: ''
+        },
+        {
+            name: 'Квартира',
+            key: '',
+            className: 'form-content'
+        },
+    ]
+
+    function onChangeValue(event: any) {
+        setSelectedOption(event.target.value);
+    }
 
     return (
         <div>
@@ -80,26 +103,23 @@ const CheckOut: FC = () => {
                                         </div>
                                         <div className="checkout-block-goods-top-line"></div>
 
-
                                         <div className="checkout-block-delivery-info">
                                             <div className="checkout-block-delivery-info-tell">
-                                                {delivery.map((item, idx) => (
-                                                    <div className="checkout-block-delivery-info-input">
-                                                        <div className="checkout-block-delivery-info-input-name">
-                                                            <label>{item.text}</label>
-                                                            <TextField
-                                                                value={''}
-                                                                className={'checkout-block-delivery-info-input-name-style'}
-                                                            />
-                                                        </div>
+                                                { delivery.map((item, idx) => (
+                                                    <div className="checkout-block-delivery-info-tell-input">
+                                                        <label>{ item.text }</label>
+                                                        <TextField
+                                                            value={ '' }
+                                                            className={ 'checkout-block-delivery-info-tell-input-style' }
+                                                        />
                                                     </div>
-                                                ))}
+                                                )) }
                                             </div>
-                                            <label>Мобильный телефон</label>
-                                            <TextField
-                                                value={''}
-                                                className="checkout-block-delivery-info-field"
-                                            />
+                                            {/*<label>Мобильный телефон</label>*/ }
+                                            {/*<TextField*/ }
+                                            {/*    value={ '' }*/ }
+                                            {/*    className="checkout-block-delivery-info-field"*/ }
+                                            {/*/>*/ }
                                         </div>
                                         <div className="checkout-block-delivery-select">
                                             <div className="checkout-block-delivery-select-dropdown">
@@ -107,28 +127,113 @@ const CheckOut: FC = () => {
                                                 <div className="checkout-block-delivery-select-dropdown-bottom">
                                                     <select
                                                         className="checkout-block-delivery-select-dropdown-bottom-toggle"
-                                                        onChange={handleSelectChange}
-                                                        value={selectedItem}
+                                                        onChange={ handleSelectChange }
+                                                        value={ selectedItem }
                                                     >
                                                         <option value="Ташкент">Ташкент</option>
                                                         <option value="Чирчик">Чирчик</option>
                                                         <option value="Янгиюль">Янгиюль</option>
                                                         <option value="Фергана">Фергана</option>
                                                     </select>
-                                                    <Location color={'#1E2546'}/>
+                                                    <Location color={ '#1E2546' }/>
                                                 </div>
                                             </div>
 
-                                            {showAdditionalElements && (
-                                                <div className="checkout-block-delivery-info">
-                                                    ы
-                                                </div>
-                                            )}
+                                            { showAdditionalElements && (
+                                                <div className="checkout-block-delivery-select-content">
+                                                    <div className="checkout-block-delivery-select-content-bottom">
+                                                        <div
+                                                            className="checkout-block-delivery-select-content-bottom-checkbox">
+                                                            <div
+                                                                className="checkout-block-delivery-select-content-bottom-checkbox-input">
+                                                                <label>
+                                                                    <input
+                                                                        type="radio"
+                                                                        value="Самовывоз"
+                                                                        checked={ selectedOption === "Самовывоз" }
+                                                                        onChange={ onChangeValue }
+                                                                    />
+                                                                    Самовывоз
+                                                                </label>
+                                                            </div>
+                                                            <p>Бесплатно</p>
+                                                        </div>
 
-                                            {showAdditionalElement && (
-                                                <div>dsds</div>
-                                            )}
-                                        </div>
+                                                        { (selectedOption === "Самовывоз") && (
+                                                            <div
+                                                                className="checkout-block-delivery-select-content-bottom-point">
+                                                                <label>Пункт выдачи</label>
+                                                                <div
+                                                                    className="checkout-block-delivery-select-content-bottom-point-option">
+                                                                    <select>
+                                                                        <option value="Выберите пункт доставки" selected
+                                                                                style={ {display: "none"} }>Выберите
+                                                                            пункт
+                                                                            доставки
+                                                                        </option>
+                                                                        <option value="R&T Чиланзар, Чиланзарский район, улица
+                                                                    Катартал, ТРЦ Parus">R&T Чиланзар, Чиланзарский
+                                                                            район,
+                                                                            улица
+                                                                            Катартал, ТРЦ "Parus"
+                                                                        </option>
+                                                                        <option value="">R&T Мирабад, Мирабадский район,
+                                                                            улица
+                                                                            Адылходжаева, дом 112
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div
+                                                                    className="checkout-block-delivery-select-content-bottom-point-paragraph">
+                                                                    <p>График работы</p>
+                                                                    <p>Пн-Пт, с 09:00 до 18:00. Обед с 13:00 до
+                                                                        14:00</p>
+                                                                </div>
+                                                            </div>
+                                                        ) }
+                                                    </div>
+                                                </div>
+                                            ) }
+
+                                            <div className="checkout-block-delivery-select-meta">
+                                                <div className="checkout-block-delivery-select-meta-checkbox">
+                                                    <label>
+                                                        <input
+                                                            type="radio"
+                                                            value="Курьерская доставка"
+                                                            checked={ selectedOption === "Курьерская доставка" }
+                                                            onChange={ onChangeValue }
+                                                            className='ds'
+                                                        />
+                                                        Курьерская доставка
+                                                    </label>
+                                                </div>
+                                                { (selectedOption === "Курьерская доставка") && (
+                                                    <div className="checkout-block-delivery-select-meta-comment">
+                                                        { Comment.map((item, idx) => (
+                                                            <div
+                                                                className={ `checkout-block-delivery-select-meta-comment-inner` }
+                                                                key={ idx }
+                                                            >
+                                                                <label>{ item.name }</label>
+                                                                <TextField
+                                                                    value={ '' }
+                                                                />
+                                                            </div>
+                                                        )) }
+                                                        <div className="checkout-block-delivery-select-meta-comment-area">
+                                                            <TextArea
+                                                                value={ '' }
+                                                                label={ 'Комментарии' }
+                                                                rows={ 4 }
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                ) }
+                                                    </div>
+
+
+                                            </div>
                                     </form>
                                 </div>
                             </div>
@@ -137,7 +242,7 @@ const CheckOut: FC = () => {
                 </div>
             </div>
         </div>
-    );
+);
 };
 
 export default CheckOut;
