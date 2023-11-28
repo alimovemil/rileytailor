@@ -127,16 +127,15 @@
 
                 &-image {
                     background: #ffffff;
-                    min-height: rem(405.78);
+                    min-height: rem(410);
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    max-width: rem(469);
-                    width: 100%;
+                    width: rem(565);
 
                     img {
-                        padding: rem(30);
-                        min-height: rem(248);
+                        width: rem(467);
+                        min-height: rem(214);
                         object-fit: contain;
                     }
                 }

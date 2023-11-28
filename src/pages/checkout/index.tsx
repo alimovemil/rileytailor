@@ -4,8 +4,23 @@ import Product from "../products";
 import Location from "../../container/icons/location";
 import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { GetCauldrons } from "../../redux/reducers/basket/reducer";
+import Footer from "../footer";
+import Button from "../../components/form/Button";
 
 const CheckOut: FC = () => {
+    const products = useSelector(GetCauldrons);
+
+    const navigate = useNavigate()
+
+    const location = useLocation();
+    const state: any = location.state;
+    const editedData = state?.data || {};
+
+    console.log(GetCauldrons)
+
 
     const [ selectedItem, setSelectedItem ] = useState('');
 
@@ -16,7 +31,8 @@ const CheckOut: FC = () => {
     };
 
     const [ showAdditionalElements, setShowAdditionalElements ] = useState(true);
-    const [ selectedOption, setSelectedOption ] = useState('Самовывоз')
+    const [ selectedOption, setSelectedOption ] = useState('Самовывоз');
+    const [ isPayment, setPayment ] = useState<any[]>([]);
 
     useEffect(() => {
         if (selectedItem === 'Чирчик' || selectedItem === 'Янгиюль' || selectedItem === 'Фергана') {
@@ -25,6 +41,10 @@ const CheckOut: FC = () => {
             setSelectedOption('Самовывоз')
         }
     }, [ selectedItem ]);
+
+    useEffect(() => {
+        init();
+    }, []);
 
 
     const [ delivery, setDelivery ] = useState<any[]>([
@@ -59,10 +79,21 @@ const CheckOut: FC = () => {
             key: '',
             className: 'form-content'
         },
-    ]
+    ];
+
+    function init() {
+        if (products) {
+            // @ts-ignore
+            setPayment(products);
+        }
+    };
 
     function onChangeValue(event: any) {
         setSelectedOption(event.target.value);
+    }
+
+    function onClickPayment() {
+        navigate('')
     }
 
     return (
@@ -83,18 +114,20 @@ const CheckOut: FC = () => {
                                             </div>
 
                                             <div className="checkout-block-goods-top-line"></div>
-                                            <div className="checkout-block-goods-top-cauldrons">
-                                                <div className="checkout-block-goods-top-cauldrons-img">
-                                                    <img src="/img/png/cauldrons_1.png" alt=""/>
+                                            { isPayment.map((item, idx) => (
+                                                <div className="checkout-block-goods-top-cauldrons"
+                                                     key={ `payment-checkout-${ idx }` }
+                                                >
+                                                    <div className="checkout-block-goods-top-cauldrons-img">
+                                                        <img src={ item.img } alt=""/>
+                                                    </div>
+                                                    <div className="checkout-block-goods-top-cauldrons-inner">
+                                                        <p>{ item.text }</p>
+                                                        <h5>{ item.count } ед</h5>
+                                                        <span>{ item.price }</span>
+                                                    </div>
                                                 </div>
-                                                <div className="checkout-block-goods-top-cauldrons-inner">
-                                                    <p>Набор Riley&Tailor Modern 6 предметов: ковш 16см 1.9л; кастрюля
-                                                        20см
-                                                        3.6л; кастрюля 22см 4.7л (102306)"</p>
-                                                    <h5>1 ед.</h5>
-                                                    <span>212121 UZS</span>
-                                                </div>
-                                            </div>
+                                            )) }
                                         </div>
                                     </div>
                                     <form className="checkout-block-delivery">
@@ -221,7 +254,8 @@ const CheckOut: FC = () => {
                                                                 />
                                                             </div>
                                                         )) }
-                                                        <div className="checkout-block-delivery-select-meta-comment-area">
+                                                        <div
+                                                            className="checkout-block-delivery-select-meta-comment-area">
                                                             <TextArea
                                                                 value={ '' }
                                                                 label={ 'Комментарии' }
@@ -230,19 +264,69 @@ const CheckOut: FC = () => {
                                                         </div>
                                                     </div>
                                                 ) }
-                                                    </div>
-
-
                                             </div>
+                                        </div>
                                     </form>
+                                    <div className="checkout-block-pay">
+                                        <div className="checkout-block-goods-top-header">
+                                            <h1>Оплата</h1>
+                                        </div>
+                                        <div className="checkout-block-goods-top-line"></div>
+                                        <div className="checkout-block-pay-item">
+                                            <div className="checkout-block-pay-item-meta">
+                                                <a href="#"><img src="/img/png/click.png" alt=""/></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="col-5">
+                                <div className="checkout-total">
+                                    <div className="checkout-total-header">
+                                        <h2>Итого</h2>
+                                    </div>
+                                    <div className="checkout-block-goods-top-line"></div>
+                                    <div className="checkout-total-amount">
+                                        <div className="checkout-total-amount-outcome">
+                                            <p>Товар на сумму</p>
+                                            <span>1 205 000 UZS</span>
+                                        </div>
+                                        <div className="checkout-total-amount-outcome">
+                                            <p>Доставка</p>
+                                            <span>30 000 UZS</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="checkout-block-goods-top-line"></div>
+
+                                    <div className="checkout-total-inner">
+                                        <p>К оплате</p>
+                                        <div className="checkout-total-inner-span">
+                                            <span>1 205 000</span>
+                                            <div className="checkout-total-inner-span-uzs">UZS</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="checkout-block-goods-top-line"></div>
+
+                                    <div className="checkout-total-btn">
+                                        <Button text={ 'Подтвердить заказ и оплатить' }
+                                                onClick={ onClickPayment }
+                                                className="btn"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
+                <Footer/>
             </div>
         </div>
-);
+    );
 };
 
 export default CheckOut;

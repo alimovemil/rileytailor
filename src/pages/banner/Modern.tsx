@@ -30,15 +30,9 @@ const Modern: FC = () => {
         text: 'Набор из 8 предм.Modern 102308',
         txt: 'Артикул: 102308',
         cost: 'Стоимость',
-        price: '987 000 UZS',
+        price: '987000 UZS',
         span: 'Есть в наличии',
     })
-
-    function onClickAdd() {
-        dispatch(CauldronsSave(productItem));
-        setAddedToCart(true);
-    }
-
 
     const navigate = useNavigate()
 
@@ -57,22 +51,22 @@ const Modern: FC = () => {
 
     const [ list, setList ] = useState<any[]>([
         {
-            key: '',
+            key: 'material',
             text: 'Материал',
             txt: 'Нержавеющая сталь'
         },
         {
-            key: '',
+            key: 'handleMaterial',
             text: 'Материал ручек',
             txt: 'Нержавеющая сталь'
         },
         {
-            key: '',
+            key: 'lid',
             text: 'Крышка',
             txt: 'Имеется'
         },
         {
-            key: '',
+            key: 'itemCount',
             text: 'Кол-во предметов',
             txt: '8шт'
         },
@@ -101,6 +95,11 @@ const Modern: FC = () => {
 
     function onClickCheckOut() {
         navigate('product')
+    }
+
+    function onClickAdd() {
+        dispatch(CauldronsSave(productItem));
+        setAddedToCart(true);
     }
 
     return (

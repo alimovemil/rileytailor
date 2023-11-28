@@ -1,5 +1,9 @@
 .checkout {
+    margin-top: rem(30);
+
     &-block {
+        margin-bottom: rem(60);
+
         &-goods {
             background: #FFF;
 
@@ -343,16 +347,134 @@
                         align-items: center;
                         gap: rem(10);
 
-
-
                         label {
                             font-size: rem(14);
                             line-height: rem(24);
                             font-weight: 600;
                             color: #1E2546;
+                            display: flex;
+                            align-items: center;
+                            gap: rem(10);
                         }
                     }
                 }
+            }
+        }
+
+        &-pay {
+            padding: rem(30) rem(20);
+            background: #FFF;
+            margin-top: rem(15);
+
+            &-item {
+                display: flex;
+                align-items: center;
+                gap: rem(15);
+
+                &-meta {
+                    display: flex;
+                    width: rem(120);
+                    justify-content: center;
+                    align-items: center;
+                    height: rem(120);
+                    border: 1px solid rgba(0, 0, 0, 0.10);
+                    background: #FFF;
+
+                    a {
+                        img {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-total {
+        padding: rem(30) rem(20);
+        background: #FFF;
+
+        &-header {
+            h2 {
+                font-size: rem(32);
+                line-height: rem(40);
+                color: #1E2546;
+                font-weight: 600;
+            }
+        }
+
+        &-amount {
+            display: flex;
+            flex-direction: column;
+
+            &-outcome {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                p {
+                    line-height: rem(26);
+                    color: #1E2546;
+                    font-weight: 600;
+                }
+
+                span {
+                    font-weight: 600;
+                    line-height: rem(26);
+                    color: #1E2546;
+                }
+            }
+        }
+
+        &-inner {
+            display: flex;
+            flex-direction: column;
+            gap: rem(4);
+
+            &-span {
+                display: flex;
+                align-items: center;
+                gap: rem(10);
+                align-items: baseline;
+
+                span {
+                    font-size: rem(32);
+                    line-height: rem(40);
+                    color: #1E2546;
+                    font-weight: 600;
+                }
+
+                &-uzs {
+                    font-weight: 700;
+                    line-height: rem(24);
+                }
+            }
+
+            p {
+                font-size: rem(14);
+                line-height: rem(24);
+                font-weight: 600;
+                color: #1E2546;
+            }
+        }
+
+        &-btn {
+            background: #008033;
+            .btn {
+                padding: rem(14) rem(28);
+                text-align: center;
+                width: 100%;
+                line-height: rem(24);
+                font-size: rem(14);
+                font-weight: 600;
+                color: $white;
+                border-radius: 0;
+            }
+
+            .btn:hover,
+            .btn:focus{
+                background: transparent;
+                color: $white;
             }
         }
     }

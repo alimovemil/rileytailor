@@ -1,13 +1,9 @@
 .client {
     &-slide {
-        margin-right: rem(0) !important;
-        width: rem(280) !important;
+        width: rem(290) !important;
         background: #FFF;
         box-shadow: -1px 0px 0px 0px rgba(0, 0, 0, 0.10) inset;
-    }
-
-    .swiper-wrapper {
-        gap: rem(1);
+        margin-right: rem(1) !important;
     }
 
     &-description {
@@ -40,10 +36,10 @@
     .cauldrons {
         position: relative;
 
-        &-percentage {
+        &-rated {
             position: absolute;
-            background: #AC1931;
             padding: rem(6);
+            background: #AC1931;
         }
     }
 

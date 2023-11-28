@@ -37,6 +37,8 @@
     }
 
     .header {
+        padding-bottom: rem(25);
+
         &-field {
             display: none;
         }
@@ -58,7 +60,7 @@
         }
 
         .burger-menu {
-            //display: none;
+            display: inline-block;
         }
 
         &-border {
@@ -73,6 +75,55 @@
 
     .product {
         display: none;
+    }
+
+    .burger-menu {
+        position: relative;
+        z-index: 4;
+        top: 7px;
+        left: 23px;
+    }
+
+    .burger-menu-close {
+        padding: rem(13);
+        background: #1E2546;
+        position: absolute;
+        top: -30px;
+        left: -12px;
+    }
+
+
+    .product-block-content-item-inner {
+        flex-direction: column;
+    }
+    .admin-header {
+        .content {
+            padding-top: rem(60);
+        }
+    }
+
+
+    .header-logo {
+        position: absolute;
+        z-index: 2;
+        top: 15px;
+
+        a {
+            img {
+                width: rem(58.5);
+                height: rem(30);
+            }
+        }
+    }
+
+    .product-block-content-item {
+        top: 55px !important;
+        padding-top: rem(20) !important;
+        padding-bottom: rem(20) !important;
+
+        &-meta {
+            border-bottom: rem(1) solid red;
+        }
     }
 
     .carousel-page {
@@ -169,6 +220,7 @@
 
                     .modern-item-style-left-image {
                         max-width: inherit;
+                        width: 100%;
 
                         img {
                             width: 100%;

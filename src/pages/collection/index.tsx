@@ -1,11 +1,14 @@
 import React, { FC, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Collection: FC = () => {
+
+    const navigate = useNavigate()
 
     const [ isCollection, SetIsCollection ] = useState<any[]>([
         {
             key: '',
-            image: '/img/png/classic.png',
+            image: '/img/png/ds.png',
             text: 'Коллекция',
             name: 'Classic'
         },
@@ -23,6 +26,7 @@ const Collection: FC = () => {
         },
     ])
 
+
     return (
         <div className="collection">
             <div className="container">
@@ -38,6 +42,7 @@ const Collection: FC = () => {
                         <div className="col-12 col-lg-4 col-type">
                             <div style={ {backgroundImage: `url(${ list.image })`} } className="collection-block"
                                  key={ idx }
+                                 onClick={() => navigate('collection')}
                             >
                                 <div className="collection-block-inner">
                                     <div className="collection-block-inner-text">

@@ -1,0 +1,43 @@
+.filter-item {
+    position: absolute;
+    background: #1E2546;
+    width: rem(300);
+
+    &-right {
+        &-inner {
+            padding: rem(30) rem(31) rem(34) rem(30);
+
+            &-cost {
+
+                h3 {
+                    color: $white;
+                    font-size: rem(14);
+                    font-weight: 600;
+                    line-height: rem(22);
+                }
+
+                &-range {
+                    padding-top: rem(20);
+
+                    &-number {
+                        display: flex;
+                    }
+                }
+            }
+
+            &-meta {
+                &-content {
+                }
+            }
+        }
+    }
+
+}
+
+.range-slider .range-slider__thumb {
+    background: #008033 !important;
+}
+
+.range-slider .range-slider__range {
+    background: #008033 !important;
+}

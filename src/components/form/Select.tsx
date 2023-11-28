@@ -134,7 +134,7 @@ const FilterSelect: FC<FilterSelectProps> = (
                 <div className={'search__block__clear'}>
                     <Button
                         text={(
-                            <Close color={'#FF0000'}/>
+                            <Close />
                         )}
                         onClick={() => deleteItem && deleteItem()}
                         className={'btn btn-icon'}

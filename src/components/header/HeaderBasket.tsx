@@ -12,7 +12,7 @@ interface HeaderOpenModal {
     setIsOpen: () => void
 }
 
-const HeaderBasket: FC<HeaderOpenModal> = ({isOpen, setIsOpen}) => {
+const HeaderBasket: FC<HeaderOpenModal> = ({ isOpen, setIsOpen }) => {
     const navigate = useNavigate();
     const products = useSelector(GetCauldrons);
 
@@ -20,76 +20,86 @@ const HeaderBasket: FC<HeaderOpenModal> = ({isOpen, setIsOpen}) => {
     const state: any = location.state;
     const editedData = state?.data || {};
 
-    console.log(editedData)
+    const dispatch = useAppDispatch();
 
-    const dispatch = useAppDispatch()
-
-    const [ cartDialogs, setCartDialog ] = useState<any[]>([]);
+    const [cartDialogs, setCartDialog] = useState<any[]>([]);
+    const [totalPrice, setTotalPrice] = useState<number>(0);
 
     useEffect(() => {
         init();
-    }, []);
+    }, [products]);
 
     function init() {
-        if (products) { // @ts-ignore
+        if (products) {
+            // @ts-ignore
             setCartDialog(products);
+            calculateTotalPrice(products);
         }
     }
 
+    function calculateTotalPrice(items: any[]) {
+        const total = items.reduce((acc, item) => acc + parseFloat(item.price) * parseInt(item.count), 0);
+        setTotalPrice(total);
+    }
+
     function onClickMinus(item: any) {
-        dispatch(cauldronsSlices(item))
-        // setCartDialog((prevState) => ({
-        //     ...prevState,
-        //     number: prevState.number > 0 ? prevState.number - 1 : 0,
-        // }));
+        dispatch(cauldronsSlices(item));
+        setCartDialog((prevState) =>
+            prevState.map((cartItem: any) =>
+                cartItem.id === item.id && cartItem.number > 1
+                    ? { ...cartItem, number: cartItem.number - 1 }
+                    : cartItem
+            )
+        );
+        calculateTotalPrice(cartDialogs);
     }
 
     function onClickPlus(item: any) {
-        dispatch(CauldronsSave(item))
-        // setCartDialog((prevState) => ({
-        //     ...prevState,
-        //     number: prevState.number + 1,
-        // }));
+        dispatch(CauldronsSave(item));
+        setCartDialog((prevState) =>
+            prevState.map((cartItem: any) =>
+                cartItem.id === item.id
+                    ? { ...cartItem, number: cartItem.number + 1 }
+                    : cartItem
+            )
+        );
+        calculateTotalPrice(cartDialogs);
     }
 
-    function onClickPayment() {
+    function onClickPayment(price: number) {
         navigate('/checkout');
     }
 
-    console.log(cartDialogs)
-
     return (
         <DialogRightByContent
-            isOpen={ isOpen }
-            closeModal={ () => {
+            isOpen={isOpen}
+            closeModal={() => {
                 setIsOpen();
-            } }
-            closeIcon={ <Close/> }
-            label={ 'Корзина' }
+            }}
+            closeIcon={<Close />}
+            label={'Корзина'}
         >
             <div className="header-top-cart">
                 <div className="header-top-cart-block">
                     {cartDialogs.map((item, idx) => (
-                        <div className="header-top-cart-block-item"
-                        key={`basket-product-item-${idx}`}
-                        >
+                        <div className="header-top-cart-block-item" key={`basket-product-item-${idx}`}>
                             <div className="header-top-cart-block-item-img">
-                                <img src={ item.img } alt=""/>
+                                <img src={item.img} alt="" />
                             </div>
                             <div className="header-top-cart-block-item-info">
                                 <div className="header-top-cart-block-item-info-number">
                                     <div className="header-top-cart-block-item-info-number-quantity">
-                                        <p className="header-top-cart-block-item-info-number-quantity-p">{ item.text }</p>
+                                        <p className="header-top-cart-block-item-info-number-quantity-p">{item.text}</p>
                                         <div className="header-top-cart-block-item-info-number-quantity-span">
-                                            <span>{ item.paragraph }</span>
-                                            <p>{ item.price }</p>
+                                            <span>{item.paragraph}</span>
+                                            <p>{item.price}</p>
                                         </div>
                                     </div>
                                     <div className="header-top-cart-block-item-info-number-value">
                                         <div className="header-top-cart-block-item-info-number-value-btn">
-                                            <Button text={ '-' } onClick={ () => onClickMinus(item) } className="btn"/>
-                                            <span>{ item.count }</span>
-                                            <Button text={ '+' } onClick={ () => onClickPlus(item) } className="btn"/>
+                                            <Button text={'-'} onClick={() => onClickMinus(item)} className="btn" />
+                                            <span>{item.count}</span>
+                                            <Button text={'+'} onClick={() => onClickPlus(item)} className="btn" />
                                         </div>
                                     </div>
                                 </div>
@@ -99,9 +109,9 @@ const HeaderBasket: FC<HeaderOpenModal> = ({isOpen, setIsOpen}) => {
                 </div>
                 <div className="header-top-cart-bottom">
                     <div className="header-top-cart-bottom-total">
-                        <span>43434343 UZS</span>
+                        <span>{totalPrice} UZS</span>
                     </div>
-                    <Button text={ 'Оформить заказ' } onClick={ onClickPayment } className={ 'btn' }/>
+                    <Button text={'Оформить заказ'} onClick={() => onClickPayment(totalPrice)} className={'btn'} />
                 </div>
             </div>
         </DialogRightByContent>

@@ -2,12 +2,113 @@
     &-top {
         display: flex;
         align-items: center;
+
+        &-item {
+            display: flex;
+            gap: rem(30);
+            padding-left: rem(60);
+
+            &-btn {
+                display: flex;
+                align-items: flex-end;
+                border: none;
+                background: none;
+                font-size: rem(14);
+                font-weight: 600;
+            }
+
+            &-basket {
+                display: flex;
+                gap: rem(15);
+                min-height: rem(42);
+                justify-content: center;
+
+                &-btns {
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    background: #1E2546;
+                    position: relative;
+                    width: rem(45);
+                    justify-content: center;
+
+                    .header__text {
+                        position: absolute;
+                        font-size: rem(10);
+                        line-height: rem(16);
+                        width: rem(16);
+                        height: rem(16);
+                        background-color: rgb(172, 25, 49);
+                        border-radius: 50%;
+                        top: 10px;
+                        right: 5px;
+                        color: $white;
+                    }
+                }
+
+                &-uzs {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+
+                    p {
+                        font-size: rem(12);
+                        color: rgba(0, 0, 0, 0.50);
+                        line-height: rem(18);
+                    }
+
+                    span {
+                        font-size: rem(14);
+                        line-height: rem(22);
+                        font-weight: 700;
+                        color: #1E2546;
+                    }
+                }
+            }
+
+            &-contact {
+                p {
+                    line-height: rem(18);
+                    font-size: rem(10);
+                    color: rgba(0, 0, 0, 0.50);
+                }
+
+                a {
+                    color: #1E2546;
+                    font-size: rem(14);
+                    font-weight: 700;
+                    line-height: rem(22);
+                }
+
+                a:hover,
+                a:active,
+                a:focus {
+                    color: #1E2546;
+                }
+            }
+
+            &-profile {
+                .header-btn {
+                    display: flex;
+                    align-items: center;
+                    padding: rem(8) rem(20) rem(8) rem(8);
+                    border: 1.5px solid rgba(30, 37, 70, 0.10);
+                    background: $white;
+                    color: #1E2546;
+                    font-size: rem(14);
+                    font-weight: 600;
+                    line-height: rem(22);
+                }
+            }
+        }
     }
 
     &-input {
         max-width: rem(466);
         width: 100%;
         background: rgba(30, 37, 70, 0.05);
+        margin-left: auto;
 
         .form-group {
             display: flex;
@@ -48,72 +149,11 @@
             box-shadow: none;
 
         }
+
         input:focus {
             box-shadow: none;
             background: none;
         }
     }
 
-    &-right {
-        display: flex;
-    }
-
-    &-btn {
-        display: flex;
-        align-items: flex-end;
-        border: none;
-        background: none;
-        font-size: rem(14);
-        font-weight: 600;
-    }
-
-    &-basket {
-        display: flex;
-        gap: rem(15);
-        min-height: rem(42);
-        justify-content: center;
-    }
-
-    &-btns {
-        border: none;
-        display: flex;
-        align-items: center;
-        background: #1E2546;
-        position: relative;
-        width: rem(45);
-        justify-content: center;
-
-        .header__text {
-            position: absolute;
-            font-size: rem(10);
-            line-height: rem(16);
-            width: rem(16);
-            height: rem(16);
-            background-color: rgb(172, 25, 49);
-            border-radius: 50%;
-            top: 10px;
-            right: 5px;
-            color: $white;
-        }
-    }
-
-    &-uzs {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: flex-end;
-
-        p {
-            font-size: rem(12);
-            color: rgba(0, 0, 0, 0.50);
-            line-height: rem(18);
-        }
-
-        span {
-            font-size: rem(14);
-            line-height: rem(22);
-            font-weight: 700;
-            color: #1E2546;
-        }
-    }
 }

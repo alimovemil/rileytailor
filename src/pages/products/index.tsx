@@ -9,8 +9,12 @@ const Product: FC = () => {
 
     const navigation = [
         {
-            route: 'ss',
-            name: 'Cart',
+            route: '',
+            name: 'Партнёрство'
+        },
+        {
+            route: '',
+            name: 'Доставка'
         },
         {
             route: 'payment',
@@ -44,30 +48,30 @@ const Product: FC = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="product-block">
-                            <div className="product-left" onClick={toggleBlock}>
+                            <div className="product-left" onClick={ toggleBlock }>
                                 { list && (
                                     <ProductItem/>
                                 ) }
-
                                 <Calculator/>
                                 <p>Продукция</p>
                             </div>
 
                             <nav>
                                 <div className="product-right">
-                                    { navigation?.map(({route, name}) => {
-                                        return (
-                                            <NavLink
-                                                key={ route }
-                                                to={ route }
-                                                className="product-right-link"
-                                            >
+                                    <div className="product-right-item">
+                                        { navigation?.map(({route, name}) => {
+                                            return (
+                                                <NavLink
+                                                    key={ route }
+                                                    to={ route }
+                                                    className="product-right-item-link"
+                                                >
+                                                    <span>{ name }</span>
 
-                                                <span>{ name }</span>
-
-                                            </NavLink>
-                                        )
-                                    }) }
+                                                </NavLink>
+                                            )
+                                        }) }
+                                    </div>
                                 </div>
                             </nav>
                         </div>

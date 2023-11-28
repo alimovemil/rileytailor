@@ -6,6 +6,9 @@ import Modern from "../pages/banner/Modern";
 import DefaultLayout from "../layouts/DefaultLayout";
 import CheckOut from "../pages/checkout";
 import Payment from "../pages/payment";
+import CollectionItem from "../pages/collection/CollectionItem";
+import Collection from "../pages/collection";
+import CollectionLayout from "../layouts/CollectionLayout";
 
 const RoutesComponent = () => {
     return (
@@ -27,6 +30,10 @@ const RoutesComponent = () => {
 
                 <Route path="checkout" element={ <CheckOut/> }/>
                 <Route path="payment" element={ <Payment/> }/>
+
+                <Route element={<CollectionLayout/>}>
+                    <Route path="collection" element={ <CollectionItem/> }/>
+                </Route>
 
             </Routes>
 
