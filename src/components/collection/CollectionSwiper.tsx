@@ -4,13 +4,14 @@ import Button from "../form/Button";
 import Basket from "../../container/icons/Basket";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../form/Pagination";
+import Percent from "../../container/icons/percent";
 
 const CollectionSwiper: FC = () => {
 
     const navigate = useNavigate()
 
-    const [activePage, setActivePage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+    const [ activePage, setActivePage ] = useState(1);
+    const [ totalPages, setTotalPages ] = useState(1);
 
     const swiperContent = [
         {
@@ -47,9 +48,12 @@ const CollectionSwiper: FC = () => {
             price: '1000 UZS',
             span: 'Есть в наличии',
             className: 'cauldrons',
-            rate: '',
+            rate: <Percent/>,
             cost: 'Стоимость',
-            number: 0
+            class: 'cauldrons-svg',
+            number: 0,
+            classes: 'client-hover',
+            btn: 'basket-btn'
         },
         {
             key: '3',
@@ -74,23 +78,24 @@ const CollectionSwiper: FC = () => {
     ]
 
     function onClickOpen(item: any) {
+        const {rate, ...itemWithoutRate} = item;
         navigate(`/product/${ item.key }`, {
             state: {
                 data: {
-                    item
+                    item: itemWithoutRate,
                 },
             },
-        })
+        });
     }
 
     return (
-        <div className="swiper-content">
+        <div className="swiper-content client">
             <div className="container">
                 <div className="row">
                     <div className="col-12">
                         { swiperContent.map((list, idx) => (
-                            <div key={`swiper-content-${idx}`}>
-                                {list.swiper && (
+                            <div key={ `swiper-content-${ idx }` }>
+                                { list.swiper && (
                                     <Swiper
                                         spaceBetween={ 40 }
                                         slidesPerView={ 2 }
@@ -109,11 +114,11 @@ const CollectionSwiper: FC = () => {
                                         { swiper.map((item, idx) => (
                                             <>
                                                 <SwiperSlide
-                                                    className="swiper-content-item"
+                                                    className={`client-slide ${item.classes}`}
                                                     key={ `swiper-content-item-${ idx }` }
                                                 >
                                                     <div className={ `client-cauldrons ${ item.className }` }>
-                                                        <div>
+                                                        <div className={ `${ item.class }` }>
                                                             { item.rate }
                                                         </div>
                                                         <div className="client-img"
@@ -131,10 +136,8 @@ const CollectionSwiper: FC = () => {
                                                             <p>{ item.paragraph }</p>
                                                             <Button
                                                                 text={ item.price }
-                                                                onClick={ () => {
-                                                                    onClickOpen(item)
-                                                                } }
-                                                                className={ 'btn' }
+                                                                onClick={ () => {onClickOpen(item)} }
+                                                                className={ `btn ${item.btn}` }
                                                                 rightIcon={ <Basket color={ '#1E2546' } size={ 40 }/> }
                                                             />
                                                             <div style={ {display: "none"} }>{ item.number }</div>
@@ -148,16 +151,16 @@ const CollectionSwiper: FC = () => {
                                             </>
                                         )) }
                                     </Swiper>
-                                )}
+                                ) }
                             </div>
                         )) }
-                            <div className='logs__carousel'>
-                                <Pagination
-                                    activePage={activePage}
-                                    setActivePage={setActivePage}
-                                    pages={totalPages}
-                                />
-                            </div>
+                        <div className='logs__carousel'>
+                            <Pagination
+                                activePage={ activePage }
+                                setActivePage={ setActivePage }
+                                pages={ totalPages }
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

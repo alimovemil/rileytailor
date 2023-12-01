@@ -33,16 +33,6 @@
         background: #AC1931;
     }
 
-    .cauldrons {
-        position: relative;
-
-        &-rated {
-            position: absolute;
-            padding: rem(6);
-            background: #AC1931;
-        }
-    }
-
     &-cauldrons:hover,
     &-cauldrons:active,
     &-cauldrons:focus {
@@ -60,9 +50,18 @@
         .header__text {
             color: $white !important;
         }
+        .client-price {
+            .btn {
+                .header__right {
+                    svg {
+                        background: #AC1931;
+                    }
+                }
+            }
+        }
 
-        svg {
-            background-color: rgb(172, 25, 49) !important;
+        .btn svg path {
+            stroke: $white;
         }
     }
 
@@ -72,10 +71,6 @@
         margin-top: rem(80);
         margin-bottom: rem(60);
         cursor: pointer;
-
-        img {
-
-        }
     }
 
     &-price {
@@ -94,7 +89,7 @@
                 font-size: rem(24);
                 line-height: rem(34);
                 font-weight: 600;
-                color: #AC1931;
+                color: #1E2546;
             }
 
             .header__right {
@@ -129,5 +124,53 @@
         line-height: rem(22);
         font-weight: 600;
         color: #008033;
+    }
+}
+
+.client-hover {
+    .cauldrons {
+        position: relative;
+
+        &-rated {
+            position: absolute;
+            padding: rem(6);
+            background: #AC1931;
+        }
+
+        .client-price {
+            .btn {
+                .header__text {
+                    color: #AC1931;
+                }
+            }
+        }
+
+        &-svg {
+            position: absolute;
+            background: #AC1931;
+            padding: rem(6);
+
+            svg {
+                background: transparent;
+            }
+        }
+
+
+    }
+
+    .cauldrons:hover {
+        .client-price {
+            .basket-btn {
+                .header__right {
+                    svg {
+                        background: #1E2546;
+                    }
+                }
+            }
+        }
+
+        .basket-button svg path {
+            stroke: $white;
+        }
     }
 }

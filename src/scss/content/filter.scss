@@ -2,40 +2,84 @@
     position: absolute;
     background: #1E2546;
     width: rem(300);
+    right: 277.4px;
+    top: -6px;
+    padding: rem(30) rem(31) rem(34) rem(30);
 
-    &-right {
-        &-inner {
-            padding: rem(30) rem(31) rem(34) rem(30);
+    &-inner {
+        &-cost {
+            display: flex;
+            flex-direction: column;
 
-            &-cost {
+            h3 {
+                color: $white;
+                font-size: rem(14);
+                font-weight: 600;
+                line-height: rem(22);
+                padding-bottom: rem(35);
+            }
 
-                h3 {
+            &-range {
+                &-number {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-top: rem(35);
+
+                    p {
+                        color: $white;
+                        font-size: rem(14);
+                        line-height: rem(22);
+                        padding: rem(10) rem(17);
+                        background: rgba(255, 255, 255, 0.10);
+                    }
+                }
+
+                .range-slider {
+                    height: rem(4.3);
+                }
+
+                .btn {
+                    width: 100%;
+                    background: #AC1931;
+                    justify-content: center;
+                    color: $white;
+                    margin-top: rem(30);
+                    border: none;
+                }
+
+                .btn:focus,
+                .btn:hover,
+                .btn:active {
+                    background: #AC1931;
+                    color: $white;
+                }
+            }
+        }
+
+        &-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            &-content {
+                width: 100%;
+
+                h4 {
                     color: $white;
                     font-size: rem(14);
                     font-weight: 600;
                     line-height: rem(22);
                 }
-
-                &-range {
-                    padding-top: rem(20);
-
-                    &-number {
-                        display: flex;
-                    }
-                }
-            }
-
-            &-meta {
-                &-content {
-                }
             }
         }
     }
-
 }
 
 .range-slider .range-slider__thumb {
     background: #008033 !important;
+    width: rem(35) !important;
+    height: rem(35) !important;
 }
 
 .range-slider .range-slider__range {

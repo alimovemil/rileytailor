@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { GetCauldrons } from "../../redux/reducers/basket/reducer";
 import Footer from "../footer";
 import Button from "../../components/form/Button";
+import NavBarBottom from "../../components/sidebar/NavBarBottom";
 
 const CheckOut: FC = () => {
     const products = useSelector(GetCauldrons);
@@ -99,13 +100,13 @@ const CheckOut: FC = () => {
     return (
         <div>
             <Header/>
-            <div className="content">
+            <div className="content admin-header">
                 <Product/>
 
                 <div className="checkout">
                     <div className="container">
                         <div className="row">
-                            <div className="col-7">
+                            <div className="col-lg-7 col-12">
                                 <div className="checkout-block">
                                     <div className="checkout-block-goods">
                                         <div className="checkout-block-goods-top">
@@ -281,7 +282,7 @@ const CheckOut: FC = () => {
                                 </div>
 
                             </div>
-                            <div className="col-5">
+                            <div className="col-lg-5 col-12">
                                 <div className="checkout-total">
                                     <div className="checkout-total-header">
                                         <h2>Итого</h2>
@@ -324,6 +325,7 @@ const CheckOut: FC = () => {
 
                 </div>
                 <Footer/>
+                <NavBarBottom/>
             </div>
         </div>
     );

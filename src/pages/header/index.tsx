@@ -9,12 +9,15 @@ import MenuHeader from "../../components/header/menuHeader";
 import HeaderBasket from "../../components/header/HeaderBasket";
 import { CSSTransition } from "react-transition-group";
 import ProductItem from "../../components/product/product";
+import Logo from "../../container/icons/Logo";
+import { useNavigate } from "react-router-dom";
 
 
 const Header: FC = () => {
+    const navigate = useNavigate()
+
     const [ isModal, setIsModal ] = useState(false);
     const [ isDialog, SetIsDialog ] = useState(false)
-
     const [ isProductItemVisible, setProductItemVisible ] = useState(false);
 
     const handleBurgerMenuClick = () => {
@@ -29,6 +32,11 @@ const Header: FC = () => {
         SetIsDialog(true)
     }
 
+
+    function onClickHome() {
+        navigate('/')
+    }
+
     return (
         <div className="header">
             <MenuHeader
@@ -40,10 +48,13 @@ const Header: FC = () => {
             { isProductItemVisible && <ProductItem/> }
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 header-style">
                         <div className="header-top">
-                            <div className="header-logo">
-                                <a href="/"><img src="/img/png/logo.svg" alt=""/></a>
+                            <div className="header-top-logo">
+                                <Button text={ <Logo color={'#AC1931'}/> }
+                                        onClick={ onClickHome }
+                                        className={ 'btn' }
+                                />
                             </div>
 
                             <div className="header-input">

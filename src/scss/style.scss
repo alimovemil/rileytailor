@@ -10,11 +10,13 @@
 @import "./content/banner";
 @import "./content/partners";
 @import "./content/footer";
-@import "./content/Modern";
+@import "content/modern";
 @import "./content/checkout";
 @import "./content/payment";
 @import "./content/collectionItem";
 @import "./content/filter";
+@import "./content/sign";
+@import "./content/shop";
 
 //Helpers
 .text-left {
@@ -66,7 +68,6 @@ html * {
 .container {
     max-width: rem(1160);
     width: 100%;
-    padding: 0;
 }
 
 
@@ -212,6 +213,7 @@ body {
     font-family: $primary;
     color: #000;
     background: #F5F5F5;
+    position: relative;
 
     &.modal-show,
     &.menu-show {
@@ -2460,11 +2462,11 @@ p {
 
 .dialog__right__containers {
     z-index: 3;
-    bottom: 0;
     position: absolute;
     right: 0;
-    height: 100%;
-    top: 40%;
+    height: 93.4%;
+    top: 230px;
+    bottom: 0;
     left: 0 !important;
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -2473,6 +2475,8 @@ p {
     top: 0;
     bottom: 0;
     right: 0;
+    max-width: rem(530);
+    width: 100%;
 }
 
 .z-enter-done {
@@ -2560,10 +2564,17 @@ p {
     padding: rem(30) rem(0);
 }
 
+.lines-style {
+    background: rgba(255, 255, 255, 0.10);
+    height: rem(1);
+    width: 100%;
+    margin: rem(20) rem(0);
+}
+
 .checkbox {
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    gap: 15px;
+    justify-content: flex-start;
     align-items: center;
     font-weight: 400;
     line-height: 22px;
@@ -2574,26 +2585,29 @@ p {
         display: flex;
         justify-content: center;
         align-items: center;
+        color: $white;
+        font-size: rem(14);
+        font-weight: 400;
+        line-height: rem(22);
     }
 
     input {
         position: relative;
         appearance: none;
-        border-radius: 4px;
         border: 1px solid rgba(255, 255, 255, 0.20);
-        width: 19px;
-        height: 19px;
-        margin-right: rem(10);
+        width: 16px;
+        height: 16px;
+        margin-right: rem(15);
 
         &:checked {
-            background-color: #3582F6;
-            border-color: #3582F6;
+            background-color: #008033;
+            border-color: #008033;
 
             &:before {
                 content: '';
                 position: absolute;
-                top: 9px;
-                left: 9px;
+                top: 7px;
+                left: 7px;
                 height: 2px;
                 background-color: white;
                 transform: rotate(40deg);
@@ -2605,8 +2619,8 @@ p {
             &:after {
                 content: '';
                 position: absolute;
-                top: 9px;
-                left: 9px;
+                top: 8px;
+                left: 8px;
                 height: 2px;
                 background-color: white;
                 transform: rotate(130deg);

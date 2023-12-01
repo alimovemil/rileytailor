@@ -41,8 +41,7 @@
             line-height: 1.5rem;
             font-weight: 600;
             color: $white;
-            padding: rem(12) rem(45);
-            height: rem(45);
+            padding: rem(8) rem(45);
             display: flex;
             align-items: center;
             border: none;
@@ -53,6 +52,8 @@
         .btn:active {
             background-color: rgb(172, 25, 49);
             color: $white;
+            padding: rem(12) rem(45);
+            transition: ease-in-out 0.4s;
         }
     }
 }

@@ -2,10 +2,10 @@ import {FC, ReactNode} from "react";
 import Close from "../../container/icons/Close";
 
 const customStyles = {
-    paddingTop: '30px',
+    paddingTop: '15px',
     backgroundColor:  '#ffff',
     zIndex: '5',
-    overflow: 'auto'
+    overflow: 'auto',
 };
 
 interface Dialog {
@@ -15,7 +15,6 @@ interface Dialog {
     closeModal: () => void
     styles?: any
     label?: string
-    widthProps?: number
     isShowCloseBtn?: boolean
     closeIcon?: ReactNode
 }
@@ -28,7 +27,6 @@ const DialogRightByContent: FC<Dialog> = (
         closeModal,
         styles,
         label,
-        widthProps = 500,
         isShowCloseBtn = true,
         closeIcon = <Close/>
     }
@@ -55,7 +53,6 @@ const DialogRightByContent: FC<Dialog> = (
                          style={{
                              ...customStyles,
                              position: 'fixed',
-                             width: `${widthProps / 16}rem`
                          }}
                          onClick={handleDialogClick}
                     >

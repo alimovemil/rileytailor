@@ -1,0 +1,187 @@
+.sign {
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: rem(20);
+        padding: rem(30) rem(0) rem(282) rem(0);
+
+        &-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FFF;
+            padding: rem(20);
+
+            &-item {
+                display: flex;
+                align-items: center;
+
+                &-profile {
+                    display: flex;
+                    flex-direction: column;
+                    gap: rem(4);
+                    padding-left: rem(15);
+
+                    p {
+                        line-height: rem(24);
+                        font-size: rem(14);
+                        color: #1E2546;
+                    }
+                }
+            }
+
+            &-redactor {
+                display: flex;
+                flex-direction: column;
+                gap: rem(4);
+
+                .btn {
+                    padding: 0;
+                    color: #002DFF;
+                    font-size: rem(14);
+                    line-height: rem(24);
+
+                    :hover,
+                     {
+                        color: $white;
+                    }
+                }
+
+                .btn + .btn {
+                    margin-left: 0;
+                }
+            }
+        }
+
+        h3 {
+            color: #1E2546;
+            font-size: rem(20);
+            font-weight: 600;
+            line-height: rem(24);
+        }
+
+        &-order {
+            background: #FFF;
+            height: 100%;
+
+            &-history {
+                padding: rem(20) rem(20) rem(60) rem(20);
+
+                &-meta {
+                    border-bottom: rem(1) solid rgba(0, 0, 0, 0.10);
+                    padding-bottom: rem(20);
+                }
+
+                &-basket {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: rem(10);
+                    opacity: 0.3;
+                    margin-top: rem(40);
+
+                    p {
+                        color: #000;
+                        font-size: rem(12);
+                        line-height: rem(20);
+                    }
+                }
+            }
+        }
+    }
+
+    &-redactor {
+        &-content {
+            padding: rem(30) rem(0);
+
+            &-inner {
+                padding-bottom: rem(20);
+            }
+
+            h4 {
+                font-weight: 600;
+                font-size: rem(20);
+            }
+
+            &-form {
+                background: $white;
+                padding: rem(20);
+
+                .form-group {
+                    .form-block {
+                        .form-control:focus {
+                            box-shadow: none;
+                            border-color: #dee2e6;;
+                        }
+                    }
+                }
+
+                &-edit {
+                    display: flex;
+                    align-items: center;
+                    gap: rem(20);
+
+                    .form-group {
+                        width: 100%;
+                    }
+                }
+
+                label {
+                    font-size: rem(12);
+                    font-weight: 400;
+                    line-height: rem(24);
+                }
+
+                &-type {
+                    padding-bottom: rem(15);
+
+                    span {
+                        line-height: rem(22);
+                    }
+                }
+
+                &-password {
+                    &-edit {
+                        display: flex;
+                        align-items: center;
+                        gap: rem(20);
+
+                        p {
+                            font-size: rem(12);
+                        }
+                    }
+                }
+
+                &-btn {
+                    display: flex;
+                    align-items: center;
+                    padding-top: rem(30);
+
+                    .btn {
+                        padding: rem(14) rem(27);
+                        background: #1E2546;
+                        color: $white;
+                        font-size: rem(14);
+                        font-weight: 600;
+                        line-height: rem(24);
+                        border-radius: 0;
+                        border: none;
+                        box-shadow: none;
+                    }
+
+                    .btn:hover,
+                    .btn:active,
+                    .btn:focus {
+                        background: #1E2546;
+                        color: $white;
+                    }
+
+                    .btn + .btn {
+                        padding: rem(14) rem(49);
+                        margin-left: rem(20);
+                    }
+                }
+            }
+        }
+    }
+}

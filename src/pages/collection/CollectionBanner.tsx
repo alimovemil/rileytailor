@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import Logo from "../../container/icons/Logo";
 
 const CollectionBanner: FC = () => {
 
@@ -18,10 +19,10 @@ const CollectionBanner: FC = () => {
                                 <div style={ {backgroundImage: `url(${ list.image })`} } className="collection-top-inner-info-wrap"
                                 key={`collection-top-inner-info-${idx}`}
                                 >
-                                    <div className="col-5 p-0">
+                                    <div className="col-lg-5 col-12 p-0 text-center">
                                         <img src="/img/png/ds.png" alt=""/>
                                     </div>
-                                    <div className="col-7">
+                                    <div className="col-lg-7 col-12">
                                         <div className="collection-top-inner-info-wrap-text">
                                             <h2>Classic</h2>
                                             <p>Коллекция посуды Classic из нержавеющей стали зеркальной полировки будет гармонично
@@ -33,6 +34,9 @@ const CollectionBanner: FC = () => {
                                                 выпуска пара имеют удобный широкий ободок для слива жидкости, который выполнит
                                                 функцию дуршлага.</p>
                                         </div>
+                                    </div>
+                                    <div className="collection-top-inner-info-wrap-svg">
+                                        <Logo color={'#AC1931'} width={47}/>
                                     </div>
                                 </div>
 

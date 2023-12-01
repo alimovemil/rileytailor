@@ -1,5 +1,5 @@
-.collection-top {
-    &-content {
+.shop {
+    &-top {
         background: #AC1931;
 
         &-item {
@@ -36,50 +36,7 @@
         }
     }
 
-    &-position {
-        background: #FFF;
-
-        &-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: rem(10) rem(0);
-            
-            .btn {
-                display: flex;
-                align-items: center;
-                border: rem(2) solid #1E2546;
-                border-radius: 0;
-                color: #1E2546;
-                font-size: rem(14);
-                font-weight: 600;
-                line-height: rem(24);
-                padding: rem(8) rem(20) rem(8) rem(15);
-            }
-
-            .btn-inner:hover,
-            .btn-inner:focus,
-            .btn-inner:active {
-                background: transparent;
-            }
-
-            .btn-meta:hover,
-            .btn-meta:focus,
-            .btn-meta:active {
-                background: #1E2546;
-                color: $white;
-            }
-
-            h3 {
-                color: #000;
-                font-size: rem(20);
-                font-weight: 600;
-                line-height: rem(26);
-            }
-        }
-    }
-
-    &-inner {
+    &-product {
         margin-top: rem(30);
 
         &-info {
@@ -87,7 +44,6 @@
                 display: flex;
                 background-repeat: no-repeat;
                 background-size: cover;
-                min-height: rem(361);
                 position: relative;
                 z-index: -1;
 
@@ -96,7 +52,9 @@
                     display: flex;
                     justify-content: center;
                     height: 100%;
+                    align-items: flex-start;
                     flex-direction: column;
+                    gap: rem(5);
 
                     h2 {
                         color: $white;
@@ -115,8 +73,8 @@
 
                 &-svg {
                     position: absolute;
-                    right: 30px;
-                    top: 30px;
+                    right: 10px;
+                    top: 10px;
                 }
             }
         }

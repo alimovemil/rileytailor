@@ -17,11 +17,11 @@ const Product: FC = () => {
             name: 'Доставка'
         },
         {
-            route: 'payment',
+            route: '/payment',
             name: 'Оплата',
         },
         {
-            route: 's',
+            route: '',
             name: 'Гарантия',
         },
         {
@@ -29,11 +29,11 @@ const Product: FC = () => {
             name: 'Магазины',
         },
         {
-            route: 'sq',
+            route: '',
             name: 'О нас',
         },
         {
-            route: 'sqs',
+            route: '',
             name: 'Контакты',
         },
     ]

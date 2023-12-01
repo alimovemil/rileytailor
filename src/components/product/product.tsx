@@ -31,7 +31,7 @@ const ProductItem: FC = () => {
         },
         {
             text: 'Вся продукция',
-            link: ''
+            link: 'shop'
         },
         {
             link: '',
@@ -97,7 +97,7 @@ const ProductItem: FC = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="product-block-content-item-inner">
-                            <div className="col-2">
+                            <div className="col-12 col-sm-6 col-md-3 col-xl-2">
                                 <div className="product-block-content-item-meta">
 
                                     { navigationHidden.map(({title, link, text, paddingBottom}) => {
@@ -115,7 +115,7 @@ const ProductItem: FC = () => {
                                     }) }
                                 </div>
                             </div>
-                            <div className="col-2">
+                            <div className="col-12 col-sm-6 col-md-3 col-xl-2">
                                 <div className="product-block-content-item-meta">
                                     { links.map(({title, link, text, paddingBottom}) => {
                                         return (
@@ -132,7 +132,7 @@ const ProductItem: FC = () => {
                                     }) }
                                 </div>
                             </div>
-                            <div className="col-2">
+                            <div className="col-12 col-sm-6 col-md-3 col-xl-2">
                                 <div className="product-block-content-item-meta">
                                     { current.map(({title, link, text, paddingBottom}) => {
                                         return (

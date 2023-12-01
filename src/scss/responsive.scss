@@ -32,31 +32,50 @@
         }
     }
 
+    .dialog__right__block {
+        padding-top: rem(55) !important;
+
+        .modal__block-header {
+            padding: rem(0) rem(25);
+        }
+    }
+
     .footer {
         margin-bottom: rem(50);
     }
-
     .header {
         padding-bottom: rem(25);
 
-        &-field {
-            display: none;
+        &-style {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
         }
 
-        &-number {
-            display: none;
-        }
-
-        &-person {
-            display: none !important;
-        }
-
-        &-amount {
+        &-input {
             display: none;
         }
 
         &-top {
-            justify-content: center;
+            &-item {
+                display: none !important;
+            }
+
+            &-logo {
+                position: absolute;
+                z-index: 2;
+                top: 10px;
+                width: 100%;
+                text-align: center;
+
+                .btn {
+                    .header__text {
+                        svg {
+                            width: rem(50);
+                            height: rem(40);
+                        }
+                    }
+                }
+            }
         }
 
         .burger-menu {
@@ -68,8 +87,8 @@
         }
 
         &-logo {
-            display: flex;
-            justify-content: center;
+            width: 100%;
+            text-align: center;
         }
     }
 
@@ -102,19 +121,18 @@
         }
     }
 
-
-    .header-logo {
-        position: absolute;
-        z-index: 2;
-        top: 15px;
-
-        a {
-            img {
-                width: rem(58.5);
-                height: rem(30);
-            }
-        }
-    }
+    //.header-logo {
+    //    position: absolute;
+    //    z-index: 2;
+    //    top: 15px;
+    //
+    //    a {
+    //        img {
+    //            width: rem(58.5);
+    //            height: rem(30);
+    //        }
+    //    }
+    //}
 
     .product-block-content-item {
         top: 55px !important;
@@ -122,7 +140,8 @@
         padding-bottom: rem(20) !important;
 
         &-meta {
-            border-bottom: rem(1) solid red;
+            padding: rem(20) rem(0);
+            border-bottom: rem(1) solid rgba(255, 255, 255, 0.1);
         }
     }
 
@@ -209,33 +228,79 @@
             }
         }
     }
+    .admin-header {
+        .modern {
+            &-item {
+                &-style {
+                    flex-direction: column;
+                    gap: rem(15);
 
-    .modern {
-        &-item {
-            &-style {
-                flex-direction: column;
-
-                &-left {
-                    width: 100%;
-
-                    .modern-item-style-left-image {
-                        max-width: inherit;
+                    &-left {
                         width: 100%;
 
-                        img {
+                        .modern-item-style-left-image {
+                            max-width: inherit;
+                            width: 100%;
+                            height: auto;
+
+                            img {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    &-block {
+                        width: 100%;
+
+                        &-inner {
                             width: 100%;
                         }
                     }
                 }
 
-                &-block {
-                    width: 100%;
+                &-bottom {
+                    &-left {
+                        width: 100%;
+                    }
                 }
             }
+        }
+    }
 
-            &-bottom {
-                &-left {
-                    width: 100%;
+    .content-item {
+        overflow: hidden;
+
+        .dialog__right__containers {
+            top: 185px;
+            height: 96.5%;
+
+            .filter-item {
+                right: 0;
+                top: -10px;
+            }
+        }
+
+        .collection-top {
+            &-inner {
+                &-info {
+                    &-wrap {
+                        background-image: url('https://rileytailor.uz/wp-content/uploads/2023/04/banner2-e1682440200501.jpg') !important;
+                        flex-direction: column;
+                        align-items: center;
+                        background-position: center;
+
+                        &-text {
+                            padding: rem(15);
+
+                            h2 {
+                                font-size: rem(32);
+                            }
+
+                            p {
+                                font-size: rem(12);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -278,6 +343,21 @@
 
                     &-info {
                         width: 100%;
+                    }
+                }
+            }
+        }
+
+        .sign-redactor {
+            &-content {
+                &-form {
+                    &-password {
+                        &-edit {
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: rem(10);
+                            padding-top: rem(10);
+                        }
                     }
                 }
             }
@@ -355,6 +435,7 @@
 }
 
 @media (max-width: 575px) {
+
     .admin-header {
         .modern {
             &-item {
@@ -516,7 +597,6 @@
 
         .header {
             &-logo {
-                max-width: rem(36);
                 width: 100%;
             }
         }
@@ -558,6 +638,68 @@
 
         .advantage {
             padding: rem(15);
+        }
+
+        .collection-top {
+            &-inner {
+                &-info {
+                    &-wrap {
+                        background-position: 60% !important;
+                    }
+                }
+            }
+        }
+
+        .shop {
+            &-product {
+                &-info {
+                    &-wrap {
+                        &-text {
+                            h2 {
+                                font-size: rem(32);
+                            }
+
+                            p {
+                                font-size: rem(12);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .content {
+        .checkout {
+            &-block {
+                &-delivery {
+                    &-info {
+                        &-tell {
+                            &-input {
+                                max-width: none;
+                            }
+                        }
+                    }
+
+                    &-select {
+                        &-meta {
+                            &-comment {
+                                &-inner {
+                                    max-width: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &-goods {
+                    &-top {
+                        &-cauldrons {
+                            padding: rem(0);
+                        }
+                    }
+                }
+            }
         }
     }
 }

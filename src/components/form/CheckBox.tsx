@@ -1,10 +1,11 @@
-import { FC, ReactElement } from 'react'
+import { CSSProperties, FC, ReactElement } from 'react'
 
 interface CheckboxProps {
     text?: string | ReactElement
     isChecked: boolean
     onChange: (checked: boolean) => void
-    className?: string
+    className?: string,
+    style?: CSSProperties;
 }
 
 const Checkbox: FC<CheckboxProps> = (
@@ -12,7 +13,8 @@ const Checkbox: FC<CheckboxProps> = (
         text,
         isChecked,
         onChange,
-        className = ''
+        className = '',
+        style = {}
     }
     ) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +22,7 @@ const Checkbox: FC<CheckboxProps> = (
     };
 
     return (
-        <div className={`checkbox ${className}`}>
+        <div style={style} className={`checkbox ${className}`}>
             <label>
                 <input
                     type="checkbox"
