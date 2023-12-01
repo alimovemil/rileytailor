@@ -1,37 +1,41 @@
-import { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect, useRef } from "react";
 
-interface Dialog {
-    children: ReactNode
-    isOpen: boolean
-    setIsOpen?: (is: boolean) => void
-    closeModal: () => void
+interface DialogProps {
+    children: ReactNode;
+    isOpen: boolean;
+    closeModal: () => void;
 }
 
-const DialogRightByContent: FC<Dialog> = (
-    {
-        children,
-        isOpen,
-        setIsOpen,
-    }
-) => {
+const DialogRightFilter: FC<DialogProps> = ({ children, isOpen, closeModal }) => {
+    const dialogRef = useRef<HTMLDivElement>(null);
 
-    function handleDialogClick(event: React.MouseEvent<HTMLDivElement>) {
-        event.stopPropagation();
-        setIsOpen && setIsOpen(false);
-    }
+    useEffect(() => {
+        function handleOutsideClick(event: MouseEvent) {
+            if (dialogRef.current && !dialogRef.current.contains(event.target as Node)) {
+                closeModal();
+            }
+        }
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleOutsideClick);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [isOpen, closeModal]);
 
     return (
         <>
             {isOpen && (
-                <div
-                    className={'dialog__right__containers'}
-                    onClick={handleDialogClick}
-                >
-                    {children}
+                <div className="dialog__right__containers">
+                    <div ref={dialogRef} className="dialog-container">
+                        {children}
+                    </div>
                 </div>
             )}
         </>
-    )
-}
+    );
+};
 
-export default DialogRightByContent;
+export default DialogRightFilter;

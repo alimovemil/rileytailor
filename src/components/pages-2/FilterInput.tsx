@@ -21,8 +21,6 @@ const FilterInput: FC<FilterOpenModal> = (
 
     const navigate = useNavigate()
 
-    const [ isChecked, setIsChecked ] = useState(false);
-
     const filter = [
         {
             title: 'Диаметр, см',

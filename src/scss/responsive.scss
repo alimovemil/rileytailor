@@ -272,10 +272,10 @@
 
         .dialog__right__containers {
             top: 185px;
-            height: 96.5%;
+            height: 93.4%;
 
             .filter-item {
-                right: 0;
+                right: 12px;
                 top: -10px;
             }
         }
@@ -361,6 +361,10 @@
                     }
                 }
             }
+        }
+
+        .dialog__right__containers {
+            height: 94.4%;
         }
     }
 
@@ -667,6 +671,10 @@
                 }
             }
         }
+
+        .dialog__right__containers {
+            height: 93.8%;
+        }
     }
 
     .content {
@@ -700,6 +708,30 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 470px) {
+    .admin-header {
+        .dialog__right__containers {
+            height: 94%;
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .admin-header {
+        .dialog__right__containers {
+            height: 94.1%;
+        }
+    }
+}
+
+@media (max-width: 365px) {
+    .admin-header {
+        .dialog__right__containers {
+            height: 94.2%;
         }
     }
 }
