@@ -31,7 +31,7 @@ const ProductItem: FC = () => {
         },
         {
             text: 'Вся продукция',
-            link: 'shop'
+            link: '/shop'
         },
         {
             link: '#',
