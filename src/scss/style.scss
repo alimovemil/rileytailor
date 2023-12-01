@@ -2140,7 +2140,7 @@ p {
     transform: translate(-50%, -50%);
     border: none;
     background-color: rgba(255, 255, 255, 1.00);
-    overflow: auto;
+    overflow: hidden;
     border-radius: 4px;
     outline: none;
     max-height: 90vh;
@@ -2427,6 +2427,7 @@ p {
     }
 }
 
+
 .form-bottom {
     &-entry {
         display: flex;
@@ -2540,7 +2541,7 @@ p {
     }
 
     &-isActive {
-        color:  #3582F6;
+        color: #3582F6;
         opacity: 1;
     }
 
@@ -2554,6 +2555,7 @@ p {
         transform: rotate(180deg);
         margin-top: rem(5);
     }
+
     &-next {
         margin-top: rem(-5);
         cursor: pointer;
@@ -2627,6 +2629,97 @@ p {
                 margin-left: -4px;
                 margin-top: -1px;
                 width: 10px;
+            }
+        }
+    }
+}
+
+.registration {
+    p {
+        font-size: rem(18);
+    }
+
+    &-form {
+        &-group {
+            margin-bottom: rem(15);
+
+            label {
+                font-size: rem(12);
+                line-height: rem(22);
+                color: #1E2546;
+                padding-bottom: rem(8);
+            }
+        }
+
+        input {
+            border-radius: 0;
+            padding: rem(12) rem(10);
+        }
+
+        .form-control {
+            font-weight: 600;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: rgba(30, 37, 70, 20%);
+        }
+
+        &-text {
+            .btn {
+                padding: 0;
+                background: none;
+                text-decoration: underline;
+            }
+        }
+
+        &-email {
+            margin-bottom: rem(24);
+
+            span {
+                font-size: rem(15);
+            }
+        }
+
+        &-data {
+            p {
+                font-size: rem(16);
+
+                .btn {
+                    padding: 0;
+                    background: transparent;
+                    border: none;
+                    border-radius: 0;
+                    border-bottom: rem(1) solid #000000;
+                }
+            }
+        }
+
+        &-entry {
+            display: flex;
+            flex-direction: column;
+            padding-top: rem(15);
+
+            .btn {
+                background: #1E2546;
+                color: $white;
+                border-radius: 0;
+                border: none;
+                padding: rem(13) rem(0);
+            }
+
+            .btn:active,
+            :focus {
+                background: #1E2546;
+                color: $white;
+            }
+
+
+            .btn + .btn {
+                background: none;
+                border: none;
+                color: #000000;
+                margin-left: 0;
             }
         }
     }

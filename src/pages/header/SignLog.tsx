@@ -6,6 +6,7 @@ import Sign from "../../container/icons/Sign";
 import Button from "../../components/form/Button";
 import { useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
+import HeaderRegistration from "../../components/header/HeaderRegistration";
 
 
 const SignLog: FC = () => {
@@ -57,12 +58,11 @@ const SignLog: FC = () => {
                                                 <h3>История заказов</h3>
                                             </div>
                                             <div className="sign-content-order-history-basket">
-                                                <Basket size={ 80 } color={'#000000'}/>
+                                                <Basket size={ 80 } color={ '#000000' }/>
                                                 <p>У вас нет оформленных заказов</p>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
