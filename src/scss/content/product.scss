@@ -40,6 +40,18 @@
                             font-size: rem(14);
                             color: $white;
                             line-height: rem(22);
+
+                            :hover,
+                            :focus,
+                            :active {
+                                color: $white;
+                            }
+                        }
+
+                        a:hover,
+                        :focus,
+                        :active {
+                            color: $white;
                         }
                     }
                 }

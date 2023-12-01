@@ -10,15 +10,15 @@ const ProductItem: FC = () => {
             paddingBottom: '5px'
         },
         {
-            link: '',
+            link: 'collection',
             text: 'Classic'
         },
         {
-            link: '',
+            link: 'collection',
             text: 'Loft'
         },
         {
-            link: '',
+            link: 'collection',
             text: 'Modern'
         },
     ]
@@ -34,35 +34,35 @@ const ProductItem: FC = () => {
             link: 'shop'
         },
         {
-            link: '',
+            link: '#',
             text: 'Наборы'
         },
         {
-            link: '',
+            link: '#',
             text: 'Сковорода'
         },
         {
-            link: '',
+            link: '#',
             text: 'Сковорода Глубокая'
         },
         {
-            link: '',
+            link: '#',
             text: 'Сковорода для блинов'
         },
         {
-            link: '',
+            link: '#',
             text: 'Сковорода Сотэ'
         },
         {
-            link: '',
+            link: '#',
             text: 'Кастрюля'
         },
         {
-            link: '',
+            link: '#',
             text: 'Ковш'
         },
         {
-            link: '',
+            link: '#',
             text: 'Сотейник'
         },
     ]
@@ -70,15 +70,15 @@ const ProductItem: FC = () => {
     const current = [
         {
             title: 'О нас',
-            link: '',
+            link: '#',
             paddingBottom: '5px'
         },
         {
             text: 'Качество',
-            link: '',
+            link: '#',
         },
         {
-            link: '',
+            link: '#',
             text: 'Магазины'
         },
         {
@@ -86,7 +86,7 @@ const ProductItem: FC = () => {
             text: 'Riley & Tailor'
         },
         {
-            link: '',
+            link: '#',
             text: 'Контакты'
         }
     ]
