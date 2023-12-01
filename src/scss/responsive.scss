@@ -137,11 +137,17 @@
     .product-block-content-item {
         top: 55px !important;
         padding-top: rem(10) !important;
-        padding-bottom: rem(10) !important;
+        padding-bottom: rem(60) !important;
+        height: 100vh;
+        overflow: auto;
 
         &-meta {
             padding: rem(12) rem(0);
             border-bottom: rem(1) solid rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            overflow: auto;
         }
     }
 
