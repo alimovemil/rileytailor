@@ -46,7 +46,7 @@ const SignRedactor: FC = () => {
     ]
 
     function onClickExit() {
-        navigate('')
+        navigate('/pages')
     }
 
     function onClickSave() {

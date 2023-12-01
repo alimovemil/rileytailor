@@ -15,6 +15,10 @@ const SignLog: FC = () => {
         navigate('edit')
     }
 
+    function onClickExit() {
+        navigate('/pages')
+    }
+
     return (
         <div>
             <Header/>
@@ -42,7 +46,7 @@ const SignLog: FC = () => {
                                             />
 
                                             <Button text={ 'Выйти' }
-                                                    onClick={ onClickRedactor }
+                                                    onClick={ onClickExit }
                                                     className={ 'btn' }/>
                                         </div>
                                     </div>
