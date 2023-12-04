@@ -38,8 +38,12 @@ const HeaderBasket: FC<HeaderOpenModal> = ({ isOpen, setIsOpen }) => {
     }
 
     function calculateTotalPrice(items: any[]) {
-        const total = items.reduce((acc, item) => acc + parseFloat(item.price) * parseInt(item.count), 0);
-        setTotalPrice(total);
+        const total = items.reduce((acc, item) => {
+            const itemPrice = parseFloat(item.price.replace(/[^0-9]/g, ''));
+            return acc + itemPrice * parseInt(item.count);
+        }, 0);
+
+        setTotalPrice(total.toLocaleString('ru-RU'));
     }
 
     function onClickMinus(item: any) {

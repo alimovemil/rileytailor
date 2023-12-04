@@ -1,3 +1,5 @@
+// DialogRightFilter.tsx
+
 import React, { FC, ReactNode, useEffect, useRef } from "react";
 
 interface DialogProps {
@@ -25,11 +27,19 @@ const DialogRightFilter: FC<DialogProps> = ({ children, isOpen, closeModal }) =>
         };
     }, [isOpen, closeModal]);
 
+    const handleInsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
+    };
+
     return (
         <>
             {isOpen && (
-                <div className="dialog__right__containers">
-                    <div ref={dialogRef} className="dialog-container">
+                <div className="dialog__right__containers" onClick={closeModal}>
+                    <div
+                        ref={dialogRef}
+                        className="dialog-container dialog-fullscreen"
+                        onClick={handleInsideClick}
+                    >
                         {children}
                     </div>
                 </div>

@@ -1,16 +1,25 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Header from "./index";
 import Product from "../products";
 import Footer from "../footer";
 import Sign from "../../container/icons/Sign";
 import Button from "../../components/form/Button";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
 import HeaderRegistration from "../../components/header/HeaderRegistration";
+import { log } from "util";
 
 
 const SignLog: FC = () => {
     const navigate = useNavigate()
+
+    const location = useLocation();
+    const state: any = location.state;
+    const editedData = state?.data || {};
+
+    console.log(editedData)
+
+    const [isSign, setIsSign] = useState<any>({})
 
     function onClickRedactor() {
         navigate('edit')
@@ -54,6 +63,7 @@ const SignLog: FC = () => {
 
                                     <div className="sign-content-order">
                                         <div className="sign-content-order-history">
+
                                             <div className="sign-content-order-history-meta">
                                                 <h3>История заказов</h3>
                                             </div>

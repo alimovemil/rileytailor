@@ -32,12 +32,25 @@
                     padding: rem(10) rem(30);
 
                     &-img {
-                        height: rem(91);
+                        height: rem(100);
                         display: flex;
+                        width: rem(100);
+                        position: relative;
 
                         img {
                             object-fit: contain;
+                            width: rem(84);
+                            height: rem(84);
+                        }
 
+                        .cauldrons-svg {
+                            position: absolute;
+                            background: #AC1931;
+                            left: 0;
+
+                            svg {
+                                padding: rem(3);
+                            }
                         }
                     }
 
@@ -60,6 +73,31 @@
                         span {
                             line-height: rem(26);
                             font-weight: 600;
+                        }
+
+                        &-span {
+                            display: flex;
+                            align-items: center;
+                        }
+                        .cauldrons {
+                            span {
+                                color: #AC1931;
+                                font-weight: 600;
+                                line-height: rem(26);
+                            }
+
+                            h5 {
+                                color: rgba(0, 0, 0, 0.60);
+                                font-size: rem(14);
+                                font-weight: 400;
+                                line-height: rem(26);
+                                text-decoration-line: line-through;
+                                padding-right: rem(5);
+                            }
+
+                            &-svg {
+                                position: absolute;
+                            }
                         }
                     }
                 }

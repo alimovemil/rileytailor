@@ -20,8 +20,9 @@ const CheckOut: FC = () => {
     const state: any = location.state;
     const editedData = state?.data || {};
 
-    console.log(GetCauldrons)
+    const productsInBasket = useSelector(GetCauldrons);
 
+    console.log(editedData)
 
     const [ selectedItem, setSelectedItem ] = useState('');
 
@@ -34,6 +35,18 @@ const CheckOut: FC = () => {
     const [ showAdditionalElements, setShowAdditionalElements ] = useState(true);
     const [ selectedOption, setSelectedOption ] = useState('Самовывоз');
     const [ isPayment, setPayment ] = useState<any[]>([]);
+
+    const getTotalProductsSum = (productsInBasket: any[]) => {
+        return productsInBasket.reduce((total, item) => {
+            const itemPrice = parseFloat(item.price.replace(/\D/g, ''));
+            return !isNaN(itemPrice) ? total + itemPrice * item.count : total;
+        }, 0);
+    };
+
+    const deliveryCost = 30000;
+    const productsSum = getTotalProductsSum(productsInBasket);
+    const totalSumWithoutDelivery = productsSum + deliveryCost;
+
 
     useEffect(() => {
         if (selectedItem === 'Чирчик' || selectedItem === 'Янгиюль' || selectedItem === 'Фергана') {
@@ -120,12 +133,19 @@ const CheckOut: FC = () => {
                                                      key={ `payment-checkout-${ idx }` }
                                                 >
                                                     <div className="checkout-block-goods-top-cauldrons-img">
+                                                        <div className={`${item.class}`}>
+                                                            {item.rate}
+                                                        </div>
                                                         <img src={ item.img } alt=""/>
                                                     </div>
                                                     <div className="checkout-block-goods-top-cauldrons-inner">
                                                         <p>{ item.text }</p>
                                                         <h5>{ item.count } ед</h5>
-                                                        <span>{ item.price }</span>
+                                                        <div className={`checkout-block-goods-top-cauldrons-inner-span ${item.className}`}>
+
+                                                            <h5>{item.paragraph}</h5>
+                                                            <span>{ item.price }</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )) }
@@ -291,11 +311,11 @@ const CheckOut: FC = () => {
                                     <div className="checkout-total-amount">
                                         <div className="checkout-total-amount-outcome">
                                             <p>Товар на сумму</p>
-                                            <span>1 205 000 UZS</span>
+                                            <span>{productsSum.toLocaleString('ru-RU')} UZS</span>
                                         </div>
                                         <div className="checkout-total-amount-outcome">
                                             <p>Доставка</p>
-                                            <span>30 000 UZS</span>
+                                            <span>{deliveryCost.toLocaleString('ru-RU')} UZS</span>
                                         </div>
                                     </div>
 
@@ -304,10 +324,11 @@ const CheckOut: FC = () => {
                                     <div className="checkout-total-inner">
                                         <p>К оплате</p>
                                         <div className="checkout-total-inner-span">
-                                            <span>1 205 000</span>
+                                            <span>{totalSumWithoutDelivery.toLocaleString('ru-RU')}</span>
                                             <div className="checkout-total-inner-span-uzs">UZS</div>
                                         </div>
                                     </div>
+
 
                                     <div className="checkout-block-goods-top-line"></div>
 

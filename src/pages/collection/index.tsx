@@ -7,25 +7,24 @@ const Collection: FC = () => {
 
     const [ isCollection, SetIsCollection ] = useState<any[]>([
         {
-            key: '',
+            key: 'classic',
             image: '/img/png/ds.png',
             text: 'Коллекция',
             name: 'Classic'
         },
         {
-            key: '',
+            key: 'loft',
             image: '/img/png/loft.png',
             text: 'Коллекция',
             name: 'Loft'
         },
         {
-            key: '',
+            key: 'modern',
             image: '/img/png/modern.png',
             text: 'Коллекция',
             name: 'Modern'
         },
     ])
-
 
     return (
         <div className="collection">
@@ -42,7 +41,13 @@ const Collection: FC = () => {
                         <div className="col-12 col-lg-4 col-type">
                             <div style={ {backgroundImage: `url(${ list.image })`} } className="collection-block"
                                  key={ idx }
-                                 onClick={() => navigate('collection')}
+                                 onClick={() => navigate(`collection/${list.key}`, {
+                                     state: {
+                                         data: {
+                                             item: list
+                                         }
+                                     }
+                                 })}
                             >
                                 <div className="collection-block-inner">
                                     <div className="collection-block-inner-text">

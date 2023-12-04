@@ -6,7 +6,8 @@ const Banner: FC = () => {
     const navigate = useNavigate()
 
     function onClickInfo() {
-        navigate('',)
+        navigate('/product',)
+        console.log(onClickInfo)
     }
 
     return (

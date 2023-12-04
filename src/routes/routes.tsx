@@ -18,37 +18,35 @@ const RoutesComponent = () => {
         <BrowserRouter>
             <Routes>
                 <Route
-                    element={ <DefaultLayout/> }
+                    element={<DefaultLayout />}
                 >
-                    <Route path="/">
-                        <Route path="pages" element={ <Main/> }/>
-                    </Route>
+                    <Route path="/" element={<Main />} />
                 </Route>
 
                 <Route path="sign">
-                    <Route path="" element={ <SignLog/> }/>
-                    <Route path="edit" element={ <SignRedactor/> }/>
+                    <Route path="" element={<SignLog />} />
+                    <Route path="edit" element={<SignRedactor />} />
                 </Route>
 
-                <Route element={ <ProductLayout/> }>
-                    <Route path="product/:id" element={ <Modern/> }/>
+                <Route path="checkout" element={<CheckOut />} />
+                <Route path="payment" element={<Payment />} />
+
+                <Route path="collection/:key" element={<CollectionLayout />}>
+                    <Route path="" element={<CollectionItem />} />
+                    <Route path="product/:id" element={<Modern />} />
                 </Route>
 
-                <Route path="checkout" element={ <CheckOut/> }/>
-                <Route path="payment" element={ <Payment/> }/>
-
-                <Route element={ <CollectionLayout/> }>
-                    <Route path="collection" element={ <CollectionItem/> }/>
+                <Route element={<ProductLayout />}>
+                    <Route path="product/:id" element={<Modern />} />
                 </Route>
 
-                <Route element={ <AllLayout/> }>
-                    <Route path="shop" element={ <AllProduct/> }/>
+                <Route element={<AllLayout />}>
+                    <Route path="shop" element={<AllProduct />} />
                 </Route>
 
             </Routes>
-
         </BrowserRouter>
-    )
-}
+    );
+};
 
-export default RoutesComponent
+export default RoutesComponent;

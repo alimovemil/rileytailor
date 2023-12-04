@@ -11,10 +11,20 @@ import { CSSTransition } from "react-transition-group";
 import ProductItem from "../../components/product/product";
 import Logo from "../../container/icons/Logo";
 import { useNavigate } from "react-router-dom";
-
+import { RootState, useAppDispatch } from "../../redux/store";
+import { useSelector } from "react-redux";
+import { GetCauldrons, updateBasketInfo } from "../../redux/reducers/basket/reducer";
 
 const Header: FC = () => {
     const navigate = useNavigate()
+    const dispatch = useAppDispatch();
+    const productsInBasket = useSelector(GetCauldrons);
+    const totalPrice = useSelector((state: RootState) => state.profile.totalPrice);
+    const totalItems = useSelector((state: RootState) => state.profile.totalItems);
+
+    const calculateTotalPrice = () => {
+        dispatch(updateBasketInfo());
+    };
 
     const [ isModal, setIsModal ] = useState(false);
     const [ isDialog, SetIsDialog ] = useState(false)
@@ -24,6 +34,10 @@ const Header: FC = () => {
         setProductItemVisible(!isProductItemVisible);
     };
 
+    useEffect(() => {
+        calculateTotalPrice();
+    }, [ productsInBasket ]);
+
     function onClickModal() {
         setIsModal(true);
     }
@@ -31,7 +45,6 @@ const Header: FC = () => {
     function onClickDialog() {
         SetIsDialog(true)
     }
-
 
     function onClickHome() {
         navigate('/')
@@ -51,7 +64,7 @@ const Header: FC = () => {
                     <div className="col-12 header-style">
                         <div className="header-top">
                             <div className="header-top-logo">
-                                <Button text={ <Logo color={'#AC1931'}/> }
+                                <Button text={ <Logo color={ '#AC1931' }/> }
                                         onClick={ onClickHome }
                                         className={ 'btn' }
                                 />
@@ -80,14 +93,15 @@ const Header: FC = () => {
                                 </div>
                                 <div className="header-top-item-basket">
                                     <Button
-                                        text={ '0' }
+                                        text={ totalItems }
                                         onClick={ onClickDialog }
                                         leftIcon={ <Basket/> }
                                         className={ 'header-top-item-basket-btns' }
                                     />
                                     <div className="header-top-item-basket-uzs">
                                         <p>Корзина</p>
-                                        <span>0 UZS</span>
+                                        <span>{totalPrice.toLocaleString('ru-RU')} UZS</span>
+
                                     </div>
                                 </div>
                             </div>

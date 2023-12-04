@@ -1,11 +1,14 @@
 import React, { CSSProperties, FC, useState } from 'react';
-// @ts-ignore
-import RangeSlider from 'react-range-slider-input';
-import 'react-range-slider-input/dist/style.css';
 import Button from "../form/Button";
 import { useNavigate } from "react-router-dom";
 import Checkbox from "../form/CheckBox";
 import DialogRightFilter from "../dialog/DialogRightFilter";
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import { useAppDispatch, RootState} from "../../redux/store";
+import { useSelector } from "react-redux";
+import { setRangeValues } from "../../redux/reducers/filterSlice";
+
 
 interface FilterOpenModal {
     isOpen: boolean
@@ -21,82 +24,101 @@ const FilterInput: FC<FilterOpenModal> = (
 
     const navigate = useNavigate()
 
-    const filter = [
+    const dispatch = useAppDispatch();
+
+    const [ filter, setFilter ] = useState([
         {
             title: 'Диаметр, см',
             checkbox: '13 - 15',
             className: 'lines-style',
             styles: {paddingBottom: '20px'} as CSSProperties,
+            key: 'checkbox1'
         },
         {
             checkbox: '16 - 18',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox2'
         },
         {
             checkbox: '19 - 20',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox3'
         },
         {
             checkbox: '21 - 23',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox4'
         },
         {
             checkbox: '24',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox5'
         },
         {
             checkbox: '25 - 27',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox6'
         },
         {
             checkbox: '28 - 29',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox7'
         },
         {
             title: 'Ëмкость, л',
             checkbox: '1 - 2',
             className: 'lines-style',
             styles: {paddingBottom: '20px'} as CSSProperties,
+            key: 'checkbox8'
         },
         {
             checkbox: '2 - 3',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox9'
         },
         {
             checkbox: '3 - 4',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox10'
         },
         {
             checkbox: '4 - 5',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox11'
         },
         {
             checkbox: '5 - 6',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox12'
         },
         {
             checkbox: '6 - 7',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox13'
         },
         {
             title: 'Внутреннее антипригарное покрытие',
             checkbox: 'Без антипригарного покрытия',
             className: 'lines-style',
             styles: {paddingBottom: '20px'} as CSSProperties,
+            key: 'checkbox14'
         },
         {
             checkbox: 'Тефлоновое',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox15'
         },
         {
             title: 'Материал',
             checkbox: 'Алюминий',
             className: 'lines-style',
             styles: {paddingBottom: '20px'} as CSSProperties,
+            key: 'checkbox16'
         },
         {
             checkbox: 'Нержавеющая сталь',
-            margin: {marginTop: '8px'}
+            margin: {marginTop: '8px'},
+            key: 'checkbox17'
         },
         {
             title: 'Антипригарное покрытие',
@@ -107,8 +129,12 @@ const FilterInput: FC<FilterOpenModal> = (
             ),
             className: 'lines-style',
             styles: {paddingBottom: '20px'} as CSSProperties,
+            key: 'checkbox18'
         },
-    ]
+    ])
+    const { rangeValues } = useSelector((state: RootState) => state.filter);
+
+    const [sliderValues, setSliderValues] = useState<[number, number]>([0, 0]);
 
     const [ checkboxStates, setCheckboxStates ] = useState<{ [key: string]: boolean }>(() => {
         return filter.reduce((acc, item) => {
@@ -117,15 +143,22 @@ const FilterInput: FC<FilterOpenModal> = (
         }, {} as { [key: string]: boolean });
     });
 
+    const handleInsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
+    };
+
+
     function handleCheckboxChange(checkbox: string) {
-        setCheckboxStates(prevStates => ({
-            ...prevStates,
-            [checkbox]: !prevStates[checkbox],
-        }));
+        setCheckboxStates(prevStates => {
+            return {
+                ...prevStates,
+                [checkbox]: !prevStates[checkbox],
+            };
+        });
     }
 
     function onClickApp() {
-        navigate('')
+        dispatch(setRangeValues(sliderValues));
     }
 
     return (
@@ -135,18 +168,27 @@ const FilterInput: FC<FilterOpenModal> = (
                 setIsOpen();
             } }
         >
-            <div className="filter-item">
+            <div className="filter-item" onClick={ handleInsideClick }>
                 <div className="filter-item-inner">
                     <div className="filter-item-inner-cost">
                         <h3>Стоимость</h3>
                         <div className="filter-item-inner-cost-range">
-                            <RangeSlider min={ 0 } max={ 100 }/>
+                            <Slider
+                                range
+                                min={1000}
+                                max={987000}
+                                step={1000}
+                                value={sliderValues}
+                                onChange={(value: number | number[]) => {
+                                    setSliderValues(Array.isArray(value) ? (value as [number, number]) : [0, 0]);
+                                    dispatch(setRangeValues(sliderValues))
+                                }}
+                            />
 
                             <div className="filter-item-inner-cost-range-number">
-                                <p>123000</p>
-                                <p>987000</p>
+                                <p>{sliderValues[0]}</p>
+                                <p>{sliderValues[1]}</p>
                             </div>
-
                             <Button
                                 text={ 'Применить' }
                                 className={ 'btn' }

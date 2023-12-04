@@ -1,7 +1,18 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Logo from "../../container/icons/Logo";
+import { useLocation } from "react-router-dom";
 
 const CollectionBanner: FC = () => {
+
+    const location = useLocation();
+    const state: any = location.state;
+    const editedData = state?.data?.item || {};
+
+    useEffect(() => {
+        setIsCollection(editedData);
+    }, [editedData]);
+
+    const [isCollection, setIsCollection] = useState<any>({})
 
     const collectionInner = [
         {
@@ -24,7 +35,7 @@ const CollectionBanner: FC = () => {
                                     </div>
                                     <div className="col-lg-7 col-12">
                                         <div className="collection-top-inner-info-wrap-text">
-                                            <h2>Classic</h2>
+                                            <h2>{isCollection.name}</h2>
                                             <p>Коллекция посуды Classic из нержавеющей стали зеркальной полировки будет гармонично
                                                 смотреться на кухнях классического стиля, неокласики, которые всегда на пике
                                                 популярности. Изделия имеют прямую цилиндрическую форму с удобным сливом жидкости и

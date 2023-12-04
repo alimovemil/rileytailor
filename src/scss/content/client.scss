@@ -1,9 +1,8 @@
 .client {
     &-slide {
-        width: rem(290) !important;
+        width: rem(290);
         background: #FFF;
         box-shadow: -1px 0px 0px 0px rgba(0, 0, 0, 0.10) inset;
-        margin-right: rem(1) !important;
     }
 
     &-description {

@@ -3,6 +3,7 @@ import Header from "../header";
 import Product from "../products";
 import Footer from "../footer";
 
+
 const Payment: FC = () => {
 
     const payment = [

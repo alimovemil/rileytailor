@@ -36,10 +36,6 @@
                     }
                 }
 
-                .range-slider {
-                    height: rem(4.3);
-                }
-
                 .btn {
                     width: 100%;
                     background: #AC1931;
@@ -47,6 +43,7 @@
                     color: $white;
                     margin-top: rem(30);
                     border: none;
+                    border-radius: 0;
                 }
 
                 .btn:focus,
@@ -75,14 +72,17 @@
             }
         }
     }
-}
 
-.range-slider .range-slider__thumb {
-    background: #008033 !important;
-    width: rem(35) !important;
-    height: rem(35) !important;
-}
+    .rc-slider-handle {
+        width: rem(40);
+        height: rem(40);
+        top: -8px;
+        background-color: #008033;
+        opacity: 1;
+        border: none;
+    }
 
-.range-slider .range-slider__range {
-    background: #008033 !important;
+    .rc-slider-track {
+        background-color: #008033;
+    }
 }

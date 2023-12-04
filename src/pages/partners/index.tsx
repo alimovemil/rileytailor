@@ -46,11 +46,7 @@ const Partners: FC = () => {
                     </div>
                 </div>
                 <div className="partners-content">
-                    <Swiper
-                        spaceBetween={ 50 }
-                        slidesPerView={ 2 }
-                        onSlideChange={ () => console.log('slide change') }
-                    >
+                    <Swiper>
                         { list.map((item, idx) => (
                             <>
                                 <SwiperSlide className="partners-slide"

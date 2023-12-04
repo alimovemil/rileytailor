@@ -28,16 +28,68 @@
                     display: flex;
                     flex-direction: column;
 
+                    &-diameter {
+                        display: flex;
+                        flex-direction: column;
+                        gap: rem(10);
+                        margin-top: rem(20);
+
+                        h4 {
+                            color: #1E2546;
+                            font-size: rem(14);
+                            font-weight: 600;
+                            line-height: rem(24);
+                        }
+
+                        &-size {
+                            display: flex;
+                            align-items: center;
+                            gap: rem(10);
+                            border-bottom: rem(1) solid rgba(0, 0, 0, 0.1);
+                            padding-bottom: rem(20);
+
+                            .btn {
+                                color: rgba(0, 0, 0, 0.50);
+                                font-weight: 600;
+                                line-height: rem(24);
+                                border-radius: 0;
+                                width: rem(44);
+                                height: rem(44);
+                                padding: 0;
+                                border: 2px solid rgba(0, 0, 0, 0.1);
+                            }
+
+                            .btn:focus,
+                            .btn:hover {
+                                background: transparent;
+                                box-shadow: none;
+                                outline: none;
+                                border: 2px solid #AC1931;
+                                color: #000000;
+                            }
+
+                            .btn + .btn {
+                                margin-left: 0;
+                            }
+
+                            .btn-selected {
+                                border: 2px solid #AC1931 !important;
+                                color: #000000;
+                            }
+                        }
+
+                    }
+
                     &-page {
                         border-bottom: rem(1) solid rgba(0, 0, 0, 0.1);
                         padding-bottom: rem(20);
-                    }
 
-                    p {
-                        font-size: rem(12);
-                        line-height: rem(22);
-                        color: #1E2546;
-                        padding-top: rem(5);
+                        p {
+                            font-size: rem(12);
+                            line-height: rem(22);
+                            color: #1E2546;
+                            padding-top: rem(5);
+                        }
                     }
 
                     &-cost {
@@ -56,14 +108,15 @@
                             font-weight: 600;
                             font-size: rem(14);
                             line-height: rem(24);
-                            padding-bottom: rem(7);
+                            padding-bottom: rem(4);
                         }
 
                         h4 {
-                            font-weight: 700;
-                            font-size: rem(16);
-                            color: #000000;
-                            padding: rem(15) rem(0);
+                            color: #1E2546;
+                            font-size: rem(32);
+                            font-weight: 600;
+                            line-height: rem(40);
+                            padding: rem(0) rem(0) rem(10) rem(0);
                         }
 
                         span {
@@ -72,12 +125,13 @@
                             color: #008033;
                             padding: rem(5) rem(10);
                             background-color: rgba(0, 128, 51, 0.1);
+                            font-weight: 600;
                         }
                     }
                 }
 
                 &-btn {
-                    margin-top: auto;
+                    margin-top: rem(20);
 
                     .btn {
                         display: flex;
@@ -160,14 +214,20 @@
                 gap: rem(10);
 
                 &-cauldrons {
-                    width: rem(120);
-                    height: rem(120);
+
+                    gap: rem(15);
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border: 1px;
-                    background: #FFFFFF;
                     cursor: pointer;
+
+                    &-image {
+                        background: #FFFFFF;
+                        width: rem(120);
+                        height: rem(120);
+                        display: flex;
+                    }
 
                     img {
                         width: 100%;
