@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import profileReducer from "./reducers/basket/reducer";
-
 import loadingSlice from "./slices/loadingSlice";
 import filterReducer from './slices/filterSlice';
 
