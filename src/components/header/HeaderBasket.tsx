@@ -4,7 +4,7 @@ import Close from "../../container/icons/Close";
 import Button from "../form/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { CauldronsSave, cauldronsSlices, GetCauldrons } from "../../redux/reducers/basket/reduce";
+import { CauldronsSave, cauldronsSlices, GetCauldrons } from "../../redux/reducers/basket/reducer";
 import { useAppDispatch } from "../../redux/store";
 
 interface HeaderOpenModal {

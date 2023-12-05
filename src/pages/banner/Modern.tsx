@@ -3,7 +3,7 @@ import Button from "../../components/form/Button";
 import { useLocation } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
 import { useAppDispatch } from "../../redux/store";
-import { CauldronsSave, } from "../../redux/reducers/basket/reduce";
+import { CauldronsSave, } from "../../redux/reducers/basket/reducer";
 import BasketAdd from "../../container/icons/BasketAdd";
 
 const Modern: FC = () => {
