@@ -4,9 +4,9 @@ import Basket from "../../container/icons/Basket";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../form/Pagination";
 import Percent from "../../container/icons/percent";
-import { CauldronsSave, updateBasketInfo } from "../../redux/reducers/basket/reducer";
+import { CauldronsSave, updateBasketInfo } from "../../redux/reducers/basket/reduce";
 import { useAppDispatch, RootState } from "../../redux/store";
-import { startLoading, stopLoading } from "../../redux/reducers/basket/reducerLoading";
+import { startLoading, stopLoading } from "../../redux/slices/loadingSlice";
 import Tick from "../../container/icons/Tick";
 import { useSelector } from "react-redux";
 

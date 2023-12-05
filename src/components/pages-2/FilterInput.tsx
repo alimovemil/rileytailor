@@ -7,7 +7,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useAppDispatch, RootState} from "../../redux/store";
 import { useSelector } from "react-redux";
-import { setRangeValues } from "../../redux/reducers/filterSlice";
+import { setRangeValues } from "../../redux/slices/filterSlice";
 
 
 interface FilterOpenModal {

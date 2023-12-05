@@ -6,7 +6,7 @@ import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { GetCauldrons } from "../../redux/reducers/basket/reducer";
+import { GetCauldrons } from "../../redux/reducers/basket/reduce";
 import Footer from "../footer";
 import Button from "../../components/form/Button";
 import NavBarBottom from "../../components/sidebar/NavBarBottom";

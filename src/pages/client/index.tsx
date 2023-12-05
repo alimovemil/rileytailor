@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
 import Percent from "../../container/icons/percent";
 import { useAppDispatch } from "../../redux/store";
-import { CauldronsSave, updateBasketInfo } from "../../redux/reducers/basket/reducer";
-import { startLoading, stopLoading } from '../../redux/reducers/basket/reducerLoading';
+import { CauldronsSave, updateBasketInfo } from "../../redux/reducers/basket/reduce";
+import { startLoading, stopLoading } from '../../redux/slices/loadingSlice';
 import Tick from "../../container/icons/Tick";
 
 const Client: FC = () => {

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { startLoading, stopLoading } from './redux/reducers/basket/reducerLoading';
+import { startLoading, stopLoading } from './redux/slices/loadingSlice';
 import RoutesComponent from "./routes/routes";
 import Spinner from "./container/icons/Spinner";
-import { selectLoading } from './redux/reducers/basket/reducerLoading';
+import { selectLoading } from './redux/slices/loadingSlice';
 
 const App = () => {
     const dispatch = useDispatch();
