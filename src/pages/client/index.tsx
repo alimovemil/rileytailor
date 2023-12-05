@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import Button from "../../components/form/Button";
 import { useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";

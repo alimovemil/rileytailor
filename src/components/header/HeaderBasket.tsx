@@ -19,6 +19,7 @@ const HeaderBasket: FC<HeaderOpenModal> = ({ isOpen, setIsOpen }) => {
     const location = useLocation();
     const state: any = location.state;
     const editedData = state?.data || {};
+    console.log(editedData)
 
     const dispatch = useAppDispatch();
 
@@ -27,8 +28,9 @@ const HeaderBasket: FC<HeaderOpenModal> = ({ isOpen, setIsOpen }) => {
 
     useEffect(() => {
         init();
-    }, [products]);
+    }, [init, products]);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function init() {
         if (products) {
             // @ts-ignore

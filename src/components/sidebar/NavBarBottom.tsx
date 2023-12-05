@@ -13,7 +13,7 @@ const NavBarBottom: FC = () => {
 
     const [ isModal, setIsModal ] = useState(false);
 
-    const [ navbar, setNavBar ] = useState<any[]>([
+    const [ navbar ] = useState<any[]>([
         {
             key: '',
             navbar: <Calculator color={ '#000000' }/>,

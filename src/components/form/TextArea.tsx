@@ -43,7 +43,7 @@ const TextArea: FC<TextAreaProps> = (
 
     useEffect(() => {
         if (value !== valueLocal) setValue(value)
-    }, [ value ])
+    }, [value, valueLocal])
 
     return (
         <div className={ `form-group ${ className }` }>

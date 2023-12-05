@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Header from "../header";
 import Product from "../products";
 import Location from "../../container/icons/location";
@@ -58,10 +58,10 @@ const CheckOut: FC = () => {
 
     useEffect(() => {
         init();
-    }, []);
+    }, [init]);
 
 
-    const [ delivery, setDelivery ] = useState<any[]>([
+    const [ delivery ] = useState<any[]>([
         {
             text: 'Имя',
         },
@@ -95,12 +95,13 @@ const CheckOut: FC = () => {
         },
     ];
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function init() {
         if (products) {
             // @ts-ignore
             setPayment(products);
         }
-    };
+    }
 
     function onChangeValue(event: any) {
         setSelectedOption(event.target.value);
@@ -127,7 +128,7 @@ const CheckOut: FC = () => {
                                                 <h1>Товары</h1>
                                             </div>
 
-                                            <div className="checkout-block-goods-top-line"></div>
+                                            <div className="checkout-block-goods-top-line"/>
                                             { isPayment.map((item, idx) => (
                                                 <div className="checkout-block-goods-top-cauldrons"
                                                      key={ `payment-checkout-${ idx }` }
@@ -155,12 +156,14 @@ const CheckOut: FC = () => {
                                         <div className="checkout-block-goods-top-header">
                                             <h1>Доставка</h1>
                                         </div>
-                                        <div className="checkout-block-goods-top-line"></div>
+                                        <div className="checkout-block-goods-top-line"/>
 
                                         <div className="checkout-block-delivery-info">
                                             <div className="checkout-block-delivery-info-tell">
                                                 { delivery.map((item, idx) => (
-                                                    <div className="checkout-block-delivery-info-tell-input">
+                                                    <div className="checkout-block-delivery-info-tell-input"
+                                                    key={idx}
+                                                    >
                                                         <label>{ item.text }</label>
                                                         <TextField
                                                             value={ '' }
@@ -292,10 +295,10 @@ const CheckOut: FC = () => {
                                         <div className="checkout-block-goods-top-header">
                                             <h1>Оплата</h1>
                                         </div>
-                                        <div className="checkout-block-goods-top-line"></div>
+                                        <div className="checkout-block-goods-top-line"/>
                                         <div className="checkout-block-pay-item">
                                             <div className="checkout-block-pay-item-meta">
-                                                <a href="#"><img src="/img/png/click.png" alt=""/></a>
+                                                ds
                                             </div>
                                         </div>
                                     </div>
@@ -307,7 +310,7 @@ const CheckOut: FC = () => {
                                     <div className="checkout-total-header">
                                         <h2>Итого</h2>
                                     </div>
-                                    <div className="checkout-block-goods-top-line"></div>
+                                    <div className="checkout-block-goods-top-line"/>
                                     <div className="checkout-total-amount">
                                         <div className="checkout-total-amount-outcome">
                                             <p>Товар на сумму</p>
@@ -319,7 +322,7 @@ const CheckOut: FC = () => {
                                         </div>
                                     </div>
 
-                                    <div className="checkout-block-goods-top-line"></div>
+                                    <div className="checkout-block-goods-top-line"/>
 
                                     <div className="checkout-total-inner">
                                         <p>К оплате</p>
@@ -330,7 +333,7 @@ const CheckOut: FC = () => {
                                     </div>
 
 
-                                    <div className="checkout-block-goods-top-line"></div>
+                                    <div className="checkout-block-goods-top-line"/>
 
                                     <div className="checkout-total-btn">
                                         <Button text={ 'Подтвердить заказ и оплатить' }

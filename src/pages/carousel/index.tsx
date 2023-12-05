@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Carousel: FC = () => {
     const navigate = useNavigate()
 
-    const [ carousel, SetCarousel ] = useState<any[]>([
+    const [ carousel ] = useState<any[]>([
         {
             key: '',
             carousel: true,

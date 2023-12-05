@@ -65,7 +65,7 @@ const Modern: FC = () => {
         },
     ])
 
-    useEffect(() => init(), [ location ]);
+    useEffect(() => init(), [init, location]);
 
     const [ isModern, setIsModern ] = useState<any>({})
 
@@ -73,6 +73,7 @@ const Modern: FC = () => {
 
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function init() {
         setIsLoading(true);
         // request.then(res => {

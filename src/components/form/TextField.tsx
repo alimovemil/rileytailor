@@ -44,7 +44,7 @@ const TextField: FC<TextFieldProps> = (
 
     useEffect(() => {
         if (value !== valueLocal) setValue(value)
-    }, [ value ])
+    }, [value, valueLocal])
 
     function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
         if (onKeyDown) onKeyDown(e.key);

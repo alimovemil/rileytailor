@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 
 interface ButtonProps {
     loading?: boolean

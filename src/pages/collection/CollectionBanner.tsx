@@ -6,6 +6,7 @@ const CollectionBanner: FC = () => {
 
     const location = useLocation();
     const state: any = location.state;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const editedData = state?.data?.item || {};
 
     useEffect(() => {

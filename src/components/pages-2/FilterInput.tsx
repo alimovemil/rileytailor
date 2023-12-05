@@ -5,8 +5,7 @@ import Checkbox from "../form/CheckBox";
 import DialogRightFilter from "../dialog/DialogRightFilter";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useAppDispatch, RootState} from "../../redux/store";
-import { useSelector } from "react-redux";
+import { useAppDispatch, } from "../../redux/store";
 import { setRangeValues } from "../../redux/slices/filterSlice";
 
 
@@ -21,12 +20,10 @@ const FilterInput: FC<FilterOpenModal> = (
         setIsOpen
     }
 ) => {
-
-    const navigate = useNavigate()
-
+    useNavigate();
     const dispatch = useAppDispatch();
 
-    const [ filter, setFilter ] = useState([
+    const [ filter ] = useState([
         {
             title: 'Диаметр, см',
             checkbox: '13 - 15',
@@ -132,8 +129,6 @@ const FilterInput: FC<FilterOpenModal> = (
             key: 'checkbox18'
         },
     ])
-    const { rangeValues } = useSelector((state: RootState) => state.filter);
-
     const [sliderValues, setSliderValues] = useState<[number, number]>([0, 0]);
 
     const [ checkboxStates, setCheckboxStates ] = useState<{ [key: string]: boolean }>(() => {
@@ -200,7 +195,7 @@ const FilterInput: FC<FilterOpenModal> = (
                     <div className="filter-item-inner-meta">
                         { filter.map((item, idx) => (
                             <div className="filter-item-inner-meta-content">
-                                <div className={ item.className }></div>
+                                <div className={ item.className }/>
                                 <h4 style={ item.styles }>{ item.title }</h4>
                                 <div className="filter-item-inner-meta-content-checkbox">
                                     <Checkbox
