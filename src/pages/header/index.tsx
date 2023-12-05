@@ -13,7 +13,7 @@ import Logo from "../../container/icons/Logo";
 import { useNavigate } from "react-router-dom";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { GetCauldrons, updateBasketInfo } from "../../redux/basket/basketRe";
+import { GetCauldrons, updateBasketInfo } from "../../redux/reducers/basket/basketRe";
 
 const Header: FC = () => {
     const navigate = useNavigate()
