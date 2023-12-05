@@ -1,4 +1,5 @@
 import { createSlice  } from "@reduxjs/toolkit";
+import {RootState} from "../../store";
 
 interface LoadingState {
     isLoading: boolean;
@@ -22,6 +23,7 @@ const loadingSlice = createSlice({
 });
 
 export const { startLoading, stopLoading } = loadingSlice.actions;
+export const selectLoading = (state: RootState) => state.loading.isLoading;
 
 export default loadingSlice.reducer
 

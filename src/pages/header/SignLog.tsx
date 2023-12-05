@@ -1,4 +1,4 @@
-import React, { FC,  } from 'react';
+import React, { FC, useState } from 'react';
 import Header from "./index";
 import Product from "../products";
 import Footer from "../footer";
@@ -18,6 +18,7 @@ const SignLog: FC = () => {
 
     console.log(editedData)
 
+    const [isSign, setIsSign] = useState<any>({})
 
     function onClickRedactor() {
         navigate('edit')

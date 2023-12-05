@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
-import { useDispatch, } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { startLoading, stopLoading } from './redux/reducers/basket/reducerLoading';
 import RoutesComponent from "./routes/routes";
+import Spinner from "./container/icons/Spinner";
+import { selectLoading } from './redux/reducers/basket/reducerLoading';
 
 const App = () => {
     const dispatch = useDispatch();
+    const loadingIsActive = useSelector(selectLoading);
 
     useEffect(() => {
         const initializeApp = async () => {
@@ -23,8 +26,15 @@ const App = () => {
 
     return (
         <>
-
-            <RoutesComponent />
+            {loadingIsActive ? (
+                <div className="spinner__wrapper">
+                    <div className="spinner-block">
+                        <Spinner />
+                    </div>
+                </div>
+            ) : (
+                <RoutesComponent />
+            )}
         </>
     );
 };
