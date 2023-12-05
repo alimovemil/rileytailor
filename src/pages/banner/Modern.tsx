@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Button from "../../components/form/Button";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
 import { useAppDispatch } from "../../redux/store";
 import { CauldronsSave, } from "../../redux/reducers/basket/reducer";
@@ -13,7 +13,6 @@ const Modern: FC = () => {
 
     console.log(editedData)
 
-    const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
 
