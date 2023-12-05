@@ -76,9 +76,9 @@ const Pagination: FC<CarouselProps> = (
         scrollToTop();
 
         if (type === 'next') {
-            setActivePage(activePage == pages ? activePage : activePage + 1)
+            setActivePage(activePage === pages ? activePage : activePage + 1)
         } else if (type === 'prev') {
-            setActivePage(activePage == 1 ? activePage : activePage - 1)
+            setActivePage(activePage === 1 ? activePage : activePage - 1)
         }
     }
 
@@ -97,7 +97,7 @@ const Pagination: FC<CarouselProps> = (
         };
 
         calculateFontSizes();
-    }, [ activePage ]);
+    }, [activePage, pages]);
 
     function scrollToTop() {
         window.scrollTo({
@@ -116,7 +116,7 @@ const Pagination: FC<CarouselProps> = (
                 text={(
                     <div>
                         <ArrowRight
-                            color={ activePage == 1 ? 'grey' : 'white' }
+                            color={ activePage === 1 ? 'grey' : 'white' }
                         />
                     </div>
                 )}
@@ -133,7 +133,7 @@ const Pagination: FC<CarouselProps> = (
                 text={(
                     <div>
                         <ArrowRight
-                            color={ activePage == pages ? 'grey' : 'white' }
+                            color={ activePage === pages ? 'grey' : 'white' }
                         />
                     </div>
                 )}

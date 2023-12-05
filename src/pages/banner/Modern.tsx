@@ -21,7 +21,7 @@ const Modern: FC = () => {
     const [ selectedImage, setSelectedImage ] = useState<string | null>(null);
 
 
-    const [ isCauldrons, setIsCauldrons ] = useState<any[]>([
+    const [ isCauldrons ] = useState<any[]>([
         {
             imgs: '/img/png/frying_2.png',
         },
@@ -42,7 +42,7 @@ const Modern: FC = () => {
         }
     ]
 
-    const [ list, setList ] = useState<any[]>([
+    const [ list ] = useState<any[]>([
         {
             key: 'material',
             text: 'Материал',
@@ -69,7 +69,7 @@ const Modern: FC = () => {
 
     const [ isModern, setIsModern ] = useState<any>({})
 
-    const [ isLoading, setIsLoading ] = useState(false);
+    const [ , setIsLoading ] = useState(false);
 
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
 

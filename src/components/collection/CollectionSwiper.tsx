@@ -10,7 +10,7 @@ import { startLoading, stopLoading } from "../../redux/slices/loadingSlice";
 import Tick from "../../container/icons/Tick";
 import { useSelector } from "react-redux";
 
-const   CollectionSwiper: FC = () => {
+const CollectionSwiper: FC = () => {
 
     const navigate = useNavigate()
     const { rangeValues } = useSelector((state: RootState) => state.filter);
@@ -118,7 +118,7 @@ const   CollectionSwiper: FC = () => {
 
     const [ activePage, setActivePage ] = useState(1);
 
-    const [ totalPages, setTotalPages ] = useState(1);
+    const [ totalPages ] = useState(1);
 
     useEffect(() => {
         const filteredData = swiper.filter(item => {

@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
 const Advantage: FC = () => {
-    const [ advantage, setAdvantage ] = useState<any[]>([
+    const [ advantage ] = useState<any[]>([
         {
             img: 'https://rileytailor.uz/wp-content/themes/rt-theme/assets/img/deliver.svg',
             key: '',

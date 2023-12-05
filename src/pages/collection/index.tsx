@@ -5,7 +5,7 @@ const Collection: FC = () => {
 
     const navigate = useNavigate()
 
-    const [ isCollection, SetIsCollection ] = useState<any[]>([
+    const [ isCollection ] = useState<any[]>([
         {
             key: 'classic',
             image: '/img/png/ds.png',
