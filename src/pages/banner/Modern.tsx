@@ -79,7 +79,7 @@ const Modern: FC = () => {
         // request.then(res => {
         //     if (!res) return;
 
-        const res = {}
+        // const res = {}
 
         // SetProductItem(res)
         // });
