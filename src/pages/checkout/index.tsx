@@ -61,15 +61,24 @@ const CheckOut: FC = () => {
     }, [init]);
 
 
-    const [ delivery ] = useState<any[]>([
+    const [ delivery, setDelivery ] = useState<any[]>([
         {
             text: 'Имя',
+            value: '',
+            setValue: (value: string, key: string) => onChangeSetValue(value, key),
+            key: 'name'
         },
         {
-            text: 'Фамилия'
+            text: 'Фамилия',
+            value: '',
+            setValue: (value: string, key: string) => onChangeSetValue(value, key),
+            key: 'surname'
         },
         {
-            text: 'Мобильный Телефон'
+            text: 'Мобильный Телефон',
+            value: '',
+            setValue: (value: string, key: string) => onChangeSetValue(value, key),
+            key: 'phone'
         }
     ]);
 
@@ -94,6 +103,15 @@ const CheckOut: FC = () => {
             className: 'form-content'
         },
     ];
+
+    const onChangeSetValue = (value: string, key: string) => {
+        const listUpdate = [...delivery].map((i) => {
+            if (i.key === key) i.value = value;
+            return i;
+        });
+
+        setDelivery(listUpdate);
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function init() {
@@ -166,8 +184,9 @@ const CheckOut: FC = () => {
                                                     >
                                                         <label>{ item.text }</label>
                                                         <TextField
-                                                            value={ '' }
+                                                            value={ item.value || '' }
                                                             className={ 'checkout-block-delivery-info-tell-input-style' }
+                                                            onChangeValue={ (value) => item.setValue(value, item.key) }
                                                         />
                                                     </div>
                                                 )) }

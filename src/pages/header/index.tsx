@@ -34,9 +34,25 @@ const Header: FC = () => {
         setProductItemVisible(!isProductItemVisible);
     };
 
+    const [isField, setIsField ] = useState<any[]>([
+        {
+            value: '',
+            setValue: (value: string, key: string) => onChangeSetValue(value, key),
+        }
+    ])
+
     useEffect(() => {
         calculateTotalPrice();
     }, [productsInBasket, calculateTotalPrice]);
+
+    const onChangeSetValue = (value: string, key: string) => {
+        const listUpdate = [...isField].map((i) => {
+            if (i.key === key) i.value = value;
+            return i;
+        });
+
+        setIsField(listUpdate);
+    }
 
     function onClickModal() {
         setIsModal(true);
@@ -71,12 +87,15 @@ const Header: FC = () => {
                             </div>
 
                             <div className="header-input">
-                                <TextField
-                                    value={ '' }
-                                    type={ 'type' }
-                                    placeholder={ 'Поиск' }
-                                    imgRight={ <Search color={ '#1E2546' }/> }
-                                />
+                                {isField.map((item, idx) => (
+                                    <TextField
+                                        value={ item.value || '' }
+                                        type={ 'type' }
+                                        placeholder={ 'Поиск' }
+                                        imgRight={ <Search color={ '#1E2546' }/> }
+                                        onChangeValue={ (value) => item.setValue(value, item.key) }
+                                    />
+                                ))}
                             </div>
                             <div className="header-top-item">
                                 <div className="header-top-item-contact">
@@ -130,7 +149,7 @@ const Header: FC = () => {
                     </div>
                 </div>
             </div>
-            <div className="header-border"></div>
+            <div className="header-border"/>
 
         </div>
     );
