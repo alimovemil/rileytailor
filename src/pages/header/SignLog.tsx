@@ -6,8 +6,7 @@ import Sign from "../../container/icons/Sign";
 import Button from "../../components/form/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
-import HeaderRegistration from "../../components/header/HeaderRegistration";
-import { log } from "util";
+
 
 
 const SignLog: FC = () => {
