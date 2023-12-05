@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 const Partners: FC = () => {
 
-    const [ list, setList ] = useState<any[]>([
+    const list = [
         {
             key: '',
             img: 'https://rileytailor.uz/wp-content/uploads/2023/06/image-1.jpg.svg'
@@ -33,7 +33,7 @@ const Partners: FC = () => {
             key: '',
             img: 'https://rileytailor.uz/wp-content/uploads/2023/06/image-2.jpg.svg'
         },
-    ])
+    ]
 
     return (
         <div className="partners">

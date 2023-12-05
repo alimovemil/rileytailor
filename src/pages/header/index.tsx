@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import TextField from "../../components/form/TextField";
 import Search from "../../container/icons/Search";
 import Button from "../../components/form/Button";
@@ -11,9 +11,9 @@ import { CSSTransition } from "react-transition-group";
 import ProductItem from "../../components/product/product";
 import Logo from "../../container/icons/Logo";
 import { useNavigate } from "react-router-dom";
-import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { GetCauldrons, updateBasketInfo } from "../../redux/reducers/basket/basketRe";
+import { RootState, useAppDispatch } from "../../redux/store";
 
 const Header: FC = () => {
     const navigate = useNavigate()
@@ -22,9 +22,9 @@ const Header: FC = () => {
     const totalPrice = useSelector((state: RootState) => state.profile.totalPrice);
     const totalItems = useSelector((state: RootState) => state.profile.totalItems);
 
-    const calculateTotalPrice = () => {
+    const calculateTotalPrice = useCallback(() => {
         dispatch(updateBasketInfo());
-    };
+    }, [dispatch]);
 
     const [ isModal, setIsModal ] = useState(false);
     const [ isDialog, SetIsDialog ] = useState(false)
@@ -36,7 +36,7 @@ const Header: FC = () => {
 
     useEffect(() => {
         calculateTotalPrice();
-    }, [ productsInBasket ]);
+    }, [productsInBasket, calculateTotalPrice]);
 
     function onClickModal() {
         setIsModal(true);
@@ -131,7 +131,6 @@ const Header: FC = () => {
                 </div>
             </div>
             <div className="header-border"></div>
-
 
         </div>
     );

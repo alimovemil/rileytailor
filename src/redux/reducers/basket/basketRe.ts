@@ -1,6 +1,6 @@
 import { BasketState } from "./types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
+import { RootState } from "redux/store";
 
 export const initialState: BasketState = {
     products: [],
