@@ -64,8 +64,6 @@ const Client: FC = () => {
         },
     ])
 
-
-
     function onClickOpen(item: any) {
         dispatch(startLoading());
         const { rate, ...itemWithoutRate } = item;

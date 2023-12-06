@@ -6,9 +6,7 @@ import DialogRightFilter from "../dialog/DialogRightFilter";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useAppDispatch, } from "../../redux/store";
-import { setRangeValues } from "../../redux/slices/filterSlice";
-
-
+import { setRangeValues, toggleCheckbox } from "../../redux/slices/filterSlice";
 interface FilterOpenModal {
     isOpen: boolean
     setIsOpen: () => void
@@ -154,6 +152,7 @@ const FilterInput: FC<FilterOpenModal> = (
 
     function onClickApp() {
         dispatch(setRangeValues(sliderValues));
+        dispatch(toggleCheckbox(checkboxStates));
     }
 
     return (

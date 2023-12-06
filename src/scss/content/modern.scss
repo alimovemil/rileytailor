@@ -223,10 +223,15 @@
                     cursor: pointer;
 
                     &-image {
-                        background: #FFFFFF;
-                        width: rem(120);
-                        height: rem(120);
                         display: flex;
+                        align-items: center;
+                        gap: rem(20);
+
+                        div {
+                            height: rem(120);
+                            width: rem(120);
+                            background-color: #FFFFFF;
+                        }
                     }
 
                     img {

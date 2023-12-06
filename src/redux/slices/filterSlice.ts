@@ -14,12 +14,13 @@ const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
-        toggleCheckbox: (state, action: PayloadAction<string>) => {
-            const checkbox = action.payload;
-            state.filter[checkbox] = !state.filter[checkbox];
+        toggleCheckbox: (state, action: PayloadAction<Record<string, boolean>>) => {
+            const updatedFilter = action.payload;
+            state.filter = { ...state.filter, ...updatedFilter };
         },
         setRangeValues: (state, action: PayloadAction<[number, number]>) => {
-            state.rangeValues = action.payload;
+            const [start, end] = action.payload;
+            state.rangeValues = [start, end];
         },
     },
 });

@@ -13,10 +13,9 @@ const Modern: FC = () => {
 
     console.log(editedData)
 
-
     const dispatch = useAppDispatch()
 
-    const [ addedToCart, setAddedToCart ] = useState(false);
+    const [ , setAddedToCart ] = useState(false);
 
     const [ selectedImage, setSelectedImage ] = useState<string | null>(null);
 
@@ -25,6 +24,9 @@ const Modern: FC = () => {
         {
             imgs: '/img/png/frying_2.png',
         },
+        {
+            imgs: '/img/png/frying_1.png'
+        }
     ])
 
     const diameter = [
@@ -65,13 +67,15 @@ const Modern: FC = () => {
         },
     ])
 
-    useEffect(() => init(), [init, location]);
+    useEffect(() => init(), [ init, location ]);
 
     const [ isModern, setIsModern ] = useState<any>({})
 
     const [ , setIsLoading ] = useState(false);
 
-    const [selectedSize, setSelectedSize] = useState<string | null>(null);
+    const [ selectedSize, setSelectedSize ] = useState<string | null>(null);
+
+    const [ isAddedToCart, setIsAddedToCart ] = useState(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function init() {
@@ -102,10 +106,16 @@ const Modern: FC = () => {
         setIsLoading(false);
     }
 
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setIsAddedToCart(false);
+        }, 2000);
+        return () => clearTimeout(timeout);
+    }, [ isAddedToCart ]);
 
     function onClickAdd() {
         dispatch(CauldronsSave(isModern));
-        setAddedToCart(true);
+        setIsAddedToCart(true);
     }
 
     function onClickSize(size: string) {
@@ -166,19 +176,21 @@ const Modern: FC = () => {
 
                                             <div className="modern-item-style-block-name-cost">
                                                 <p>{ isModern.cost }</p>
-                                                <div className="modern-item-style-block-name-cost-div">{ isModern.paragraph }</div>
+                                                <div
+                                                    className="modern-item-style-block-name-cost-div">{ isModern.paragraph }</div>
                                                 <h4>{ isModern.price }</h4>
-                                                <span style={{ color: isModern.span !== 'Есть в наличии' ? '#AC1931' : '' }}>{isModern.span}</span>
+                                                <span
+                                                    style={ {color: isModern.span !== 'Есть в наличии' ? '#AC1931' : ''} }>{ isModern.span }</span>
                                             </div>
 
                                             <div className="modern-item-style-block-btn">
                                                 <Button
-                                                    text={ addedToCart ? 'Добавлено в корзину' : 'Добавить в корзину' }
+                                                    text={ isAddedToCart ? 'Добавлено в корзину' : 'Добавить в корзину' }
                                                     onClick={ onClickAdd }
-                                                    leftIcon={ addedToCart ? <BasketAdd color={ '#1E2546' }/> :
+                                                    leftIcon={ isAddedToCart ? <BasketAdd color={ '#1E2546' }/> :
                                                         <Basket/> }
-                                                    className={ addedToCart ? 'btn-added' : 'btn' }
-                                                    disabled={isModern.span !== 'Есть в наличии'}
+                                                    className={ isAddedToCart ? 'btn-added' : 'btn' }
+                                                    disabled={ isModern.span !== 'Есть в наличии' }
                                                 />
                                             </div>
                                         </div>

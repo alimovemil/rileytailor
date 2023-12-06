@@ -14,13 +14,15 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GetCauldrons, updateBasketInfo } from "../../redux/reducers/basket/basketRe";
 import { RootState, useAppDispatch } from "../../redux/store";
+import { selectIsAuthenticated } from "../../redux/reducers/auth/authReducer";
 
 const Header: FC = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const productsInBasket = useSelector(GetCauldrons);
     const totalPrice = useSelector((state: RootState) => state.profile.totalPrice);
     const totalItems = useSelector((state: RootState) => state.profile.totalItems);
+    const isAuthenticated = useSelector(selectIsAuthenticated);
 
     const calculateTotalPrice = useCallback(() => {
         dispatch(updateBasketInfo());
@@ -29,6 +31,7 @@ const Header: FC = () => {
     const [ isModal, setIsModal ] = useState(false);
     const [ isDialog, SetIsDialog ] = useState(false)
     const [ isProductItemVisible, setProductItemVisible ] = useState(false);
+    const [profileButtonText, setProfileButtonText] = useState('Войти');
 
     const handleBurgerMenuClick = () => {
         setProductItemVisible(!isProductItemVisible);
@@ -45,6 +48,10 @@ const Header: FC = () => {
         calculateTotalPrice();
     }, [productsInBasket, calculateTotalPrice]);
 
+    useEffect(() => {
+        setProfileButtonText(isAuthenticated ? 'Мой профиль' : 'Войти');
+    }, [isAuthenticated]);
+
     const onChangeSetValue = (value: string, key: string) => {
         const listUpdate = [...isField].map((i) => {
             if (i.key === key) i.value = value;
@@ -54,17 +61,17 @@ const Header: FC = () => {
         setIsField(listUpdate);
     }
 
-    function onClickModal() {
+    const onClickModal = () => {
         setIsModal(true);
     }
 
-    function onClickDialog() {
-        SetIsDialog(true)
+    const onClickDialog = () => {
+        SetIsDialog(true);
     }
 
-    function onClickHome() {
-        navigate('/')
-    }
+    const onClickHome = () => {
+        navigate('/');
+    };
 
     return (
         <div className="header">
@@ -104,9 +111,11 @@ const Header: FC = () => {
                                 </div>
                                 <div className="header-top-item-profile">
                                     <Button
-                                        text={ 'Войти' }
-                                        onClick={ onClickModal }
-                                        leftIcon={ (<Person color={ '#1E2546' }/>) }
+                                        text={profileButtonText}
+                                        onClick={() => {
+                                            isAuthenticated ? navigate('/sign') : onClickModal();
+                                        }}
+                                        leftIcon={<Person color={'#1E2546'} />}
                                         className="header-btn"
                                     />
                                 </div>
@@ -120,7 +129,6 @@ const Header: FC = () => {
                                     <div className="header-top-item-basket-uzs">
                                         <p>Корзина</p>
                                         <span>{totalPrice.toLocaleString('ru-RU')} UZS</span>
-
                                     </div>
                                 </div>
                             </div>
@@ -144,13 +152,11 @@ const Header: FC = () => {
                                     } }
                                 />
                             </CSSTransition>
-
                         </div>
                     </div>
                 </div>
             </div>
             <div className="header-border"/>
-
         </div>
     );
 };

@@ -100,7 +100,7 @@ const SignRedactor: FC = () => {
     }
 
     function onClickExit() {
-        navigate('/pages')
+        navigate('/')
     }
 
     function onClickSave() {

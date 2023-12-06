@@ -7,6 +7,8 @@ import Eye from '../../container/icons/Eye';
 import EyeClose from '../../container/icons/EyeClose';
 import Button from '../form/Button';
 import HeaderRegistration from "./HeaderRegistration";
+import { setAuthenticated } from "../../redux/reducers/auth/authReducer";
+import { useAppDispatch } from "../../redux/store";
 
 interface HeaderOpenProps {
     isShow: boolean;
@@ -15,6 +17,7 @@ interface HeaderOpenProps {
 
 const HeaderOpen: FC<HeaderOpenProps> = ({ isShow, setIsShow }) => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const { register, handleSubmit } = useForm<any>({});
 
@@ -27,9 +30,11 @@ const HeaderOpen: FC<HeaderOpenProps> = ({ isShow, setIsShow }) => {
         } else {
             const isAuthenticated = data.username === 'timtim' && data.password === '2525';
             if (isAuthenticated) {
+                dispatch(setAuthenticated());
+                setIsShow();
                 navigate('/sign');
             } else {
-                console.log('Вход не удался. Неверные учетные данные.');
+                console.log('Login failed. Incorrect credentials.');
             }
         }
     };

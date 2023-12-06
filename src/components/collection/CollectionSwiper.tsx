@@ -5,15 +5,14 @@ import { useNavigate } from "react-router-dom";
 import Pagination from "../form/Pagination";
 import Percent from "../../container/icons/percent";
 import { CauldronsSave, updateBasketInfo } from "../../redux/reducers/basket/basketRe";
-import { useAppDispatch, RootState } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { startLoading, stopLoading } from "../../redux/slices/loadingSlice";
 import Tick from "../../container/icons/Tick";
-import { useSelector } from "react-redux";
 
 const CollectionSwiper: FC = () => {
 
     const navigate = useNavigate()
-    const { rangeValues } = useSelector((state: RootState) => state.filter);
+    const { rangeValues } = useAppSelector(state => state.filter);
 
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
 

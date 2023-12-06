@@ -1,4 +1,4 @@
-import React, { FC, } from 'react';
+import React, { FC, useState, } from 'react';
 import Header from "./index";
 import Product from "../products";
 import Footer from "../footer";
@@ -6,24 +6,34 @@ import Sign from "../../container/icons/Sign";
 import Button from "../../components/form/Button";
 import { useLocation, useNavigate } from "react-router-dom";
 import Basket from "../../container/icons/Basket";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { setUnauthenticated } from "../../redux/reducers/auth/authReducer";
+import { GetCauldrons } from "../../redux/reducers/basket/basketRe";
 
 const SignLog: FC = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const location = useLocation();
     const state: any = location.state;
-    const editedData = state?.data || {};
+    const updatedItem  = state?.data || {};
+    console.log(updatedItem)
+    // const products = useSelector(GetCauldrons);
+    const productsInBasket = useSelector(GetCauldrons);
 
-    console.log(editedData)
+    const [sign ] = useState<any[]>([
+        {
+
+        }
+    ])
+
+    function onClickExit() {
+        navigate('/')
+        dispatch(setUnauthenticated());
+    }
 
     function onClickRedactor() {
         navigate('edit')
-    }
-
-    function onClickExit() {
-        navigate('/pages')
     }
 
     return (
@@ -64,6 +74,18 @@ const SignLog: FC = () => {
                                             <div className="sign-content-order-history-meta">
                                                 <h3>История заказов</h3>
                                             </div>
+                                            <div className="sign-content-order-history-top">
+                                                {sign.map((list,idx) => (
+                                                    <div key={idx}>
+                                                        <h4>{list.title}</h4>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            {productsInBasket.map((item, idx) => (
+                                                <div key={idx}>
+                                                    <p>{item.text}</p>
+                                                </div>
+                                            ))}
                                             <div className="sign-content-order-history-basket">
                                                 <Basket size={ 80 } color={ '#000000' }/>
                                                 <p>У вас нет оформленных заказов</p>
