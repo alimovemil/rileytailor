@@ -1,4 +1,4 @@
-import React, { FC, useState, } from 'react';
+import React, { FC,} from 'react';
 import Header from "./index";
 import Product from "../products";
 import Footer from "../footer";

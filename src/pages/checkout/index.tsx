@@ -13,9 +13,7 @@ import NavBarBottom from "../../components/sidebar/NavBarBottom";
 
 const CheckOut: FC = () => {
     const products = useSelector(GetCauldrons);
-
-    const navigate = useNavigate()
-
+    useNavigate();
     const location = useLocation();
     const state: any = location.state;
     const editedData = state?.data || {};
@@ -36,7 +34,7 @@ const CheckOut: FC = () => {
 
     const [ showAdditionalElements, setShowAdditionalElements ] = useState(true);
     const [ selectedOption, setSelectedOption ] = useState('Самовывоз');
-    const [ isPayment, setPayment ] = useState<any[]>([]);
+    const [ isPayment ] = useState<any[]>([]);
 
     const getTotalProductsSum = (productsInBasket: any[]) => {
         return productsInBasket.reduce((total, item) => {
@@ -336,6 +334,7 @@ const CheckOut: FC = () => {
                                         <div className="checkout-block-goods-top-line"/>
                                         <div className="checkout-block-pay-item">
                                             <div className="checkout-block-pay-item-meta">
+                                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                                 <a href="#"><img src={process.env.PUBLIC_URL + "/img/png/click.png"} alt=""/></a>
                                             </div>
                                         </div>
