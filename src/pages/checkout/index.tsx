@@ -5,8 +5,8 @@ import Location from "../../container/icons/location";
 import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { GetCauldrons } from "../../redux/reducers/basket/basketRe";
+import { useDispatch, useSelector } from "react-redux";
+import { GetCauldrons, setCurrentOrder } from "../../redux/reducers/basket/basketRe";
 import Footer from "../footer";
 import Button from "../../components/form/Button";
 import NavBarBottom from "../../components/sidebar/NavBarBottom";
@@ -21,6 +21,8 @@ const CheckOut: FC = () => {
     const editedData = state?.data || {};
 
     const productsInBasket = useSelector(GetCauldrons);
+
+    const dispatch = useDispatch()
 
     console.log(editedData)
 
@@ -43,10 +45,9 @@ const CheckOut: FC = () => {
         }, 0);
     };
 
-    const deliveryCost = 30000;
+    const deliveryCost = selectedOption === "Самовывоз" ? 0 : 30000;
     const productsSum = getTotalProductsSum(productsInBasket);
     const totalSumWithoutDelivery = productsSum + deliveryCost;
-
 
     useEffect(() => {
         if (selectedItem === 'Чирчик' || selectedItem === 'Янгиюль' || selectedItem === 'Фергана') {
@@ -113,21 +114,40 @@ const CheckOut: FC = () => {
         setDelivery(listUpdate);
     }
 
+    const [totalPrice, setTotalPrice] = useState<number>(0);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        init();
+    }, [init, products]);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function init() {
         if (products) {
             // @ts-ignore
-            setPayment(products);
+            setTotalPrice(products);
+            calculateTotalPrice(products);
         }
+    }
+
+    function calculateTotalPrice(items: any[]) {
+        const total = items.reduce((acc, item) => {
+            const itemPrice = parseFloat(item.price.replace(/[^0-9]/g, ''));
+            return acc + itemPrice * parseInt(item.count);
+        }, 0);
+
+        setTotalPrice(total.toLocaleString('ru-RU'));
     }
 
     function onChangeValue(event: any) {
         setSelectedOption(event.target.value);
     }
 
-    function onClickPayment() {
-        navigate('')
-    }
+    const onClickPayment = async (totalPrice: number) => {
+        const newOrderNumber = editedData?.orderNumber + 1 || 1;
+        await dispatch(setCurrentOrder({ orderNumber: newOrderNumber }));
+        window.open("https://my.click.uz", "_blank");
+    };
 
     return (
         <div>
@@ -161,7 +181,6 @@ const CheckOut: FC = () => {
                                                         <p>{ item.text }</p>
                                                         <h5>{ item.count } ед</h5>
                                                         <div className={`checkout-block-goods-top-cauldrons-inner-span ${item.className}`}>
-
                                                             <h5>{item.paragraph}</h5>
                                                             <span>{ item.price }</span>
                                                         </div>
@@ -317,7 +336,7 @@ const CheckOut: FC = () => {
                                         <div className="checkout-block-goods-top-line"/>
                                         <div className="checkout-block-pay-item">
                                             <div className="checkout-block-pay-item-meta">
-                                                ds
+                                                <a href="#"><img src={process.env.PUBLIC_URL + "/img/png/click.png"} alt=""/></a>
                                             </div>
                                         </div>
                                     </div>
@@ -356,7 +375,7 @@ const CheckOut: FC = () => {
 
                                     <div className="checkout-total-btn">
                                         <Button text={ 'Подтвердить заказ и оплатить' }
-                                                onClick={ onClickPayment }
+                                                onClick={() => onClickPayment(totalPrice)}
                                                 className="btn"
                                         />
                                     </div>

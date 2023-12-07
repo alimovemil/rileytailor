@@ -9,6 +9,7 @@ import Basket from "../../container/icons/Basket";
 import { useDispatch, useSelector } from "react-redux";
 import { setUnauthenticated } from "../../redux/reducers/auth/authReducer";
 import { GetCauldrons } from "../../redux/reducers/basket/basketRe";
+import SignLogItem from "../../components/pages-2/SignLogitem/SignLogItem";
 
 const SignLog: FC = () => {
     const navigate = useNavigate()
@@ -16,16 +17,10 @@ const SignLog: FC = () => {
 
     const location = useLocation();
     const state: any = location.state;
-    const updatedItem  = state?.data || {};
+    const updatedItem = state?.data || {};
     console.log(updatedItem)
     // const products = useSelector(GetCauldrons);
     const productsInBasket = useSelector(GetCauldrons);
-
-    const [sign ] = useState<any[]>([
-        {
-
-        }
-    ])
 
     function onClickExit() {
         navigate('/')
@@ -74,22 +69,38 @@ const SignLog: FC = () => {
                                             <div className="sign-content-order-history-meta">
                                                 <h3>История заказов</h3>
                                             </div>
-                                            <div className="sign-content-order-history-top">
-                                                {sign.map((list,idx) => (
-                                                    <div key={idx}>
-                                                        <h4>{list.title}</h4>
+                                            <SignLogItem/>
+                                            <div className="sign-content-order-history-list">
+                                                {!!productsInBasket.length && productsInBasket.map((item, idx) => (
+                                                    <div key={ idx } className="sign-content-order-history-list-item">
+                                                        <div className="sign-content-order-history-list-item-img">
+                                                            <div className="sign-content-order-history-list-item-img-inner">
+                                                                <img src={ item.img } alt=""/>
+                                                            </div>
+                                                            <div className="sign-content-order-history-list-item-img-price">
+                                                                <p>{ item.text }</p>
+
+                                                                <div className={ `sign-content-order-history-list-item-img-price-paragraph ${ item.className }` }>
+                                                                    <h4>{ item.paragraph }</h4>
+                                                                    <span>{ item.price }</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <h5>{ item.count } товаров</h5>
                                                     </div>
-                                                ))}
+                                                )) }
                                             </div>
-                                            {productsInBasket.map((item, idx) => (
-                                                <div key={idx}>
-                                                    <p>{item.text}</p>
+
+                                            {!productsInBasket.length && (
+                                                <div className="sign-content-order-history-basket">
+                                                    <Basket size={ 80 } color={ '#000000' }/>
+                                                    <p>У вас нет оформленных заказов</p>
                                                 </div>
-                                            ))}
-                                            <div className="sign-content-order-history-basket">
-                                                <Basket size={ 80 } color={ '#000000' }/>
-                                                <p>У вас нет оформленных заказов</p>
-                                            </div>
+                                            )}
+
+                                                <SignLogItem/>
+
                                         </div>
                                     </div>
                                 </div>

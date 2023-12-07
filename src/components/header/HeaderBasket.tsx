@@ -117,7 +117,10 @@ const HeaderBasket: FC<HeaderOpenModal> = ({ isOpen, setIsOpen }) => {
                     <div className="header-top-cart-bottom-total">
                         <span>{totalPrice} UZS</span>
                     </div>
-                    <Button text={'Оформить заказ'} onClick={() => onClickPayment(totalPrice)} className={'btn'} />
+                    <Button
+                        text={'Оформить заказ'}
+                        onClick={() => onClickPayment(totalPrice)}
+                        className={'btn'} />
                 </div>
             </div>
         </DialogRightByContent>
