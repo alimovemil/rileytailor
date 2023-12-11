@@ -19,7 +19,6 @@ const SignLog: FC = () => {
     const state: any = location.state;
     const updatedItem = state?.data || {};
     console.log(updatedItem)
-    // const products = useSelector(GetCauldrons);
     const productsInBasket = useSelector(GetCauldrons);
 
     function onClickExit() {

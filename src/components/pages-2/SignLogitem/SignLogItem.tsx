@@ -3,12 +3,9 @@ import ArrowTop from "../../../container/icons/ArrowTop";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/store";
 
-interface SignLogItemProps {
-    time?: string;
-    date?: string;
-}
 
-const SignLogItem: FC<SignLogItemProps> = ({ time, date }) => {
+
+const SignLogItem: FC= () => {
     const totalSum = useSelector((state: RootState) => state.profile.totalPrice);
     const currentOrder = useSelector((state: RootState) => state.profile.currentOrder);
 
@@ -19,13 +16,13 @@ const SignLogItem: FC<SignLogItemProps> = ({ time, date }) => {
             title: `Заказ №${orderNumber}`,
         },
         {
-            price: '18.08.2022, 12:35'
+            price: new Date().toLocaleString('ru-RU'),
         },
         {
-            price: 'Click'
+            price: 'Click',
         },
         {
-            price: ''
+            price: '',
         },
         {
             end: 'Завершен',
@@ -41,7 +38,6 @@ const SignLogItem: FC<SignLogItemProps> = ({ time, date }) => {
             setOrderNumber(currentOrder.orderNumber);
         }
     }, [currentOrder, orderNumber]);
-
 
     return (
         <div className="sign-content-order-history-top">

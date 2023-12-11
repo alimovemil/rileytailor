@@ -9,6 +9,27 @@
     }
 }
 
+@media (max-width: 1440px) {
+    .dialog__right__containers {
+        .dialog-container {
+            .filter-item {
+                right: 137px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .dialog__right__containers {
+        .dialog-container {
+            .filter-item {
+                right: 17px;
+            }
+        }
+    }
+}
+
+
 @media (max-width: 1030px) {
     .carousel-page {
         .carousel-caption {

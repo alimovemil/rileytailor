@@ -5,14 +5,18 @@ import { useNavigate } from "react-router-dom";
 import Pagination from "../form/Pagination";
 import Percent from "../../container/icons/percent";
 import { CauldronsSave, updateBasketInfo } from "../../redux/reducers/basket/basketRe";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
 import { startLoading, stopLoading } from "../../redux/slices/loadingSlice";
 import Tick from "../../container/icons/Tick";
+import { useSelector } from "react-redux";
 
 const CollectionSwiper: FC = () => {
 
     const navigate = useNavigate()
     const { rangeValues } = useAppSelector(state => state.filter);
+
+
+    const { isSelected13to15 } = useAppSelector(state => state.productDisplay);
 
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
@@ -120,13 +124,19 @@ const CollectionSwiper: FC = () => {
     const [ totalPages ] = useState(1);
 
     useEffect(() => {
-        const filteredData = swiper.filter(item => {
+        const filteredData = swiper.filter((item) => {
             const itemPrice = parseInt(item.price.replace(/\D/g, ''));
             return itemPrice >= rangeValues[0] && itemPrice <= rangeValues[1];
         });
 
-        setFilteredSwiper(filteredData);
-    }, [rangeValues, swiper]);
+        let updatedFilteredSwiper = [...filteredData];
+
+        if (isSelected13to15) {
+            updatedFilteredSwiper = updatedFilteredSwiper.filter(item => item.key === '1' || item.key === '2');
+        }
+
+        setFilteredSwiper(updatedFilteredSwiper);
+    }, [rangeValues, swiper, isSelected13to15]);
 
     function onClickOpen(item: any) {
         dispatch(startLoading());

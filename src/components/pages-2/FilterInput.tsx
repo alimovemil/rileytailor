@@ -6,7 +6,8 @@ import DialogRightFilter from "../dialog/DialogRightFilter";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useAppDispatch, } from "../../redux/store";
-import { setRangeValues, toggleCheckbox } from "../../redux/slices/filterSlice";
+import { setRangeValues,} from "../../redux/slices/filterSlice";
+import { setCheckboxState,} from "../../redux/slices/filterSliceCheckbox";
 interface FilterOpenModal {
     isOpen: boolean
     setIsOpen: () => void
@@ -21,7 +22,7 @@ const FilterInput: FC<FilterOpenModal> = (
     useNavigate();
     const dispatch = useAppDispatch();
 
-    const [ filter ] = useState([
+    const [ filter, SetFilter ] = useState([
         {
             title: 'Диаметр, см',
             checkbox: '13 - 15',
@@ -142,18 +143,21 @@ const FilterInput: FC<FilterOpenModal> = (
 
 
     function handleCheckboxChange(checkbox: string) {
-        setCheckboxStates(prevStates => {
+        setCheckboxStates((prevStates) => {
             return {
                 ...prevStates,
                 [checkbox]: !prevStates[checkbox],
             };
         });
+
+        dispatch(setCheckboxState(checkbox));
     }
+
 
     function onClickApp() {
         dispatch(setRangeValues(sliderValues));
-        dispatch(toggleCheckbox(checkboxStates));
     }
+
 
     return (
         <DialogRightFilter

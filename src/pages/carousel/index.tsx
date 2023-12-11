@@ -47,7 +47,7 @@ const Carousel: FC = () => {
                 <div className="carousel-inner">
                     { carousel.map((item, idx) => {
                         return (
-                            <div className="carousel-item active" data-interval="1"
+                            <div className="carousel-item active" data-interval="2000"
                                  key={ idx }
                             >
                                 { item.carousel && (

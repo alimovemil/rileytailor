@@ -2,7 +2,6 @@ import { BasketState } from "./types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "redux/store";
 
-
 export interface OrderType {
     orderNumber: number;
 }
@@ -53,7 +52,6 @@ const profileReducer = createSlice({
                 orderNumber: state.currentOrder.orderNumber + 1,
             };
         },
-
 
         updateBasketInfo: (state) => {
             state.totalPrice = state.products.reduce((total: number, item: { price: string; count: number; }) => {
