@@ -22,7 +22,7 @@ const FilterInput: FC<FilterOpenModal> = (
     useNavigate();
     const dispatch = useAppDispatch();
 
-    const [ filter, SetFilter ] = useState([
+    const [ filter ] = useState([
         {
             title: 'Диаметр, см',
             checkbox: '13 - 15',
