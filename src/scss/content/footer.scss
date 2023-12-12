@@ -35,11 +35,11 @@
         .btn:focus,
         .btn:active {
             border: none;
-            background: none;
+            background: transparent;
+            color: $white;
 
             .header__text {
                 color: $white;
-                border-bottom: 0.0625rem solid #fff;
             }
         }
     }

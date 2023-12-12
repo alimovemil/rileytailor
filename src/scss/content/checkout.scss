@@ -79,6 +79,7 @@
                             display: flex;
                             align-items: center;
                         }
+
                         .cauldrons {
                             span {
                                 color: #AC1931;
@@ -112,7 +113,38 @@
             &-info {
                 display: flex;
                 flex-direction: column;
-                padding-bottom: rem(20);
+                margin-bottom: rem(20);
+                background-color: #FFFFFF;
+
+                &-meta {
+                    padding: rem(30) rem(20);
+
+                    .btn {
+                        padding: rem(14) rem(28);
+                        border: 1px solid #1E2546;
+                        border-radius: 0;
+                        color: #1E2546;
+                        background-color: #FFFFFF;
+                        transition: background-color 0.5s, border-color 0.5s, color 0.5s;
+                        font-size: rem(14);
+                        font-weight: 600;
+                        line-height: rem(24);
+
+                        &:active,
+                        &:focus,
+                        &:hover {
+                            background-color: #1E2546;
+                            border: 1px solid #1E2546;
+                            color: #FFFFFF;
+                        }
+                    }
+
+                    .btn + .btn {
+                        margin-left: rem(20);
+                        max-width: rem(146);
+                        width: 100%;
+                    }
+                }
 
                 &-tell {
                     display: flex;
@@ -120,10 +152,31 @@
                     width: 100%;
                     gap: rem(20);
                     flex-wrap: wrap;
+                    justify-content: space-between;
+                    padding-bottom: rem(30);
+
+                    &-phone {
+                        width: 100%;
+
+                        input {
+                            padding: rem(13) rem(10);
+                            border-radius: 0;
+                            border: 1px solid rgba(0, 0, 0, 0.20);
+                        }
+
+                        input:focus {
+                            box-shadow: none;
+                            border-color: rgba(0, 0, 0, 0.20);
+                        }
+                    }
 
                     &-input {
                         max-width: rem(242.5);
                         width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: rem(5);
+                        position: relative;
 
                         label {
                             font-size: rem(12);
@@ -150,6 +203,11 @@
                                     font-weight: 600;
                                 }
                             }
+                        }
+
+                        p {
+                            position: absolute;
+                            bottom: -30px;
                         }
                     }
                 }
@@ -347,7 +405,7 @@
                         }
 
                         &-inner {
-                            max-width: rem(270.5);
+                            max-width: rem(237.5);
                             width: 100%;
                             display: flex;
                             flex-direction: column;
@@ -419,10 +477,10 @@
                     border: 1px solid rgba(0, 0, 0, 0.10);
                     background: #FFF;
 
-                    a {
-                        img {
-
-                        }
+                    &:focus,
+                    &:active {
+                        border: 2px solid #008033;
+                        background: #FFF;
                     }
                 }
             }
@@ -499,6 +557,7 @@
 
         &-btn {
             background: #008033;
+
             .btn {
                 padding: rem(14) rem(28);
                 text-align: center;
@@ -511,7 +570,7 @@
             }
 
             .btn:hover,
-            .btn:focus{
+            .btn:focus {
                 background: transparent;
                 color: $white;
             }

@@ -41,9 +41,12 @@
                     font-size: rem(14);
                     line-height: rem(24);
 
-                    :hover,
+                    &:hover,
+                    &:active,
+                    &:focus
                     {
-                        color: $white;
+                        color: #002DFF;
+                        background: transparent;
                     }
                 }
 

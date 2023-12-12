@@ -3,7 +3,11 @@ import Calculator from "../../container/icons/Сalculator";
 import { NavLink } from "react-router-dom";
 import ProductItem from "../../components/product/product";
 
-const Product: FC = () => {
+interface ProductProduct {
+    isCheckoutProduct?: boolean;
+}
+
+const Product: FC<ProductProduct> = ({isCheckoutProduct}) => {
 
     const [ list, SetList ] = useState(false)
 
@@ -43,42 +47,46 @@ const Product: FC = () => {
     };
 
     return (
-        <div className="product">
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="product-block">
-                            <div className="product-left" onClick={ toggleBlock }>
-                                { list && (
-                                    <ProductItem/>
-                                ) }
-                                <Calculator/>
-                                <p>Продукция</p>
-                            </div>
-
-                            <nav>
-                                <div className="product-right">
-                                    <div className="product-right-item">
-                                        { navigation?.map(({route, name}) => {
-                                            return (
-                                                <NavLink
-                                                    key={ route }
-                                                    to={ route }
-                                                    className="product-right-item-link"
-                                                >
-                                                    <span>{ name }</span>
-
-                                                </NavLink>
-                                            )
-                                        }) }
+        <>
+            { isCheckoutProduct ? null : (
+                <div className="product">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="product-block">
+                                    <div className="product-left" onClick={ toggleBlock }>
+                                        { list && (
+                                            <ProductItem/>
+                                        ) }
+                                        <Calculator/>
+                                        <p>Продукция</p>
                                     </div>
+
+                                    <nav>
+                                        <div className="product-right">
+                                            <div className="product-right-item">
+                                                { navigation?.map(({route, name}) => {
+                                                    return (
+                                                        <NavLink
+                                                            key={ route }
+                                                            to={ route }
+                                                            className="product-right-item-link"
+                                                        >
+                                                            <span>{ name }</span>
+
+                                                        </NavLink>
+                                                    )
+                                                }) }
+                                            </div>
+                                        </div>
+                                    </nav>
                                 </div>
-                            </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            ) }
+        </>
     );
 };
 

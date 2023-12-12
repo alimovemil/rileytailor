@@ -65,7 +65,7 @@ const HeaderOpen: FC<HeaderOpenProps> = ({ isShow, setIsShow }) => {
                 <form onSubmit={handleSubmit(onSubmit)} className="form-bottom">
                     <div className="form-group-auth">
                         <div className="form-group-auth-block position-relative">
-                            <label htmlFor="username">Имя пользователя или Email</label>
+                            <label htmlFor="username">Эл. почта</label>
                             <input
                                 className="form-control"
                                 type={'text'}
@@ -94,7 +94,7 @@ const HeaderOpen: FC<HeaderOpenProps> = ({ isShow, setIsShow }) => {
 
                     <div className="form-bottom-entry">
                         <Button type="submit" text={'Войти'} className={'btn'} />
-                        <Button text={'Регистрация'} onClick={switchToRegistrationMode} className={'btn'} />
+                        <Button text={'Зарегистрироваться'} onClick={switchToRegistrationMode} className={'btn'} />
                     </div>
                 </form>
             )}

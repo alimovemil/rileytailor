@@ -1,4 +1,4 @@
-import React, { FC,} from 'react';
+import React, { FC, } from 'react';
 import Header from "./index";
 import Product from "../products";
 import Footer from "../footer";
@@ -55,10 +55,6 @@ const SignLog: FC = () => {
                                                     onClick={ onClickRedactor }
                                                     className={ 'btn' }
                                             />
-
-                                            <Button text={ 'Выйти' }
-                                                    onClick={ onClickExit }
-                                                    className={ 'btn' }/>
                                         </div>
                                     </div>
 
@@ -70,16 +66,19 @@ const SignLog: FC = () => {
                                             </div>
                                             <SignLogItem/>
                                             <div className="sign-content-order-history-list">
-                                                {!!productsInBasket.length && productsInBasket.map((item, idx) => (
+                                                { !!productsInBasket.length && productsInBasket.map((item, idx) => (
                                                     <div key={ idx } className="sign-content-order-history-list-item">
                                                         <div className="sign-content-order-history-list-item-img">
-                                                            <div className="sign-content-order-history-list-item-img-inner">
+                                                            <div
+                                                                className="sign-content-order-history-list-item-img-inner">
                                                                 <img src={ item.img } alt=""/>
                                                             </div>
-                                                            <div className="sign-content-order-history-list-item-img-price">
+                                                            <div
+                                                                className="sign-content-order-history-list-item-img-price">
                                                                 <p>{ item.text }</p>
 
-                                                                <div className={ `sign-content-order-history-list-item-img-price-paragraph ${ item.className }` }>
+                                                                <div
+                                                                    className={ `sign-content-order-history-list-item-img-price-paragraph ${ item.className }` }>
                                                                     <h4>{ item.paragraph }</h4>
                                                                     <span>{ item.price }</span>
                                                                 </div>
@@ -91,14 +90,14 @@ const SignLog: FC = () => {
                                                 )) }
                                             </div>
 
-                                            {!productsInBasket.length && (
+                                            { !productsInBasket.length && (
                                                 <div className="sign-content-order-history-basket">
                                                     <Basket size={ 80 } color={ '#000000' }/>
                                                     <p>У вас нет оформленных заказов</p>
                                                 </div>
-                                            )}
+                                            ) }
 
-                                                <SignLogItem/>
+                                            <SignLogItem/>
 
                                         </div>
                                     </div>

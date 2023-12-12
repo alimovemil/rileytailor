@@ -1,18 +1,23 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import Header from "../header";
 import Product from "../products";
 import Location from "../../container/icons/location";
 import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
-import { useLocation, } from "react-router-dom";
+import { useLocation, useNavigate, } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GetCauldrons, setCurrentOrder } from "../../redux/reducers/basket/basketRe";
 import Footer from "../footer";
 import Button from "../../components/form/Button";
 import NavBarBottom from "../../components/sidebar/NavBarBottom";
 import { useAppDispatch } from "../../redux/store";
+import HeaderOpen from "../../components/header/headerOpen";
+import { IMask } from "react-imask";
+import { useForm } from "react-hook-form";
 
 const CheckOut: FC = () => {
+
+    const navigate = useNavigate()
 
     const products = useSelector(GetCauldrons);
     const location = useLocation();
@@ -20,6 +25,8 @@ const CheckOut: FC = () => {
     const editedData = state?.data || {};
 
     const dispatch = useAppDispatch()
+
+    const { handleSubmit, register, setValue, clearErrors, formState: { errors } } = useForm();
 
     const [ selectedItem, setSelectedItem ] = useState('');
 
@@ -31,7 +38,7 @@ const CheckOut: FC = () => {
 
     const [ showAdditionalElements, setShowAdditionalElements ] = useState(true);
     const [ selectedOption, setSelectedOption ] = useState('Самовывоз');
-    const [ isPayment, setIsPayment] = useState<any[]>([]);
+    const [ isPayment, setIsPayment ] = useState<any[]>([]);
 
 
     const getTotalProductsSum = (productsInBasket: any[]) => {
@@ -55,7 +62,7 @@ const CheckOut: FC = () => {
 
     useEffect(() => {
         init();
-    }, [init]);
+    }, [ init ]);
 
 
     const [ delivery, setDelivery ] = useState<any[]>([
@@ -71,38 +78,39 @@ const CheckOut: FC = () => {
             setValue: (value: string, key: string) => onChangeSetValue(value, key),
             key: 'surname'
         },
-        {
-            text: 'Мобильный Телефон',
-            value: '',
-            setValue: (value: string, key: string) => onChangeSetValue(value, key),
-            key: 'phone'
-        }
     ]);
 
-    const Comment = [
+    const [ Comment, setComment ] = useState([
         {
             name: 'Район',
-            key: '',
-
+            key: 'area',
+            setValue: (value: string, key: string) => onChangeSetValues(value, key),
+            value: ''
         },
         {
             name: 'Улица',
-            key: '',
-            className: 'form-content'
+            key: 'street',
+            className: 'form-content',
+            value: '',
+            setValue: (value: string, key: string) => onChangeSetValues(value, key),
         },
         {
             name: 'Дом',
-            key: ''
+            key: 'house1',
+            value: '',
+            setValue: (value: string, key: string) => onChangeSetValues(value, key),
         },
         {
             name: 'Квартира',
-            key: '',
-            className: 'form-content'
+            key: 'apartment',
+            className: 'form-content',
+            value: '',
+            setValue: (value: string, key: string) => onChangeSetValues(value, key),
         },
-    ];
+    ])
 
     const onChangeSetValue = (value: string, key: string) => {
-        const listUpdate = [...delivery].map((i) => {
+        const listUpdate = [ ...delivery ].map((i) => {
             if (i.key === key) i.value = value;
             return i;
         });
@@ -110,12 +118,31 @@ const CheckOut: FC = () => {
         setDelivery(listUpdate);
     }
 
-    const [totalPrice, setTotalPrice] = useState<number>(0);
+    const onChangeSetValues = (value: string, key: string) => {
+        const listUpdate = [ ...Comment ].map((i) => {
+            if (i.key === key) i.value = value;
+            return i;
+        });
+
+        setComment(listUpdate);
+    }
+
+    const [ totalPrice, setTotalPrice ] = useState<number>(0);
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            const mask = IMask(inputRef.current, {
+                mask: '+998 0 000 00 00'
+            });
+        }
+    }, []);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         init();
-    }, [init, products]);
+    }, [ init, products ]);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function init() {
@@ -141,21 +168,97 @@ const CheckOut: FC = () => {
 
     const onClickPayment = async (totalPrice: number) => {
         const newOrderNumber = editedData?.orderNumber + 1 || 1;
-        await dispatch(setCurrentOrder({ orderNumber: newOrderNumber }));
+        await dispatch(setCurrentOrder({orderNumber: newOrderNumber}));
         window.open("https://my.click.uz", "_blank");
     };
 
+    const [ valuePhone, setValuePhone ] = useState('');
+
+    const [ isHeaderOpenVisible, setHeaderOpenVisible ] = useState(false);
+
+    const onSubmit = (data: any) => {
+        if (Object.keys(errors).length === 0) {
+            console.log(data);
+        }
+    };
+
+    function onClickAcc() {
+        setHeaderOpenVisible(true)
+    }
+
+    const onClickNext = () => {
+        const hasErrors = Object.keys(errors).length > 0;
+
+        if (hasErrors) {
+            console.log('Форма содержит ошибки, продолжение невозможно.');
+        } else {
+            console.log('Форма прошла валидацию, можно переходить на следующий этап.');
+        }
+    }
+
     return (
         <div>
-            <Header/>
+            <Header isCheckoutPage={ true }/>
             <div className="content admin-header">
-                <Product/>
-
+                <Product isCheckoutProduct={ true }/>
+                <HeaderOpen isShow={ isHeaderOpenVisible } setIsShow={ () => setHeaderOpenVisible(false) }/>
                 <div className="checkout">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-7 col-12">
-                                <div className="checkout-block">
+                            <div className="col-lg-6 col-12">
+                                <form className="checkout-block" onSubmit={ handleSubmit(onSubmit) }>
+                                    <div className="checkout-block-delivery-info">
+                                        { selectedOption === "Самовывоз" ? (
+                                            <div className="checkout-block-delivery-info-meta">
+                                                <div className="checkout-block-goods-top-header">
+                                                    <h1>Оформление заказа</h1>
+                                                </div>
+                                                <div className="checkout-block-goods-top-line"/>
+                                                <div className="checkout-block-delivery-info-tell">
+                                                    {delivery.map((item, idx) => (
+                                                        <div className="checkout-block-delivery-info-tell-input" key={idx}>
+                                                            <label>{item.text}</label>
+                                                            <TextField
+                                                                value={item.value || ''}
+                                                                className={'checkout-block-delivery-info-tell-input-style'}
+                                                                onChangeValue={(value) => {
+                                                                    item.setValue(value, item.key);
+                                                                    clearErrors(item.key);
+                                                                }}
+                                                                {...register(item.key, { required: true })}
+                                                            />
+
+                                                            {errors[item.key] && <span>Обязательное поле</span>}
+                                                        </div>
+                                                    ))}
+                                                    <div className="checkout-block-delivery-info-tell-phone">
+                                                        <label>Мобильный телефон</label>
+                                                        <input
+                                                            className="form-control"
+                                                            placeholder={ '+998' }
+                                                            ref={ inputRef }
+                                                            value={ valuePhone }
+                                                            onChange={ (e) => {
+                                                                setValuePhone(e.target.value);
+                                                            } }
+                                                            onPaste={ (e) => {
+                                                                setValuePhone(e.clipboardData.getData('Text'));
+                                                            } }
+                                                            type="text"
+                                                            name="logins"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <Button text={ 'Продолжить' } onClick={ onClickNext }
+                                                        className={ 'btn' }
+                                                type={"submit"}
+                                                />
+                                                <Button text={ 'Войти' } onClick={ onClickAcc }
+                                                        className={ 'btn btn-meta' }/>
+                                            </div>
+                                        ) : null }
+
+                                    </div>
                                     <div className="checkout-block-goods">
                                         <div className="checkout-block-goods-top">
                                             <div className="checkout-block-goods-top-header">
@@ -168,16 +271,17 @@ const CheckOut: FC = () => {
                                                      key={ `payment-checkout-${ idx }` }
                                                 >
                                                     <div className="checkout-block-goods-top-cauldrons-img">
-                                                        <div className={`${item.class}`}>
-                                                            {item.rate}
+                                                        <div className={ `${ item.class }` }>
+                                                            { item.rate }
                                                         </div>
                                                         <img src={ item.img } alt=""/>
                                                     </div>
                                                     <div className="checkout-block-goods-top-cauldrons-inner">
                                                         <p>{ item.text }</p>
                                                         <h5>{ item.count } ед</h5>
-                                                        <div className={`checkout-block-goods-top-cauldrons-inner-span ${item.className}`}>
-                                                            <h5>{item.paragraph}</h5>
+                                                        <div
+                                                            className={ `checkout-block-goods-top-cauldrons-inner-span ${ item.className }` }>
+                                                            <h5>{ item.paragraph }</h5>
                                                             <span>{ item.price }</span>
                                                         </div>
                                                     </div>
@@ -191,27 +295,6 @@ const CheckOut: FC = () => {
                                         </div>
                                         <div className="checkout-block-goods-top-line"/>
 
-                                        <div className="checkout-block-delivery-info">
-                                            <div className="checkout-block-delivery-info-tell">
-                                                { delivery.map((item, idx) => (
-                                                    <div className="checkout-block-delivery-info-tell-input"
-                                                    key={idx}
-                                                    >
-                                                        <label>{ item.text }</label>
-                                                        <TextField
-                                                            value={ item.value || '' }
-                                                            className={ 'checkout-block-delivery-info-tell-input-style' }
-                                                            onChangeValue={ (value) => item.setValue(value, item.key) }
-                                                        />
-                                                    </div>
-                                                )) }
-                                            </div>
-                                            {/*<label>Мобильный телефон</label>*/ }
-                                            {/*<TextField*/ }
-                                            {/*    value={ '' }*/ }
-                                            {/*    className="checkout-block-delivery-info-field"*/ }
-                                            {/*/>*/ }
-                                        </div>
                                         <div className="checkout-block-delivery-select">
                                             <div className="checkout-block-delivery-select-dropdown">
                                                 <p>Ваш город</p>
@@ -308,7 +391,8 @@ const CheckOut: FC = () => {
                                                             >
                                                                 <label>{ item.name }</label>
                                                                 <TextField
-                                                                    value={ '' }
+                                                                    value={ item.value }
+                                                                    onChangeValue={ (value) => item.setValue(value, item.key) }
                                                                 />
                                                             </div>
                                                         )) }
@@ -332,12 +416,18 @@ const CheckOut: FC = () => {
                                         <div className="checkout-block-goods-top-line"/>
                                         <div className="checkout-block-pay-item">
                                             <div className="checkout-block-pay-item-meta">
-                                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                                <a href="#"><img src={process.env.PUBLIC_URL + "/img/png/click.png"} alt=""/></a>
+                                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                                                <a href="#"><img src={ process.env.PUBLIC_URL + "/img/png/click.png" }
+                                                                 alt=""/></a>
+                                            </div>
+                                            <div className="checkout-block-pay-item-meta">
+                                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                                                <a href="#"><img src={ process.env.PUBLIC_URL + "/img/png/payme.png" }
+                                                                 alt=""/></a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
 
                             </div>
                             <div className="col-lg-5 col-12">
@@ -349,11 +439,11 @@ const CheckOut: FC = () => {
                                     <div className="checkout-total-amount">
                                         <div className="checkout-total-amount-outcome">
                                             <p>Товар на сумму</p>
-                                            <span>{productsSum.toLocaleString('ru-RU')} UZS</span>
+                                            <span>{ productsSum.toLocaleString('ru-RU') } UZS</span>
                                         </div>
                                         <div className="checkout-total-amount-outcome">
                                             <p>Доставка</p>
-                                            <span>{deliveryCost.toLocaleString('ru-RU')} UZS</span>
+                                            <span>{ deliveryCost.toLocaleString('ru-RU') } UZS</span>
                                         </div>
                                     </div>
 
@@ -362,7 +452,7 @@ const CheckOut: FC = () => {
                                     <div className="checkout-total-inner">
                                         <p>К оплате</p>
                                         <div className="checkout-total-inner-span">
-                                            <span>{totalSumWithoutDelivery.toLocaleString('ru-RU')}</span>
+                                            <span>{ totalSumWithoutDelivery.toLocaleString('ru-RU') }</span>
                                             <div className="checkout-total-inner-span-uzs">UZS</div>
                                         </div>
                                     </div>
@@ -372,7 +462,7 @@ const CheckOut: FC = () => {
 
                                     <div className="checkout-total-btn">
                                         <Button text={ 'Подтвердить заказ и оплатить' }
-                                                onClick={() => onClickPayment(totalPrice)}
+                                                onClick={ () => onClickPayment(totalPrice) }
                                                 className="btn"
                                         />
                                     </div>

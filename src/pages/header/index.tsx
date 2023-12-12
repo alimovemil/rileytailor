@@ -16,7 +16,11 @@ import { GetCauldrons, updateBasketInfo } from "../../redux/reducers/basket/bask
 import { RootState, useAppDispatch } from "../../redux/store";
 import { selectIsAuthenticated } from "../../redux/reducers/auth/authReducer";
 
-const Header: FC = () => {
+interface HeaderProps {
+    isCheckoutPage?: boolean;
+}
+
+const Header: FC<HeaderProps> = ({ isCheckoutPage }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const productsInBasket = useSelector(GetCauldrons);
@@ -94,15 +98,17 @@ const Header: FC = () => {
                             </div>
 
                             <div className="header-input">
-                                {isField.map((item, idx) => (
-                                    <TextField
-                                        value={ item.value || '' }
-                                        type={ 'type' }
-                                        placeholder={ 'Поиск' }
-                                        imgRight={ <Search color={ '#1E2546' }/> }
-                                        onChangeValue={ (value) => item.setValue(value, item.key) }
-                                    />
-                                ))}
+                                {isCheckoutPage
+                                    ? null
+                                    : isField.map((item, idx) => (
+                                        <TextField
+                                            value={item.value || ''}
+                                            type={'type'}
+                                            placeholder={'Поиск'}
+                                            imgRight={<Search color={'#1E2546'} />}
+                                            onChangeValue={(value) => item.setValue(value, item.key)}
+                                        />
+                                    ))}
                             </div>
                             <div className="header-top-item">
                                 <div className="header-top-item-contact">
@@ -120,17 +126,22 @@ const Header: FC = () => {
                                     />
                                 </div>
                                 <div className="header-top-item-basket">
-                                    <Button
-                                        text={ totalItems }
-                                        onClick={ onClickDialog }
-                                        leftIcon={ <Basket/> }
-                                        className={ 'header-top-item-basket-btns' }
-                                    />
-                                    <div className="header-top-item-basket-uzs">
-                                        <p>Корзина</p>
-                                        <span>{totalPrice.toLocaleString('ru-RU')} UZS</span>
-                                    </div>
+                                    {isCheckoutPage ? null : (
+                                        <>
+                                            <Button
+                                                text={totalItems}
+                                                onClick={onClickDialog}
+                                                leftIcon={<Basket />}
+                                                className={'header-top-item-basket-btns'}
+                                            />
+                                            <div className="header-top-item-basket-uzs">
+                                                <p>Корзина</p>
+                                                <span>{totalPrice.toLocaleString('ru-RU')} UZS</span>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
+
                             </div>
                             <HeaderOpen
                                 setIsShow={ () => {
