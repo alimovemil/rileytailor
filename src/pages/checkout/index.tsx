@@ -5,24 +5,21 @@ import Location from "../../container/icons/location";
 import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { GetCauldrons, setCurrentOrder } from "../../redux/reducers/basket/basketRe";
 import Footer from "../footer";
 import Button from "../../components/form/Button";
 import NavBarBottom from "../../components/sidebar/NavBarBottom";
+import { useAppDispatch } from "../../redux/store";
 
 const CheckOut: FC = () => {
+
     const products = useSelector(GetCauldrons);
-    useNavigate();
     const location = useLocation();
     const state: any = location.state;
     const editedData = state?.data || {};
 
-    const productsInBasket = useSelector(GetCauldrons);
-
-    const dispatch = useDispatch()
-
-    console.log(editedData)
+    const dispatch = useAppDispatch()
 
     const [ selectedItem, setSelectedItem ] = useState('');
 
@@ -34,7 +31,8 @@ const CheckOut: FC = () => {
 
     const [ showAdditionalElements, setShowAdditionalElements ] = useState(true);
     const [ selectedOption, setSelectedOption ] = useState('Самовывоз');
-    const [ isPayment ] = useState<any[]>([]);
+    const [ isPayment, setIsPayment] = useState<any[]>([]);
+
 
     const getTotalProductsSum = (productsInBasket: any[]) => {
         return productsInBasket.reduce((total, item) => {
@@ -44,7 +42,7 @@ const CheckOut: FC = () => {
     };
 
     const deliveryCost = selectedOption === "Самовывоз" ? 0 : 30000;
-    const productsSum = getTotalProductsSum(productsInBasket);
+    const productsSum = getTotalProductsSum(products);
     const totalSumWithoutDelivery = productsSum + deliveryCost;
 
     useEffect(() => {
@@ -123,7 +121,7 @@ const CheckOut: FC = () => {
     function init() {
         if (products) {
             // @ts-ignore
-            setTotalPrice(products);
+            setIsPayment(products);
             calculateTotalPrice(products);
         }
     }

@@ -8,6 +8,7 @@ import 'rc-slider/assets/index.css';
 import { useAppDispatch, } from "../../redux/store";
 import { setRangeValues,} from "../../redux/slices/filterSlice";
 import { setCheckboxState,} from "../../redux/slices/filterSliceCheckbox";
+
 interface FilterOpenModal {
     isOpen: boolean
     setIsOpen: () => void
