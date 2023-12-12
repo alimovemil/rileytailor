@@ -4,7 +4,7 @@ import Product from "../products";
 import Location from "../../container/icons/location";
 import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GetCauldrons, setCurrentOrder } from "../../redux/reducers/basket/basketRe";
 import Footer from "../footer";
