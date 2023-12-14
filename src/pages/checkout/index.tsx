@@ -16,9 +16,6 @@ import { IMask } from "react-imask";
 import { useForm } from "react-hook-form";
 
 const CheckOut: FC = () => {
-
-    const navigate = useNavigate()
-
     const products = useSelector(GetCauldrons);
     const location = useLocation();
     const state: any = location.state;
@@ -26,7 +23,7 @@ const CheckOut: FC = () => {
 
     const dispatch = useAppDispatch()
 
-    const { handleSubmit, register, setValue, clearErrors, formState: { errors } } = useForm();
+    const {handleSubmit, register, setValue, clearErrors, formState: {errors, isValid}} = useForm();
 
     const [ selectedItem, setSelectedItem ] = useState('');
 
@@ -39,7 +36,6 @@ const CheckOut: FC = () => {
     const [ showAdditionalElements, setShowAdditionalElements ] = useState(true);
     const [ selectedOption, setSelectedOption ] = useState('Самовывоз');
     const [ isPayment, setIsPayment ] = useState<any[]>([]);
-
 
     const getTotalProductsSum = (productsInBasket: any[]) => {
         return productsInBasket.reduce((total, item) => {
@@ -64,7 +60,6 @@ const CheckOut: FC = () => {
         init();
     }, [ init ]);
 
-
     const [ delivery, setDelivery ] = useState<any[]>([
         {
             text: 'Имя',
@@ -83,9 +78,10 @@ const CheckOut: FC = () => {
     const [ Comment, setComment ] = useState([
         {
             name: 'Район',
-            key: 'area',
+            key: 'region',
             setValue: (value: string, key: string) => onChangeSetValues(value, key),
-            value: ''
+            value: '',
+            field: true,
         },
         {
             name: 'Улица',
@@ -93,12 +89,14 @@ const CheckOut: FC = () => {
             className: 'form-content',
             value: '',
             setValue: (value: string, key: string) => onChangeSetValues(value, key),
+            field: true,
         },
         {
             name: 'Дом',
             key: 'house1',
             value: '',
             setValue: (value: string, key: string) => onChangeSetValues(value, key),
+            field: true
         },
         {
             name: 'Квартира',
@@ -106,7 +104,17 @@ const CheckOut: FC = () => {
             className: 'form-content',
             value: '',
             setValue: (value: string, key: string) => onChangeSetValues(value, key),
+            field: true
         },
+        {
+            area: true,
+            comment: 'Комментарии',
+            key: 'area',
+            setValue: (value: string, key: string) => onChangeSetValues(value, key),
+            field: false,
+            value: '',
+            classArea: 'class'
+        }
     ])
 
     const onChangeSetValue = (value: string, key: string) => {
@@ -166,34 +174,30 @@ const CheckOut: FC = () => {
         setSelectedOption(event.target.value);
     }
 
-    const onClickPayment = async (totalPrice: number) => {
-        const newOrderNumber = editedData?.orderNumber + 1 || 1;
-        await dispatch(setCurrentOrder({orderNumber: newOrderNumber}));
-        window.open("https://my.click.uz", "_blank");
-    };
+    // const onClickPayment = async (totalPrice: number) => {
+    //     const newOrderNumber = editedData?.orderNumber + 1 || 1;
+    //     await dispatch(setCurrentOrder({orderNumber: newOrderNumber}));
+    //     // window.open("https://my.click.uz", "_blank");
+    //     const hasErrors = Object.keys(errors).length > 0;
+    //
+    //     if (hasErrors) {}
+    // }
 
     const [ valuePhone, setValuePhone ] = useState('');
 
     const [ isHeaderOpenVisible, setHeaderOpenVisible ] = useState(false);
-
-    const onSubmit = (data: any) => {
-        if (Object.keys(errors).length === 0) {
-            console.log(data);
-        }
+    const onSubmitSuccess = (data: any) => {
+        console.log("Успешно отправлено:", data);
     };
+
+    const onSubmit = handleSubmit(onSubmitSuccess);
 
     function onClickAcc() {
         setHeaderOpenVisible(true)
     }
 
     const onClickNext = () => {
-        const hasErrors = Object.keys(errors).length > 0;
 
-        if (hasErrors) {
-            console.log('Форма содержит ошибки, продолжение невозможно.');
-        } else {
-            console.log('Форма прошла валидацию, можно переходить на следующий этап.');
-        }
     }
 
     return (
@@ -206,7 +210,7 @@ const CheckOut: FC = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-6 col-12">
-                                <form className="checkout-block" onSubmit={ handleSubmit(onSubmit) }>
+                                <form className="checkout-block">
                                     <div className="checkout-block-delivery-info">
                                         { selectedOption === "Самовывоз" ? (
                                             <div className="checkout-block-delivery-info-meta">
@@ -215,43 +219,47 @@ const CheckOut: FC = () => {
                                                 </div>
                                                 <div className="checkout-block-goods-top-line"/>
                                                 <div className="checkout-block-delivery-info-tell">
-                                                    {delivery.map((item, idx) => (
-                                                        <div className="checkout-block-delivery-info-tell-input" key={idx}>
-                                                            <label>{item.text}</label>
+                                                    { delivery.map((item, idx) => (
+                                                        <div className="checkout-block-delivery-info-tell-input"
+                                                             key={ idx }>
+                                                            <label>{ item.text }</label>
                                                             <TextField
-                                                                value={item.value || ''}
-                                                                className={'checkout-block-delivery-info-tell-input-style'}
-                                                                onChangeValue={(value) => {
+                                                                value={ item.value || '' }
+                                                                className={ 'checkout-block-delivery-info-tell-input-style' }
+                                                                onChangeValue={ (value) => {
                                                                     item.setValue(value, item.key);
                                                                     clearErrors(item.key);
-                                                                }}
-                                                                {...register(item.key, { required: true })}
+                                                                } }
+                                                                { ...register(item.key, {required: !item.value}) }
                                                             />
 
-                                                            {errors[item.key] && <span>Обязательное поле</span>}
+                                                            { errors[item.key] && <span className="validation">Обязательное поле</span> }
                                                         </div>
-                                                    ))}
+                                                    )) }
                                                     <div className="checkout-block-delivery-info-tell-phone">
                                                         <label>Мобильный телефон</label>
                                                         <input
                                                             className="form-control"
-                                                            placeholder={ '+998' }
-                                                            ref={ inputRef }
-                                                            value={ valuePhone }
-                                                            onChange={ (e) => {
+                                                            placeholder={'+998'}
+                                                            {...register('logins', { required: true })}
+                                                            value={valuePhone}
+                                                            onChange={(e) => {
                                                                 setValuePhone(e.target.value);
-                                                            } }
-                                                            onPaste={ (e) => {
+                                                                clearErrors('logins');
+                                                            }}
+                                                            onPaste={(e) => {
                                                                 setValuePhone(e.clipboardData.getData('Text'));
-                                                            } }
+                                                                clearErrors('logins');
+                                                            }}
                                                             type="text"
                                                             name="logins"
                                                         />
+                                                        {errors.logins && <span className="validation">Обязательное поле</span>}
                                                     </div>
                                                 </div>
                                                 <Button text={ 'Продолжить' } onClick={ onClickNext }
                                                         className={ 'btn' }
-                                                type={"submit"}
+                                                        type={ "button" }
                                                 />
                                                 <Button text={ 'Войти' } onClick={ onClickAcc }
                                                         className={ 'btn btn-meta' }/>
@@ -294,7 +302,6 @@ const CheckOut: FC = () => {
                                             <h1>Доставка</h1>
                                         </div>
                                         <div className="checkout-block-goods-top-line"/>
-
                                         <div className="checkout-block-delivery-select">
                                             <div className="checkout-block-delivery-select-dropdown">
                                                 <p>Ваш город</p>
@@ -368,7 +375,6 @@ const CheckOut: FC = () => {
                                                     </div>
                                                 </div>
                                             ) }
-
                                             <div className="checkout-block-delivery-select-meta">
                                                 <div className="checkout-block-delivery-select-meta-checkbox">
                                                     <label>
@@ -385,25 +391,43 @@ const CheckOut: FC = () => {
                                                 { (selectedOption === "Курьерская доставка") && (
                                                     <div className="checkout-block-delivery-select-meta-comment">
                                                         { Comment.map((item, idx) => (
-                                                            <div
-                                                                className={ `checkout-block-delivery-select-meta-comment-inner` }
-                                                                key={ idx }
-                                                            >
-                                                                <label>{ item.name }</label>
-                                                                <TextField
-                                                                    value={ item.value }
-                                                                    onChangeValue={ (value) => item.setValue(value, item.key) }
-                                                                />
+                                                            <div className={ `checkout-block-delivery-select-meta-comment-inner ${item.classArea}` }
+                                                                key={ idx }>
+                                                                { (item.field && (
+                                                                    <>
+                                                                        <label>{ item.name }</label>
+                                                                        <TextField
+                                                                            value={ item.value }
+                                                                            onChangeValue={ (value) => {
+                                                                                item.setValue(value, item.key);
+                                                                                clearErrors(item.key);
+                                                                            } }
+                                                                            { ...register(item.key, {required: !item.value}) }
+                                                                            type="text"
+                                                                        />
+                                                                        { errors[item.key] &&
+                                                                        <span className="validation">Обязательное поле</span> }
+                                                                    </>
+                                                                )) }
+
+                                                                { (item.area && (
+                                                                    <div className="checkout-block-delivery-select-meta-comment-area">
+                                                                        <TextArea
+                                                                            value={ item.value }
+                                                                            label={ item.comment }
+                                                                            rows={ 4 }
+                                                                            onChangeValue={ (value) => {
+                                                                                item.setValue(value, item.key);
+                                                                                clearErrors(item.key);
+                                                                            } }
+                                                                            { ...register(item.key, {required: !item.value}) }
+                                                                        />
+                                                                        { errors[item.key] &&
+                                                                        <span className="validation">Обязательное поле</span> }
+                                                                    </div>
+                                                                )) }
                                                             </div>
                                                         )) }
-                                                        <div
-                                                            className="checkout-block-delivery-select-meta-comment-area">
-                                                            <TextArea
-                                                                value={ '' }
-                                                                label={ 'Комментарии' }
-                                                                rows={ 4 }
-                                                            />
-                                                        </div>
                                                     </div>
                                                 ) }
                                             </div>
@@ -457,13 +481,13 @@ const CheckOut: FC = () => {
                                         </div>
                                     </div>
 
-
                                     <div className="checkout-block-goods-top-line"/>
 
                                     <div className="checkout-total-btn">
                                         <Button text={ 'Подтвердить заказ и оплатить' }
-                                                onClick={ () => onClickPayment(totalPrice) }
+                                                onClick={ onSubmit }
                                                 className="btn"
+                                                disabled={!isValid}
                                         />
                                     </div>
                                 </div>

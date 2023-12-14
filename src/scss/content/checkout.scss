@@ -397,6 +397,7 @@
                         display: flex;
                         flex-wrap: wrap;
                         justify-content: space-between;
+                        padding-top: rem(15);
 
                         label {
                             font-size: rem(12);
@@ -426,6 +427,9 @@
                                 }
                             }
                         }
+                        .class {
+                            max-width: none;
+                        }
 
                         .form-group {
                             .form-block {
@@ -435,8 +439,23 @@
 
                         &-area {
                             width: 100%;
-                        }
+                            display: flex;
+                            flex-direction: column;
+                            gap: rem(5);
 
+                            .form-group {
+                                .form-block {
+                                    .form-control {
+                                        border-radius: 0;
+
+                                        &:focus {
+                                            box-shadow: none;
+                                            border: 1px solid rgba(0, 0, 0, 0.2)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     &-checkbox {
