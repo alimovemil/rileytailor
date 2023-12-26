@@ -1,13 +1,12 @@
 import React, { CSSProperties, FC, useState } from 'react';
 import Button from "../form/Button";
 import { useNavigate } from "react-router-dom";
-import Checkbox from "../form/CheckBox";
 import DialogRightFilter from "../dialog/DialogRightFilter";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useAppDispatch, } from "../../redux/store";
 import { setRangeValues,} from "../../redux/slices/filterSlice";
-import { setCheckboxState,} from "../../redux/slices/filterSliceCheckbox";
+import { Form, Row, Col } from 'react-bootstrap';
 
 interface FilterOpenModal {
     isOpen: boolean
@@ -129,36 +128,18 @@ const FilterInput: FC<FilterOpenModal> = (
             key: 'checkbox18'
         },
     ])
-    const [sliderValues, setSliderValues] = useState<[number, number]>([0, 0]);
 
-    const [ checkboxStates, setCheckboxStates ] = useState<{ [key: string]: boolean }>(() => {
-        return filter.reduce((acc, item) => {
-            acc[item.checkbox as string] = false;
-            return acc;
-        }, {} as { [key: string]: boolean });
-    });
+    const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
+
+    const [sliderValues, setSliderValues] = useState<[number, number]>([0, 0]);
 
     const handleInsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
     };
 
-
-    function handleCheckboxChange(checkbox: string) {
-        setCheckboxStates((prevStates) => {
-            return {
-                ...prevStates,
-                [checkbox]: !prevStates[checkbox],
-            };
-        });
-
-        dispatch(setCheckboxState(checkbox));
-    }
-
-
     function onClickApp() {
         dispatch(setRangeValues(sliderValues));
     }
-
 
     return (
         <DialogRightFilter
@@ -198,16 +179,24 @@ const FilterInput: FC<FilterOpenModal> = (
 
                     <div className="filter-item-inner-meta">
                         { filter.map((item, idx) => (
-                            <div className="filter-item-inner-meta-content">
+                            <div className="filter-item-inner-meta-content"
+                            key={`filter-item-inner-meta-content-${idx}`}
+                            >
                                 <div className={ item.className }/>
                                 <h4 style={ item.styles }>{ item.title }</h4>
                                 <div className="filter-item-inner-meta-content-checkbox">
-                                    <Checkbox
-                                        isChecked={ checkboxStates[item.checkbox as string] }
-                                        onChange={ () => handleCheckboxChange(item.checkbox as string) }
-                                        className={ `` }
-                                        text={ item.checkbox }
-                                        style={ item.margin }
+                                    <Form.Check
+                                        type="checkbox"
+                                        label={item.checkbox}
+                                        checked={selectedCheckboxes.includes(item.key)}
+                                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                            const isChecked = event.target.checked;
+                                            if (isChecked) {
+                                                setSelectedCheckboxes((prev) => [...prev, item.key]);
+                                            } else {
+                                                setSelectedCheckboxes((prev) => prev.filter((key) => key !== item.key));
+                                            }
+                                        }}
                                     />
                                 </div>
                             </div>

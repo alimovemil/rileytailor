@@ -5,6 +5,78 @@
         gap: rem(20);
         padding: rem(30) rem(0) rem(282) rem(0);
 
+        &-block {
+            background: #FFF;
+            max-width: rem(565);
+            width: 100%;
+
+            &-item {
+                padding: rem(20);
+
+                &-name {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .btn-log {
+                        border: none;
+                        background: transparent;
+                    }
+                }
+
+                &-meta {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    gap: rem(15);
+                    padding-bottom: rem(30);
+
+                    label {
+                        color: #1E2546;
+                        font-size: rem(12);
+                        line-height: rem(22);
+                        margin-bottom: rem(5);
+                    }
+
+                    &-field {
+                        .form-control {
+                            padding: rem(12) rem(10);
+                            border-radius: 0;
+                            border: 1px solid rgba(0, 0, 0, 0.20);
+                            &:focus {
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+
+                .btn {
+                    max-width: rem(133);
+                    width: 100%;
+                    height: rem(52);
+                    background: #1E2546;
+                    color: $white;
+                    font-size: rem(14);
+                    font-weight: 600;
+                    line-height: rem(24);
+                    border: 1px solid #1E2546;
+                    border-radius: 0;
+
+                    &:hover,
+                    &:focus{
+                        background: #1E2546;
+                        color: $white;
+                    }
+                }
+
+                .btn + .btn {
+                    margin-left: rem(20);
+                    background: $white;
+                    color: #1E2546;
+                }
+            }
+        }
+
         &-inner {
             display: flex;
             align-items: center;
@@ -35,23 +107,11 @@
                 flex-direction: column;
                 gap: rem(4);
 
-                .btn {
-                    padding: 0;
+                span {
                     color: #002DFF;
                     font-size: rem(14);
                     line-height: rem(24);
-
-                    &:hover,
-                    &:active,
-                    &:focus
-                    {
-                        color: #002DFF;
-                        background: transparent;
-                    }
-                }
-
-                .btn + .btn {
-                    margin-left: 0;
+                    cursor: pointer;
                 }
             }
         }

@@ -48,6 +48,7 @@ const HeaderBasket: FC<HeaderOpenModal> = ({ isOpen, setIsOpen }) => {
         setTotalPrice(total.toLocaleString('ru-RU'));
     }
 
+
     function onClickMinus(item: any) {
         dispatch(cauldronsSlices(item));
         setCartDialog((prevState) =>

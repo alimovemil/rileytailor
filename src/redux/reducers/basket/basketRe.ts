@@ -2,15 +2,10 @@ import { BasketState } from "./types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "redux/store";
 
-export interface OrderType {
-    orderNumber: number;
-}
-
 export const initialState: BasketState = {
     products: [],
     totalItems: 0,
     totalPrice: 0,
-    currentOrder: { orderNumber: 0 },
 };
 
 const profileReducer = createSlice({
@@ -26,7 +21,6 @@ const profileReducer = createSlice({
             }
 
             const findIndex = state.products.findIndex((i: any) => i.key === updateItem.key);
-            console.log(findIndex !== -1)
 
             if (findIndex !== -1) state.products[findIndex].count++;
             else {
@@ -46,13 +40,6 @@ const profileReducer = createSlice({
             }
         },
 
-        setCurrentOrder: (state, action: PayloadAction<OrderType>) => {
-            state.currentOrder = {
-                ...state.currentOrder,
-                orderNumber: state.currentOrder.orderNumber + 1,
-            };
-        },
-
         updateBasketInfo: (state) => {
             state.totalPrice = state.products.reduce((total: number, item: { price: string; count: number; }) => {
                 const itemPrice = parseFloat(item.price.replace(/\D/g, ''));
@@ -67,7 +54,5 @@ const profileReducer = createSlice({
 export const { CauldronsSave, cauldronsSlices, updateBasketInfo } = profileReducer.actions;
 
 export const GetCauldrons = (state: RootState): any[] => state.profile.products;
-
-export const { setCurrentOrder } = profileReducer.actions;
 
 export default profileReducer.reducer;

@@ -13,9 +13,8 @@ import Logo from "../../container/icons/Logo";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { GetCauldrons, updateBasketInfo } from "../../redux/reducers/basket/basketRe";
-import { RootState, useAppDispatch } from "../../redux/store";
+import { RootState, useAppDispatch, } from "../../redux/store";
 import { selectIsAuthenticated } from "../../redux/reducers/auth/authReducer";
-
 interface HeaderProps {
     isCheckoutPage?: boolean;
 }
@@ -48,9 +47,10 @@ const Header: FC<HeaderProps> = ({ isCheckoutPage }) => {
         }
     ])
 
+
     useEffect(() => {
         calculateTotalPrice();
-    }, [productsInBasket, calculateTotalPrice]);
+    }, [productsInBasket, calculateTotalPrice, dispatch]);
 
     useEffect(() => {
         setProfileButtonText(isAuthenticated ? 'Мой профиль' : 'Войти');
@@ -58,12 +58,14 @@ const Header: FC<HeaderProps> = ({ isCheckoutPage }) => {
 
     const onChangeSetValue = (value: string, key: string) => {
         const listUpdate = [...isField].map((i) => {
-            if (i.key === key) i.value = value;
+            if (i.key === key) {
+                i.value = value;
+            }
             return i;
         });
 
         setIsField(listUpdate);
-    }
+    };
 
     const onClickModal = () => {
         setIsModal(true);
@@ -106,9 +108,15 @@ const Header: FC<HeaderProps> = ({ isCheckoutPage }) => {
                                             type={'type'}
                                             placeholder={'Поиск'}
                                             imgRight={<Search color={'#1E2546'} />}
-                                            onChangeValue={(value) => item.setValue(value, item.key)}
+                                            onChangeValue={(value) => {
+                                                item.setValue(value, item.key);
+                                            }}
                                         />
                                     ))}
+                            </div>
+
+                            <div className="search">
+
                             </div>
                             <div className="header-top-item">
                                 <div className="header-top-item-contact">

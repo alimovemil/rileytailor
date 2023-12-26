@@ -6,7 +6,7 @@ import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
 import { useLocation, useNavigate, } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { GetCauldrons, setCurrentOrder } from "../../redux/reducers/basket/basketRe";
+import { GetCauldrons,} from "../../redux/reducers/basket/basketRe";
 import Footer from "../footer";
 import Button from "../../components/form/Button";
 import NavBarBottom from "../../components/sidebar/NavBarBottom";
@@ -23,7 +23,9 @@ const CheckOut: FC = () => {
 
     const dispatch = useAppDispatch()
 
-    const {handleSubmit, register, setValue, clearErrors, formState: {errors, isValid}} = useForm();
+    const { handleSubmit, register, setValue, clearErrors, formState } = useForm();
+    const { errors, isValid } = formState;
+
 
     const [ selectedItem, setSelectedItem ] = useState('');
 
@@ -484,11 +486,13 @@ const CheckOut: FC = () => {
                                     <div className="checkout-block-goods-top-line"/>
 
                                     <div className="checkout-total-btn">
-                                        <Button text={ 'Подтвердить заказ и оплатить' }
-                                                onClick={ onSubmit }
-                                                className="btn"
-                                                disabled={!isValid}
+                                        <Button
+                                            text={'Подтвердить заказ и оплатить'}
+                                            onClick={onSubmit}
+                                            className="btn"
+                                            disabled={!isValid}
                                         />
+
                                     </div>
                                 </div>
                             </div>

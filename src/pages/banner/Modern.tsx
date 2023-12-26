@@ -11,8 +11,6 @@ const Modern: FC = () => {
     const state: any = location.state;
     const editedData = state?.data || {};
 
-    console.log(editedData)
-
     const dispatch = useAppDispatch()
 
     const [ , setAddedToCart ] = useState(false);

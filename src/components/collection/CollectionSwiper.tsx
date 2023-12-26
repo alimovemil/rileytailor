@@ -14,14 +14,11 @@ const CollectionSwiper: FC = () => {
     const navigate = useNavigate()
     const { rangeValues } = useAppSelector(state => state.filter);
 
-
-    const { isSelected13to15 } = useAppSelector(state => state.productDisplay);
-
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
     const dispatch = useAppDispatch();
 
-    const [swiper, setSwiper] = useState<any[]>([
+    const [isProduct, setIsProduct] = useState<any[]>([
         {
             key: '1',
             img: '/img/png/cauldrons_1.png',
@@ -123,19 +120,15 @@ const CollectionSwiper: FC = () => {
     const [ totalPages ] = useState(1);
 
     useEffect(() => {
-        const filteredData = swiper.filter((item) => {
+        const filteredData = isProduct.filter((item) => {
             const itemPrice = parseInt(item.price.replace(/\D/g, ''));
-            return itemPrice >= rangeValues[0] && itemPrice <= rangeValues[1];
+            return (
+                itemPrice >= rangeValues[0] &&
+                itemPrice <= rangeValues[1]
+            );
         });
-
-        let updatedFilteredSwiper = [...filteredData];
-
-        if (isSelected13to15) {
-            updatedFilteredSwiper = updatedFilteredSwiper.filter(item => item.key === '1' || item.key === '2');
-        }
-
-        setFilteredSwiper(updatedFilteredSwiper);
-    }, [rangeValues, swiper, isSelected13to15]);
+        setFilteredSwiper(filteredData);
+    }, [rangeValues, isProduct, dispatch]);
 
     function onClickOpen(item: any) {
         dispatch(startLoading());
@@ -146,11 +139,11 @@ const CollectionSwiper: FC = () => {
             span: item.key === '2' && item.span === 'Есть в наличии' ? 'Нет в наличии' : item.span,
         };
 
-        const updatedData = swiper.map((dataItem) =>
+        const updatedData = isProduct.map((dataItem) =>
             dataItem.key === updatedItem.key ? updatedItem : dataItem
         );
 
-        setSwiper(updatedData);
+        setIsProduct(updatedData);
         setSelectedItem(updatedItem.key);
 
         navigate(`product/${item.key}`, {

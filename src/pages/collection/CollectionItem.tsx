@@ -11,7 +11,7 @@ const CollectionItem: FC = () => {
     const navigate = useNavigate()
 
     function onClickHome() {
-        navigate('/pages')
+        navigate('/')
     }
 
     return (
@@ -36,9 +36,6 @@ const CollectionItem: FC = () => {
                     </div>
                 </div>
             </div>
-            <CollectionPosition/>
-            <CollectionBanner/>
-            <CollectionSwiper/>
         </div>
     );
 };

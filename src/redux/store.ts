@@ -4,7 +4,6 @@ import profileReducer from "./reducers/basket/basketRe"
 import loadingSlice from "./slices/loadingSlice";
 import filterReducer from './slices/filterSlice';
 import authReducer from "./reducers/auth/authReducer";
-import productDisplaySlice from "./slices/filterSliceCheckbox";
 
 export const store = configureStore({
     reducer: {
@@ -12,7 +11,6 @@ export const store = configureStore({
         loading: loadingSlice,
         filter: filterReducer,
         auth: authReducer,
-        productDisplay: productDisplaySlice
     }
 });
 export type RootState = ReturnType<typeof store.getState>;

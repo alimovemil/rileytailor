@@ -7,13 +7,10 @@ import { RootState } from "redux/store";
 
 const SignLogItem: FC= () => {
     const totalSum = useSelector((state: RootState) => state.profile.totalPrice);
-    const currentOrder = useSelector((state: RootState) => state.profile.currentOrder);
-
-    const [orderNumber, setOrderNumber] = useState<number>(currentOrder ? currentOrder.orderNumber : 0);
 
     const [sign] = useState<any[]>([
         {
-            title: `Заказ №${orderNumber}`,
+            title: `Заказ №$`,
         },
         {
             price: new Date().toLocaleString('ru-RU'),
@@ -31,13 +28,6 @@ const SignLogItem: FC= () => {
             arrow: <ArrowTop color='#1E2546'/>
         }
     ]);
-
-    useEffect(() => {
-        console.log("useEffect called with currentOrder:", currentOrder);
-        if (currentOrder && currentOrder.orderNumber !== orderNumber) {
-            setOrderNumber(currentOrder.orderNumber);
-        }
-    }, [currentOrder, orderNumber]);
 
     return (
         <div className="sign-content-order-history-top">
