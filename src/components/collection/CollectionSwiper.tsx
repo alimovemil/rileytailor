@@ -5,20 +5,20 @@ import { useNavigate } from "react-router-dom";
 import Pagination from "../form/Pagination";
 import Percent from "../../container/icons/percent";
 import { CauldronsSave, updateBasketInfo } from "../../redux/reducers/basket/basketRe";
-import {useAppDispatch, useAppSelector } from "../../redux/store";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { startLoading, stopLoading } from "../../redux/slices/loadingSlice";
 import Tick from "../../container/icons/Tick";
 
 const CollectionSwiper: FC = () => {
 
     const navigate = useNavigate()
-    const { rangeValues } = useAppSelector(state => state.filter);
+    const {rangeValues} = useAppSelector(state => state.filter);
 
-    const [selectedItem, setSelectedItem] = useState<string | null>(null);
+    const [ selectedItem, setSelectedItem ] = useState<string | null>(null);
 
     const dispatch = useAppDispatch();
 
-    const [isProduct, setIsProduct] = useState<any[]>([
+    const [ isProduct, setIsProduct ] = useState<any[]>([
         {
             key: '1',
             img: '/img/png/cauldrons_1.png',
@@ -113,7 +113,6 @@ const CollectionSwiper: FC = () => {
         }
     ])
 
-    const [filteredSwiper, setFilteredSwiper] = useState<any[]>([]);
 
     const [ activePage, setActivePage ] = useState(1);
 
@@ -127,12 +126,13 @@ const CollectionSwiper: FC = () => {
                 itemPrice <= rangeValues[1]
             );
         });
-        setFilteredSwiper(filteredData);
-    }, [rangeValues, isProduct, dispatch]);
+        setIsProduct(filteredData);
+    }, [rangeValues]);
+
 
     function onClickOpen(item: any) {
         dispatch(startLoading());
-        const { rate, ...itemWithoutRate } = item;
+        const {rate, ...itemWithoutRate} = item;
 
         const updatedItem = {
             ...itemWithoutRate,
@@ -146,7 +146,7 @@ const CollectionSwiper: FC = () => {
         setIsProduct(updatedData);
         setSelectedItem(updatedItem.key);
 
-        navigate(`product/${item.key}`, {
+        navigate(`product/${ item.key }`, {
             state: {
                 data: {
                     item: updatedItem,
@@ -171,50 +171,48 @@ const CollectionSwiper: FC = () => {
                 <div className="row">
                     <div className="col-12">
                         <div className="d-flex flex-wrap">
-                            { filteredSwiper.map((item, idx) => (
-                                <>
-                                    <div
-                                        className={ `client-slide ${ item.classes }` }
-                                        key={ `swiper-content-item-${ idx }` }
-                                    >
-                                        <div className={ `client-cauldrons ${ item.className }` }>
-                                            <div className={ `${ item.class }` }>
-                                                { item.rate }
-                                            </div>
-                                            <div className="client-img"
-                                                 onClick={ () => {
-                                                     onClickOpen(item)
-                                                 } }>
-                                                <img src={ item.img } alt=""/>
-                                            </div>
-                                            <div className="client-description">
-                                                <p>{ item.text }</p>
-                                                <div style={ {display: "none"} }>{ item.cost }</div>
-                                                <span>{ item.txt }</span>
-                                            </div>
-                                            <div className="client-price">
-                                                <p>{ item.paragraph }</p>
-                                                <Button
-                                                    text={item.price}
-                                                    onClick={() => onClickBasket(item)}
-                                                    className={`btn ${item.btn}`}
-                                                    rightIcon={
-                                                        selectedItem === item.key ? (
-                                                            <Tick size={40} />
-                                                        ) : (
-                                                            <Basket color={'#1E2546'} size={40} />
-                                                        )
-                                                    }
-                                                />
-                                                <div style={ {display: "none"} }>{ item.number }</div>
-                                                <div className="client-available">
-                                                    <span>{ item.span }</span>
-                                                </div>
+                            { isProduct.map((item, idx) => (
+                                <div
+                                    className={ `client-slide ${ item.classes }` }
+                                    key={ `swiper-content-item-${ idx }` }
+                                >
+                                    <div className={ `client-cauldrons ${ item.className }` }>
+                                        <div className={ `${ item.class }` }>
+                                            { item.rate }
+                                        </div>
+                                        <div className="client-img"
+                                             onClick={ () => {
+                                                 onClickOpen(item)
+                                             } }>
+                                            <img src={ item.img } alt=""/>
+                                        </div>
+                                        <div className="client-description">
+                                            <p>{ item.text }</p>
+                                            <div style={ {display: "none"} }>{ item.cost }</div>
+                                            <span>{ item.txt }</span>
+                                        </div>
+                                        <div className="client-price">
+                                            <p>{ item.paragraph }</p>
+                                            <Button
+                                                text={ item.price }
+                                                onClick={ () => onClickBasket(item) }
+                                                className={ `btn ${ item.btn }` }
+                                                rightIcon={
+                                                    selectedItem === item.key ? (
+                                                        <Tick size={ 40 }/>
+                                                    ) : (
+                                                        <Basket color={ '#1E2546' } size={ 40 }/>
+                                                    )
+                                                }
+                                            />
+                                            <div style={ {display: "none"} }>{ item.number }</div>
+                                            <div className="client-available">
+                                                <span>{ item.span }</span>
                                             </div>
                                         </div>
-
                                     </div>
-                                </>
+
+                                </div>
                             )) }
                         </div>
                         <div className='logs__carousel'>

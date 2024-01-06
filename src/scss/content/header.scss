@@ -116,6 +116,93 @@
                 }
             }
         }
+
+        &-search {
+            position: absolute;
+            z-index: 4;
+            top: 58px;
+            left: 507px;
+
+            &-product {
+                width: rem(466);
+                display: flex;
+                flex-direction: column;
+                max-height: rem(400);
+                overflow: auto;
+                background: #FFFFFF;
+                border: rem(1) solid #cccccc;
+
+                &-item {
+                    display: flex;
+                    cursor: pointer;
+
+                    &-inner {
+                        display: flex;
+                        align-items: center;
+                        gap: rem(7);
+
+                        &-img {
+                            img {
+                                width: rem(50);
+                                object-fit: contain;
+                                height: rem(50);
+                            }
+                        }
+
+                        &-description {
+                            display: flex;
+                            flex-direction: column;
+                            gap: rem(5);
+
+                            p {
+                                font-size: rem(12);
+                                line-height: rem(16);
+                                color: #21759b;
+                            }
+
+                            &-price {
+                                display: flex;
+                                align-items: center;
+
+                                span {
+                                    font-size: rem(12);
+                                    line-height: rem(16);
+                                    color: #000000;
+                                }
+                            }
+
+                            .cauldrons {
+                                justify-content: space-between;
+
+                                div {
+                                    text-decoration: line-through;
+                                    color: rgba(30, 37, 70, 0.6);
+                                    font-size: rem(14);
+                                }
+
+                                span {
+                                    line-height: rem(16);
+                                    color: #AC1931;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .spinner-container {
+                    position: absolute;
+                    right: 50px;
+                    bottom: 10px;
+
+                        .spinner {
+                            width: rem(25);
+                            height: rem(25);
+                        }
+
+                }
+            }
+        }
     }
 
     &-input {
@@ -123,6 +210,7 @@
         width: 100%;
         background: rgba(30, 37, 70, 0.05);
         margin-left: auto;
+        position: relative;
 
         .form-group {
             display: flex;

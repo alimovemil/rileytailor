@@ -7,9 +7,7 @@ import Banner from "../pages/banner";
 import Advantage from "../pages/advantage";
 import Footer from "../pages/footer";
 import NavBarBottom from "../components/sidebar/NavBarBottom";
-import CollectionPosition from "../pages/collection/CollectionPosition";
-import CollectionBanner from "../pages/collection/CollectionBanner";
-import CollectionSwiper from "../components/collection/CollectionSwiper";
+
 
 const CollectionLayout = () => {
     return (
@@ -19,12 +17,6 @@ const CollectionLayout = () => {
                 <Product/>
 
                 <Outlet/>
-
-                <CollectionPosition/>
-
-                <CollectionBanner/>
-
-                <CollectionSwiper/>
 
                 <Client/>
 

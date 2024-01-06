@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import ArrowRight from "../../container/icons/Arrow-right";
 import Button from "../../components/form/Button";
 import { useNavigate } from "react-router-dom";
-import CollectionPosition from "./CollectionPosition";
-import CollectionBanner from "./CollectionBanner";
 import CollectionSwiper from "../../components/collection/CollectionSwiper";
+import CollectionPosition from "../../pages/collection/CollectionPosition";
+import CollectionBanner from "../../pages/collection/CollectionBanner";
 
 const CollectionItem: FC = () => {
 
@@ -36,6 +36,9 @@ const CollectionItem: FC = () => {
                     </div>
                 </div>
             </div>
+            <CollectionPosition/>
+            <CollectionBanner/>
+            <CollectionSwiper/>
         </div>
     );
 };

@@ -13,7 +13,7 @@ const Client: FC = () => {
 
     const dispatch = useAppDispatch();
 
-    const [selectedItem, setSelectedItem] = useState<string | null>(null);
+    const [ selectedItem, setSelectedItem ] = useState<string | null>(null);
 
     const [ isData, SetIsData ] = useState<any[]>([
         {
@@ -66,7 +66,7 @@ const Client: FC = () => {
 
     function onClickOpen(item: any) {
         dispatch(startLoading());
-        const { rate, ...itemWithoutRate } = item;
+        const {rate, ...itemWithoutRate} = item;
 
         const updatedItem = {
             ...itemWithoutRate,
@@ -80,7 +80,7 @@ const Client: FC = () => {
         SetIsData(updatedData);
         setSelectedItem(updatedItem.key);
 
-        navigate(`product/${item.key}`, {
+        navigate(`product/${ item.key }`, {
             state: {
                 data: {
                     item: updatedItem,
@@ -109,7 +109,7 @@ const Client: FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="client-swiper d-flex" >
+                <div className="client-swiper d-flex">
                     { isData.map((item, idx) => (
                         <>
                             <div className={ `client-slide ${ item.classes }` }
@@ -133,14 +133,14 @@ const Client: FC = () => {
                                     <div className="client-price">
                                         <p>{ item.paragraph }</p>
                                         <Button
-                                            text={item.price}
-                                            onClick={() => onClickBasket(item)}
-                                            className={`btn ${item.btn}`}
+                                            text={ item.price }
+                                            onClick={ () => onClickBasket(item) }
+                                            className={ `btn ${ item.btn }` }
                                             rightIcon={
                                                 selectedItem === item.key ? (
-                                                    <Tick size={40} />
+                                                    <Tick size={ 40 }/>
                                                 ) : (
-                                                    <Basket color={'#1E2546'} size={40} />
+                                                    <Basket color={ '#1E2546' } size={ 40 }/>
                                                 )
                                             }
                                         />
