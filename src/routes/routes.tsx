@@ -10,6 +10,8 @@ import CollectionLayout from "../layouts/CollectionLayout";
 import SignLog from "../pages/header/SignLog";
 import AllProduct from "../components/pages-2/AllProduct/AllProduct";
 import AllLayout from "../layouts/AllLayout";
+import AdminLayout from "../layouts/AdminLayout";
+import Dashboard from "../components/dashboard/Dashboard";
 
 const RoutesComponent = () => {
     return (
@@ -33,6 +35,10 @@ const RoutesComponent = () => {
 
                 <Route element={<AllLayout />}>
                     <Route path="shop" element={<AllProduct />} />
+                </Route>
+
+                <Route path="admin" element={<AdminLayout />}>
+                    <Route path="dashboard" element={<Dashboard/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

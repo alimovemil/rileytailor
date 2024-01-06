@@ -8,7 +8,7 @@ import Advantage from "../pages/advantage";
 import Footer from "../pages/footer";
 import Modern from "../pages/banner/Modern";
 
-const AdminContent: FC = () => {
+const Content: FC = () => {
     return (
         <div className="admin-header">
             <Header/>
@@ -32,4 +32,4 @@ const AdminContent: FC = () => {
     );
 };
 
-export default AdminContent;
+export default Content;
