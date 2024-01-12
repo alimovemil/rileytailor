@@ -17,6 +17,12 @@
 @import "./content/filter";
 @import "./content/sign";
 @import "./content/shop";
+@import "./content/siderbar";
+@import "./content/category";
+@import "./content/property";
+@import "./content/warehouse";
+@import "./content/switch";
+@import "./content/order";
 
 //Helpers
 .text-left {
@@ -2514,11 +2520,17 @@ p {
     gap: rem(17);
     transition: .9s all ease;
 
+    .neighbor {
+        color: #003166;
+    }
+
     &-numbers {
         overflow-x: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
+        width: rem(32);
+        height: rem(32);
     }
 
     &-number {

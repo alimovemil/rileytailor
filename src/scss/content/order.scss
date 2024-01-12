@@ -1,0 +1,216 @@
+.order {
+    &-content {
+        &-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: rem(16) rem(30);
+            background: #FFFFFF;
+
+            h1 {
+                color: #003166;
+                font-size: rem(24);
+                font-weight: 600;
+                line-height: rem(32);
+            }
+
+            &-btn {
+                .file {
+                    border: none;
+                    background: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: rem(205);
+                    height: rem(44);
+                    background: rgba(0, 123, 255, 0.05);
+                    color: #000;
+                    font-size: rem(14);
+                    font-weight: 600;
+                    line-height: rem(22);
+                }
+            }
+        }
+
+        &-top {
+            display: flex;
+            align-items: center;
+            padding: rem(0) rem(15);
+            background: #FFFFFF;
+
+            &-select {
+                display: flex;
+                align-items: center;
+
+                &-status {
+                    &-all {
+                        width: rem(255);
+
+                        .css-13cymwt-control {
+                            height: rem(44);
+                            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                            width: 100%;
+                            background: #FFF;
+                            box-shadow: -1px 0px 0px 0px rgba(0, 0, 0, 0.05) inset;
+                            border-style: none;
+                            border: none;
+                            border-radius: 0;
+
+                            .css-1u9des2-indicatorSeparator {
+                                display: none;
+                            }
+                        }
+
+                        .css-t3ipsp-control {
+                            border: none;
+                            border-radius: 0;
+                            box-shadow: none;
+                            height: rem(44);
+
+                            .css-1u9des2-indicatorSeparator {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-search {
+                width: 100%;
+
+                .form-group {
+                    position: relative;
+                }
+
+                .form-icon-left {
+                    position: absolute;
+                    z-index: 1;
+                    top: 10px;
+                    left: 15px;
+                }
+
+                .form-block {
+                    input {
+                        padding: rem(11) rem(50);
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                        background: #FFF;
+                        box-shadow: -1px 0px 0px 0px rgba(0, 0, 0, 0.05) inset;
+                        border-radius: 0;
+                        border-color: transparent;
+                        height: rem(44);
+
+                        &:focus, {
+                            border-color: transparent;
+                        }
+                    }
+
+                    input::placeholder {
+                        color: rgba(0, 0, 0, 0.60);
+                        font-size: rem(14);
+                        font-weight: 500;
+                        line-height: rem(22);
+                    }
+                }
+            }
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            gap: rem(10);
+            padding: rem(30);
+
+            &-inner {
+                display: flex;
+                flex-direction: column;
+
+                h2 {
+                    color: #003166;
+                    font-size: rem(20);
+                    font-weight: 600;
+                    line-height: rem(28);
+                    width: 100%;
+                }
+
+                &-info {
+                    display: flex;
+                    align-items: center;
+                    gap: rem(15);
+                    padding: rem(10) rem(20);
+                    background: #FFF;
+
+                    &-number {
+                        max-width: rem(150);
+                        width: 100%;
+
+                        h3 {
+                            color: #003166;
+                            font-size: rem(16);
+                            font-weight: 600;
+                            line-height: rem(24);
+                            letter-spacing: -0.32px;
+                        }
+                    }
+
+                    &-all {
+                        display: flex;
+                        align-items: center;
+                        gap: rem(60);
+                        width: 100%;
+
+                        &-meta {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+
+                            span {
+                                color: #000;
+                                font-size: rem(12);
+                                font-style: normal;
+                                line-height: rem(20);
+                                opacity: 0.5;
+                            }
+
+                            p {
+                                color: #000;
+                                font-size: rem(14);
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: rem(22);
+                            }
+                        }
+
+                        .classname {
+                            max-width: rem(175);
+                        }
+
+                        .class {
+                            max-width: rem(75);
+                        }
+
+                        .classes {
+                            max-width: rem(90);
+                        }
+
+                        .class-span {
+                            max-width: rem(100);
+                        }
+                    }
+
+                    &-arrow {
+                        display: flex;
+                        align-items: center;
+                        gap: rem(30);
+
+                        div {
+                            color: #003166;
+                            font-size: rem(14);
+                            font-weight: 600;
+                            line-height: rem(22);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

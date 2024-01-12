@@ -11,7 +11,11 @@ import SignLog from "../pages/header/SignLog";
 import AllProduct from "../components/pages-2/AllProduct/AllProduct";
 import AllLayout from "../layouts/AllLayout";
 import AdminLayout from "../layouts/AdminLayout";
-import Dashboard from "../components/dashboard/Dashboard";
+import Dashboard from "../components/admin/dashboard/Dashboard";
+import Category from "../components/admin/category/Category";
+import Property from "../components/admin/property/Property";
+import WareHouse from "../components/admin/warehouse/WareHouse";
+import Order from "../components/admin/order/Order";
 
 const RoutesComponent = () => {
     return (
@@ -39,6 +43,10 @@ const RoutesComponent = () => {
 
                 <Route path="admin" element={<AdminLayout />}>
                     <Route path="dashboard" element={<Dashboard/>}/>
+                    <Route path="category" element={<Category/>}/>
+                    <Route path="property" element={<Property/>}/>
+                    <Route path="warehouse" element={<WareHouse/>}/>
+                    <Route path="order" element={<Order/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
