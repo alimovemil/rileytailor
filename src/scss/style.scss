@@ -2755,7 +2755,7 @@ p {
     height: 50px;
 
     & .path {
-        stroke: #1E2546;//$primary-color;
+        stroke: #1E2546; //$primary-color;
         stroke-linecap: round;
         animation: dash 1.5s ease-in-out infinite;
     }
@@ -2791,6 +2791,44 @@ p {
     100% {
         stroke-dasharray: 90, 150;
         stroke-dashoffset: -124;
+    }
+}
+
+.mobile__block {
+    display: none;
+
+    &__elem__block {
+        display: flex;
+        padding: rem(15) rem(10) rem(22) rem(10);
+        justify-content: space-around;
+    }
+
+    .mobile__block__burger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: rem(4) solid rgb(30, 37, 70);
+        height: rem(60);
+        min-width: rem(60);
+        overflow: hidden;
+        padding: rem(11.7);
+        margin-top: rem(-35);
+        border-radius: 50%;
+        background: (linear-gradient(90deg, #467FFF 0%, #A414FF 100%));
+        box-shadow: 0px 4px 16px 0px rgba(120, 72, 255, 0.30), 0px 4px 8px 0px rgba(255, 255, 255, 0.30) inset
+    }
+
+    .mobile__block__menu {
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            p {
+                color: $white;
+                font-size: rem(12);
+            }
+        }
     }
 }
 

@@ -243,9 +243,12 @@
     }
 
     &-header {
-        padding: rem(16) rem(30);
+        padding: rem(0) rem(30);
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         background: #FFF;
+        display: flex;
+        align-items: center;
+        height: rem(76);
 
         h1 {
             color: #003166;

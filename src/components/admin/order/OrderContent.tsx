@@ -6,6 +6,7 @@ const OrderContent: FC = () => {
     const [ isOrder, setIsOrder ] = useState<any[]>([
         {
             header: '25.05.2023',
+            style: {paddingBottom: '15px'},
             number: '№ 230501-0006',
             info: [
                 {
@@ -185,6 +186,7 @@ const OrderContent: FC = () => {
         },
         {
             header: '21.04.2023',
+            style: {paddingBottom: '15px'},
             number: '№ 111410-0001',
             info: [
                 {
@@ -270,7 +272,7 @@ const OrderContent: FC = () => {
                 <div className="order-content-item-inner"
                      key={ `order-content-item-inner${ idx }` }
                 >
-                    <h2>{ item.header }</h2>
+                    <h2 style={item.style} >{ item.header }</h2>
                     <div className="order-content-item-inner-info">
                         <div className="order-content-item-inner-info-number">
                             <h3 className={ item.point }>{ item.number }</h3>

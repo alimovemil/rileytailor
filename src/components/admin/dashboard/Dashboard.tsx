@@ -189,7 +189,6 @@ const Dashboard: FC = () => {
                                     series={chart.series}
                                     type="line"
                                     height={185}
-                                    width={370}
                                 />
                             </div>
                             <div className="sidebar-content-block-order-graph-span">

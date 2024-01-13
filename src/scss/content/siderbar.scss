@@ -11,7 +11,10 @@
 
         &-block {
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding: rem(17) rem(30);
+            padding: rem(0) rem(30);
+            height: rem(76);
+            display: flex;
+            align-items: center;
             cursor: pointer;
         }
 
@@ -80,9 +83,12 @@
         }
 
         &-header {
-            padding: rem(16) rem(30);
+            padding: rem(0) rem(30);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             background: #FFF;
+            height: rem(76);
+            display: flex;
+            align-items: center;
 
             h1 {
                 color: #003166;
