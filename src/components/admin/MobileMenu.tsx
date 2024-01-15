@@ -64,7 +64,7 @@ const MobileMenu: FC<MobileMenuProps> = ({onClose, isOpen}) => {
                 </div>
 
                 <div className="mobile__block__menu">
-                    <a onClick={ () => navigate("") }>
+                    <a onClick={ () => navigate("/admin/setting") }>
                         <Setting size={ 20 }/>
                         <p>Настройки</p>
                     </a>

@@ -6,6 +6,7 @@ import Property from "../../container/icons/Property";
 import Warehouse from "../../container/icons/Warehouse";
 import Orders from "../../container/icons/Orders";
 import ArrowRight from "../../container/icons/Arrow-right";
+import Setting from "../../container/icons/Setting";
 
 const navigationItems = [
     {
@@ -41,6 +42,13 @@ const navigationItems = [
         icon: (<Orders color={"#003166"}/>),
         title: 'Заказы',
         key: 'order',
+        img: <ArrowRight color={'#003166'}/>
+    },
+    {
+        link: 'setting',
+        icon: (<Setting color={"#003166"}/>),
+        title: 'Общие настройки',
+        key: 'setting',
         img: <ArrowRight color={'#003166'}/>
     }
 ]

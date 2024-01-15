@@ -16,6 +16,7 @@ import Category from "../components/admin/category/Category";
 import Property from "../components/admin/property/Property";
 import WareHouse from "../components/admin/warehouse/WareHouse";
 import Order from "../components/admin/order/Order";
+import Setting from "../components/admin/setting/Setting";
 
 const RoutesComponent = () => {
     return (
@@ -47,6 +48,7 @@ const RoutesComponent = () => {
                     <Route path="property" element={<Property/>}/>
                     <Route path="warehouse" element={<WareHouse/>}/>
                     <Route path="order" element={<Order/>}/>
+                    <Route path="setting" element={<Setting/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -6,7 +6,7 @@ import TextField from "../../components/form/TextField";
 import TextArea from "../../components/form/TextArea";
 import { useLocation, useNavigate, } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { GetCauldrons,} from "../../redux/reducers/basket/basketRe";
+import { CauldronsSave, GetCauldrons, updateBasketInfo, } from "../../redux/reducers/basket/basketRe";
 import Footer from "../footer";
 import Button from "../../components/form/Button";
 import NavBarBottom from "../../components/sidebar/NavBarBottom";
@@ -14,18 +14,19 @@ import { useAppDispatch } from "../../redux/store";
 import HeaderOpen from "../../components/header/headerOpen";
 import { IMask } from "react-imask";
 import { useForm } from "react-hook-form";
+import { startLoading, stopLoading } from "redux/slices/loadingSlice";
 
 const CheckOut: FC = () => {
     const products = useSelector(GetCauldrons);
     const location = useLocation();
     const state: any = location.state;
     const editedData = state?.data || {};
+    const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
 
     const { handleSubmit, register, setValue, clearErrors, formState } = useForm();
     const { errors, isValid } = formState;
-
 
     const [ selectedItem, setSelectedItem ] = useState('');
 
@@ -199,8 +200,15 @@ const CheckOut: FC = () => {
     }
 
     const onClickNext = () => {
-
-    }
+        const itemsToSave = isPayment.map(item => ({
+            text: item.text,
+            count: item.count,
+            price: item.price,
+            img: item.img
+        }));
+        localStorage.setItem('checkoutItems', JSON.stringify(itemsToSave));
+        navigate(`/sign`);
+    };
 
     return (
         <div>
@@ -259,7 +267,7 @@ const CheckOut: FC = () => {
                                                         {errors.logins && <span className="validation">Обязательное поле</span>}
                                                     </div>
                                                 </div>
-                                                <Button text={ 'Продолжить' } onClick={ onClickNext }
+                                                <Button text={ 'Продолжить' }
                                                         className={ 'btn' }
                                                         type={ "button" }
                                                 />
@@ -394,7 +402,7 @@ const CheckOut: FC = () => {
                                                     <div className="checkout-block-delivery-select-meta-comment">
                                                         { Comment.map((item, idx) => (
                                                             <div className={ `checkout-block-delivery-select-meta-comment-inner ${item.classArea}` }
-                                                                key={ idx }>
+                                                                 key={ idx }>
                                                                 { (item.field && (
                                                                     <>
                                                                         <label>{ item.name }</label>
@@ -488,9 +496,9 @@ const CheckOut: FC = () => {
                                     <div className="checkout-total-btn">
                                         <Button
                                             text={'Подтвердить заказ и оплатить'}
-                                            onClick={onSubmit}
+                                            onClick={onClickNext}
                                             className="btn"
-                                            disabled={!isValid}
+                                            // disabled={!isValid}
                                         />
 
                                     </div>

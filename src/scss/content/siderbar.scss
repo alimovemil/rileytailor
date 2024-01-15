@@ -172,11 +172,17 @@
 
                             input {
                                 border-radius: 100px;
-                                background: rgba(0, 0, 0, 0.02);
+                                background: rgba(0, 0, 0, 0.06);
                                 padding: rem(5) rem(20);
                                 outline: none;
                                 border: none;
                                 width: 100%;
+                                color: #000;
+                                font-size: rem(14);
+                                font-weight: 600;
+                                line-height: rem(26);
+                                text-align: center;
+                                cursor: pointer;
                             }
                         }
                     }

@@ -3,8 +3,6 @@ import ArrowTop from "../../../container/icons/ArrowTop";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/store";
 
-
-
 const SignLogItem: FC= () => {
     const totalSum = useSelector((state: RootState) => state.profile.totalPrice);
 

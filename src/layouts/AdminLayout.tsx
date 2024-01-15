@@ -34,6 +34,7 @@ const AdminLayout: FC = () => {
     const isCategoryOrPropertyPage = location.pathname.startsWith('/admin/') &&
         (location.pathname === '/admin/category' ||
             location.pathname === '/admin/property' ||
+            location.pathname === '/admin/setting' ||
             location.pathname === '/admin/warehouse');
 
     const sidebarStyle = {

@@ -43,6 +43,16 @@
 
     body {
         .sidebar {
+            .setting {
+                &-header {
+                    padding: rem(16) rem(15);
+                }
+
+                &-content {
+                    padding: rem(30) rem(15);
+                }
+            }
+
             .order {
                 &-content {
                     &-header {
