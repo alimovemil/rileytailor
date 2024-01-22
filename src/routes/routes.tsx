@@ -34,7 +34,7 @@ const RoutesComponent = () => {
                     <Route path="product/:id" element={<Modern />} />
                 </Route>
 
-                <Route element={<ProductLayout />}>
+                <Route element={<ProductLayout/>}>
                     <Route path="product/:id" element={<Modern />} />
                 </Route>
 

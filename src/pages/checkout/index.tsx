@@ -206,7 +206,11 @@ const CheckOut: FC = () => {
             price: item.price,
             img: item.img
         }));
-        localStorage.setItem('checkoutItems', JSON.stringify(itemsToSave));
+
+        const existingOrderHistory = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+        const updatedOrderHistory = [...existingOrderHistory, itemsToSave];
+        localStorage.setItem('orderHistory', JSON.stringify(updatedOrderHistory));
+
         navigate(`/sign`);
     };
 
@@ -307,142 +311,7 @@ const CheckOut: FC = () => {
                                             )) }
                                         </div>
                                     </div>
-                                    <form className="checkout-block-delivery">
-                                        <div className="checkout-block-goods-top-header">
-                                            <h1>Доставка</h1>
-                                        </div>
-                                        <div className="checkout-block-goods-top-line"/>
-                                        <div className="checkout-block-delivery-select">
-                                            <div className="checkout-block-delivery-select-dropdown">
-                                                <p>Ваш город</p>
-                                                <div className="checkout-block-delivery-select-dropdown-bottom">
-                                                    <select
-                                                        className="checkout-block-delivery-select-dropdown-bottom-toggle"
-                                                        onChange={ handleSelectChange }
-                                                        value={ selectedItem }
-                                                    >
-                                                        <option value="Ташкент">Ташкент</option>
-                                                        <option value="Чирчик">Чирчик</option>
-                                                        <option value="Янгиюль">Янгиюль</option>
-                                                        <option value="Фергана">Фергана</option>
-                                                    </select>
-                                                    <Location color={ '#1E2546' }/>
-                                                </div>
-                                            </div>
-
-                                            { showAdditionalElements && (
-                                                <div className="checkout-block-delivery-select-content">
-                                                    <div className="checkout-block-delivery-select-content-bottom">
-                                                        <div
-                                                            className="checkout-block-delivery-select-content-bottom-checkbox">
-                                                            <div
-                                                                className="checkout-block-delivery-select-content-bottom-checkbox-input">
-                                                                <label>
-                                                                    <input
-                                                                        type="radio"
-                                                                        value="Самовывоз"
-                                                                        checked={ selectedOption === "Самовывоз" }
-                                                                        onChange={ onChangeValue }
-                                                                    />
-                                                                    Самовывоз
-                                                                </label>
-                                                            </div>
-                                                            <p>Бесплатно</p>
-                                                        </div>
-
-                                                        { (selectedOption === "Самовывоз") && (
-                                                            <div
-                                                                className="checkout-block-delivery-select-content-bottom-point">
-                                                                <label>Пункт выдачи</label>
-                                                                <div
-                                                                    className="checkout-block-delivery-select-content-bottom-point-option">
-                                                                    <select>
-                                                                        <option value="Выберите пункт доставки" selected
-                                                                                style={ {display: "none"} }>Выберите
-                                                                            пункт
-                                                                            доставки
-                                                                        </option>
-                                                                        <option value="R&T Чиланзар, Чиланзарский район, улица
-                                                                    Катартал, ТРЦ Parus">R&T Чиланзар, Чиланзарский
-                                                                            район,
-                                                                            улица
-                                                                            Катартал, ТРЦ "Parus"
-                                                                        </option>
-                                                                        <option value="">R&T Мирабад, Мирабадский район,
-                                                                            улица
-                                                                            Адылходжаева, дом 112
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                                <div
-                                                                    className="checkout-block-delivery-select-content-bottom-point-paragraph">
-                                                                    <p>График работы</p>
-                                                                    <p>Пн-Пт, с 09:00 до 18:00. Обед с 13:00 до
-                                                                        14:00</p>
-                                                                </div>
-                                                            </div>
-                                                        ) }
-                                                    </div>
-                                                </div>
-                                            ) }
-                                            <div className="checkout-block-delivery-select-meta">
-                                                <div className="checkout-block-delivery-select-meta-checkbox">
-                                                    <label>
-                                                        <input
-                                                            type="radio"
-                                                            value="Курьерская доставка"
-                                                            checked={ selectedOption === "Курьерская доставка" }
-                                                            onChange={ onChangeValue }
-                                                            className='ds'
-                                                        />
-                                                        Курьерская доставка
-                                                    </label>
-                                                </div>
-                                                { (selectedOption === "Курьерская доставка") && (
-                                                    <div className="checkout-block-delivery-select-meta-comment">
-                                                        { Comment.map((item, idx) => (
-                                                            <div className={ `checkout-block-delivery-select-meta-comment-inner ${item.classArea}` }
-                                                                 key={ idx }>
-                                                                { (item.field && (
-                                                                    <>
-                                                                        <label>{ item.name }</label>
-                                                                        <TextField
-                                                                            value={ item.value }
-                                                                            onChangeValue={ (value) => {
-                                                                                item.setValue(value, item.key);
-                                                                                clearErrors(item.key);
-                                                                            } }
-                                                                            { ...register(item.key, {required: !item.value}) }
-                                                                            type="text"
-                                                                        />
-                                                                        { errors[item.key] &&
-                                                                        <span className="validation">Обязательное поле</span> }
-                                                                    </>
-                                                                )) }
-
-                                                                { (item.area && (
-                                                                    <div className="checkout-block-delivery-select-meta-comment-area">
-                                                                        <TextArea
-                                                                            value={ item.value }
-                                                                            label={ item.comment }
-                                                                            rows={ 4 }
-                                                                            onChangeValue={ (value) => {
-                                                                                item.setValue(value, item.key);
-                                                                                clearErrors(item.key);
-                                                                            } }
-                                                                            { ...register(item.key, {required: !item.value}) }
-                                                                        />
-                                                                        { errors[item.key] &&
-                                                                        <span className="validation">Обязательное поле</span> }
-                                                                    </div>
-                                                                )) }
-                                                            </div>
-                                                        )) }
-                                                    </div>
-                                                ) }
-                                            </div>
-                                        </div>
-                                    </form>
+                                    1
                                     <div className="checkout-block-pay">
                                         <div className="checkout-block-goods-top-header">
                                             <h1>Оплата</h1>

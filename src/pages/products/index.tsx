@@ -65,10 +65,10 @@ const Product: FC<ProductProduct> = ({isCheckoutProduct}) => {
                                     <nav>
                                         <div className="product-right">
                                             <div className="product-right-item">
-                                                { navigation?.map(({route, name}) => {
+                                                { navigation?.map(({route, name}, index) => {
                                                     return (
                                                         <NavLink
-                                                            key={ route }
+                                                            key={ index }
                                                             to={ route }
                                                             className="product-right-item-link"
                                                         >

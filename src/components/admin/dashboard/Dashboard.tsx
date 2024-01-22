@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import DatePeckerModal from "../../form/DatePeckerModal";
 import Calendar from "../../../container/icons/Calendar";
 import ReactApexChart from 'react-apexcharts';
@@ -6,7 +6,21 @@ import DashboardCenter from "./DashboardCenter";
 import DashboardBottom from "./DashboardBottom";
 
 const Dashboard: FC = () => {
+
     const [activeWeek, setActiveWeek] = useState<string>('today');
+    const [orderHistory, setOrderHistory] = useState<any[]>([]);
+    const [totalOrders, setTotalOrders] = useState<number>(0);
+
+    useEffect(() => {
+        const existingOrderHistory = JSON.parse(localStorage.getItem('orderHistory') || '[]');
+        setOrderHistory(existingOrderHistory);
+
+        const totalOrdersCount = existingOrderHistory.reduce(
+            (total: any, order: string | any[]) => total + order.length,
+            0
+        );
+        setTotalOrders(totalOrdersCount);
+    }, []);
 
     const isWeeks = [
         {
@@ -39,7 +53,7 @@ const Dashboard: FC = () => {
         {
             title: "Всего заказов",
             text: 'Заказы',
-            span: '17',
+            span: totalOrders.toString(),
             class: 'txt',
             options: {
                 chart: {
@@ -53,9 +67,13 @@ const Dashboard: FC = () => {
                     width: 2,
                 },
                 yaxis: {
-                    min: 25,
-                    max: 50,
-                    tickAmount: 1,
+                    max: 5,
+                    tickAmount: 5,
+                    labels: {
+                        formatter: function (value: number) {
+                            return Math.floor(value).toString();
+                        },
+                    },
                 },
                 xaxis: {
                     labels: {
@@ -69,7 +87,7 @@ const Dashboard: FC = () => {
             series: [
                 {
                     name: "Заказы",
-                    data: [25, 30, 50],
+                    data: [0, 0, totalOrders],
                 },
             ],
         },
@@ -191,11 +209,11 @@ const Dashboard: FC = () => {
                                     height={185}
                                 />
                             </div>
-                            <div className="sidebar-content-block-order-graph-span">
-                                <span>08.10.2023</span>
-                                <span>08.10.2023</span>
-                            </div>
-
+                            {orderHistory.map((order, orderIndex) => (
+                                <div key={orderIndex} className="sidebar-content-block-order-graph-span">
+                                    <span>{order.date}</span>
+                                </div>
+                            ))}
                             <div className="sidebar-content-block-order-graph-inner">
                                 <p className={`${chart.class}`}>{chart.text}</p>
                                 <span>{chart.span}</span>
@@ -203,6 +221,7 @@ const Dashboard: FC = () => {
                         </div>
                     ))}
                 </div>
+
             </div>
             <DashboardCenter/>
             <DashboardBottom/>
